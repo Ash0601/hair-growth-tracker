@@ -1076,9 +1076,19 @@
     }
 
     .faq-a {
-      font-size: 0.76rem;
-      color: #cbd5e1;
-      line-height: 1.35;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    .permit-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .xp-text {
+      color: #34d399;
     }
 
     .barber-permit-box {
@@ -1145,7 +1155,7 @@
       flex-direction: column;
       gap: 5px;
       font-size: 0.72rem;
-      color: #cbd5e1;
+      color: var(--text-secondary);
     }
 
     #photo-file-input { display: none; }
@@ -1310,6 +1320,126 @@
       }
     }
 
+  
+    /* ===================================================
+       LIGHT MODE HIGH-CONTRAST READABILITY ENHANCEMENTS
+       (Secret Guide, Barber Permit, Do's & Don'ts, Pills)
+       =================================================== */
+    [data-theme="light"] .edu-shelf {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: var(--card-shadow);
+    }
+
+    [data-theme="light"] .nav-tab-btn {
+      background: #f1ede2;
+      border: 1px solid #dfd7c5;
+      color: #475569;
+      font-weight: 700;
+    }
+
+    [data-theme="light"] .nav-tab-btn:hover {
+      background: #e9e2d3;
+      color: #1e293b;
+    }
+
+    [data-theme="light"] .nav-tab-btn.active {
+      background: var(--gold);
+      border-color: var(--gold-dark);
+      color: #ffffff;
+      font-weight: 800;
+      box-shadow: 0 2px 8px rgba(184, 134, 11, 0.35);
+    }
+
+    [data-theme="light"] .faq-item {
+      background: #faf7f0;
+      border: 1px solid #e7dfce;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    [data-theme="light"] .faq-q {
+      color: #785404;
+      font-weight: 800;
+      font-size: 0.88rem;
+    }
+
+    [data-theme="light"] .faq-a {
+      color: #1e293b;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    [data-theme="light"] .barber-permit-box {
+      background: #fdfbf7;
+      border: 1.5px solid var(--gold-border);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+
+    [data-theme="light"] .permit-title {
+      color: #3730a3;
+      font-weight: 900;
+    }
+
+    [data-theme="light"] .permit-subtitle {
+      color: #475569;
+      font-weight: 500;
+    }
+
+    [data-theme="light"] .permit-speech {
+      background: #f5f0e6;
+      color: #0f172a;
+      border-left: 3.5px solid var(--gold);
+      font-weight: 600;
+    }
+
+    [data-theme="light"] .box-good {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1.5px solid rgba(16, 185, 129, 0.3);
+    }
+
+    [data-theme="light"] .box-good .box-title {
+      color: #047857;
+      font-weight: 800;
+    }
+
+    [data-theme="light"] .box-bad {
+      background: rgba(244, 63, 94, 0.08);
+      border: 1.5px solid rgba(244, 63, 94, 0.3);
+    }
+
+    [data-theme="light"] .box-bad .box-title {
+      color: #be123c;
+      font-weight: 800;
+    }
+
+    [data-theme="light"] .checklist-list {
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    [data-theme="light"] .pill-shield {
+      background: #f1ede2;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: var(--text-secondary);
+    }
+
+    [data-theme="light"] .pill-level {
+      background: rgba(5, 150, 105, 0.1);
+      border: 1px solid rgba(5, 150, 105, 0.3);
+      color: #047857;
+    }
+
+    [data-theme="light"] .xp-text {
+      color: #047857;
+    }
+
+    [data-theme="light"] .tag-rest {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
   </style>
 </head>
 <body>
@@ -1372,7 +1502,7 @@
       </div>
       <div class="progress-label-row">
         <span>Hafte Ka Score</span>
-        <span id="xp-text" style="color: #34d399;">0 / 7 Tasks Done 🚀</span>
+        <span id="xp-text" class="xp-text">0 / 7 Tasks Done 🚀</span>
       </div>
     </div>
 
@@ -1662,7 +1792,7 @@
       <div class="edu-sheet" id="tab-barber">
         <div class="barber-permit-box">
           <div class="permit-title">🛡️ BARBER EMERGENCY PERMIT</div>
-          <p style="font-size:0.75rem; color:#cbd5e1;">Barber chair par baithte hi use yeh phone screen dikha dena:</p>
+          <p class="permit-subtitle">Barber chair par baithte hi use yeh phone screen dikha dena:</p>
           <div class="permit-speech">
             "Bhaiya, main baal lambe kar raha hoon. Upar ki length ko haath bhi mat lagana. Sirf gardan aur kaan ke paas se clean kar do aur kharab ends trim kar do!"
           </div>
