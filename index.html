@@ -72,31 +72,31 @@
       --gold-light: #785404;
       --gold-dark: #573c02;
       --gold-dim: rgba(184, 134, 11, 0.1);
-      --gold-border: rgba(184, 134, 11, 0.3);
+      --gold-border: rgba(184, 134, 11, 0.35);
       --gold-glow: rgba(184, 134, 11, 0.15);
 
       --botanical-green: #059669;
       --water-cyan: #0284c7;
       
-      --text-white: #111827;
-      --text-primary: #1f2937;
-      --text-secondary: #4b5563;
-      --text-muted: #6b7280;
+      --text-white: #0f172a;       /* Deep obsidian black for all titles */
+      --text-primary: #1e293b;     /* Crisp charcoal for body */
+      --text-secondary: #475569;   /* Readable slate for hints & subtitles */
+      --text-muted: #64748b;       /* Muted labels */
       
-      --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      --btn-sq-bg: rgba(0, 0, 0, 0.05);
-      --btn-sq-border: rgba(0, 0, 0, 0.12);
-      --inner-panel-bg: #f4efe4;
-      --inner-panel-border: rgba(0, 0, 0, 0.06);
-      --slot-bg: #faf7f0;
-      --cup-bg: rgba(0, 0, 0, 0.04);
-      --cup-border: rgba(0, 0, 0, 0.12);
-      --step-bg: #e8e2d4;
-      --step-border: rgba(0, 0, 0, 0.12);
-      --today-card-bg: #fffcf4;
+      --card-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      --btn-sq-bg: #f4efe4;
+      --btn-sq-border: rgba(0, 0, 0, 0.14);
+      --inner-panel-bg: #f5f0e6;
+      --inner-panel-border: rgba(0, 0, 0, 0.08);
+      --slot-bg: #fbf9f4;
+      --cup-bg: #f3efe6;
+      --cup-border: rgba(0, 0, 0, 0.14);
+      --step-bg: #ede7d8;
+      --step-border: rgba(0, 0, 0, 0.16);
+      --today-card-bg: #fffdf5;
       --completed-card-bg: rgba(0, 0, 0, 0.02);
       --routine-hover-shadow: 0 3px 0 rgba(0, 0, 0, 0.06);
-      --bg-ambient: rgba(184, 134, 11, 0.06);
+      --bg-ambient: rgba(184, 134, 11, 0.07);
     }
 
     * {
@@ -176,7 +176,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 1.15rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
       letter-spacing: -0.01em;
       line-height: 1.2;
     }
@@ -301,14 +301,14 @@
       font-family: 'Outfit', sans-serif;
       font-size: 1.05rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
       line-height: 1.25;
       margin-bottom: 2px;
     }
 
     .hero-subtext {
       font-size: 0.76rem;
-      color: #94a3b8;
+      color: var(--text-secondary);
       line-height: 1.35;
     }
 
@@ -368,7 +368,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 0.95rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
     }
 
     .chip-target-stat {
@@ -449,7 +449,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 0.72rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
     }
 
     .node-name {
@@ -481,7 +481,7 @@
 
     .forecast-text {
       font-size: 0.74rem;
-      color: #cbd5e1;
+      color: var(--text-secondary);
       line-height: 1.35;
     }
 
@@ -518,7 +518,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 0.9rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -589,7 +589,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 0.88rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -685,7 +685,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 0.92rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
     }
 
     .btn-spa-pill {
@@ -759,7 +759,7 @@
 
     .arcade-coach-note {
       font-size: 0.74rem;
-      color: #e9d5ff;
+      color: var(--text-secondary);
       line-height: 1.35;
       text-align: center;
     }
@@ -787,7 +787,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 0.92rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -807,7 +807,7 @@
     }
 
     .polaroid-slot {
-      background: #090e1a;
+      background: var(--slot-bg);
       border: 1.5px dashed rgba(212, 175, 55, 0.25);
       border-radius: var(--radius-md);
       aspect-ratio: 1;
@@ -883,7 +883,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 1.02rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -923,7 +923,7 @@
 
     .protocol-card.today {
       border: 1.5px solid var(--gold);
-      background: #141722;
+      background: var(--today-card-bg);
       box-shadow: 0 4px 18px rgba(212, 175, 55, 0.15);
     }
 
@@ -1004,14 +1004,14 @@
       font-family: 'Outfit', sans-serif;
       font-size: 0.9rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-white);
       line-height: 1.25;
       margin-bottom: 2px;
     }
 
     .routine-hint {
       font-size: 0.74rem;
-      color: #94a3b8;
+      color: var(--text-secondary);
       line-height: 1.3;
     }
 
@@ -1106,7 +1106,7 @@
       border-radius: 6px;
       font-size: 0.8rem;
       font-style: italic;
-      color: #fff;
+      color: var(--text-primary);
       margin-top: 8px;
       text-align: left;
     }
@@ -1200,6 +1200,73 @@
 
     .other-days-tray {
       margin-top: 8px;
+    }
+
+  
+    /* Light Mode Specific Overrides */
+    [data-theme="light"] .roadmap-line-bg {
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    [data-theme="light"] .node-bubble {
+      background: #ede7d8;
+      border: 2px solid rgba(0, 0, 0, 0.15);
+      color: #1f2937;
+    }
+
+    [data-theme="light"] .roadmap-node.active .node-bubble {
+      background: #fffdf5;
+      border-color: var(--gold);
+    }
+
+    [data-theme="light"] .node-name {
+      color: var(--text-secondary);
+    }
+
+    [data-theme="light"] .roadmap-node.active .node-name {
+      color: var(--gold-light);
+    }
+
+    [data-theme="light"] .timer-digits-text {
+      color: var(--gold-dark);
+      text-shadow: none;
+    }
+
+    [data-theme="light"] .btn-timer-primary {
+      background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+      color: #ffffff;
+      box-shadow: 0 3px 0 #8c6508;
+    }
+
+    [data-theme="light"] .btn-card-checkbox {
+      border-color: rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    [data-theme="light"] .btn-toggle-week {
+      background: #f5f0e6;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: var(--text-primary);
+    }
+
+    [data-theme="light"] .water-caption {
+      color: var(--text-secondary);
+    }
+
+    [data-theme="light"] .protein-info span {
+      color: var(--text-secondary);
+    }
+
+    [data-theme="light"] .day-chip {
+      color: var(--text-secondary);
+    }
+
+    [data-theme="light"] .brand-avatar,
+    [data-theme="light"] .hero-badge-icon,
+    [data-theme="light"] .arcade-icon-tile {
+      background: #fffdf7;
+      border: 1.5px solid var(--gold-border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
   </style>
