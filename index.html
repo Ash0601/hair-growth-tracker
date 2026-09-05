@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#0b1329" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#070c18" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="manifest" href="/manifest.json" />
@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <title>Hair Flow Quest — Daily Habit Game</title>
+  <title>Hair Flow Quest — Daily Habit & Hair Tracker</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,26 +19,27 @@
 
   <style>
     :root {
-      --bg: #0b1329;
-      --card-bg: #16203a;
-      --card-inner: #1c2a4d;
-      --card-border: rgba(255, 255, 255, 0.12);
+      --bg-main: #070c18;
+      --card-bg: #0f172a;
+      --card-sub: #17223b;
+      --card-border: rgba(255, 255, 255, 0.08);
       
-      --green: #10b981;
-      --green-dark: #059669;
+      --emerald: #10b981;
+      --emerald-dark: #059669;
       --cyan: #06b6d4;
       --amber: #f59e0b;
-      --purple: #8b5cf6;
-      --coral: #f43f5e;
+      --purple: #a855f7;
+      --rose: #f43f5e;
       
-      --text-main: #f8fafc;
-      --text-sub: #94a3b8;
+      --text-white: #ffffff;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
       --text-muted: #64748b;
       
-      --radius-sm: 12px;
-      --radius-md: 18px;
-      --radius-lg: 24px;
-      --radius-xl: 30px;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --radius-xl: 22px;
     }
 
     * {
@@ -49,22 +50,23 @@
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      line-height: 1.5;
-      padding: 16px 14px 100px;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.45;
+      padding: 12px 14px 90px;
       background-image: 
-        radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 90% 25%, rgba(6, 182, 212, 0.2) 0%, transparent 45%),
-        radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.18) 0%, transparent 50%);
+        radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.14) 0%, transparent 50%),
+        radial-gradient(circle at 50% 85%, rgba(168, 85, 247, 0.1) 0%, transparent 60%);
       background-attachment: fixed;
       overflow-x: hidden;
       user-select: none;
+      -webkit-user-select: none;
     }
 
-    .app-shell {
-      max-width: 540px;
+    .app-container {
+      max-width: 500px;
       margin: 0 auto;
     }
 
@@ -78,348 +80,390 @@
       z-index: 9999;
     }
 
-    /* Top Bar */
-    .top-nav {
+    /* ===================================================
+       1. TOP HEADER (CLEAN, MINIMALIST, BALANCED)
+       =================================================== */
+    .app-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 4px 14px;
-      margin-bottom: 8px;
+      padding: 6px 2px 14px;
+      margin-bottom: 2px;
     }
 
-    .brand {
+    .brand-group {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .brand-mascot {
+    .brand-avatar {
       width: 42px;
       height: 42px;
-      border-radius: 14px;
+      border-radius: 12px;
       background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-      box-shadow: 0 4px 0 #059669;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      transform: rotate(-4deg);
+      font-size: 1.4rem;
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.35);
+      flex-shrink: 0;
     }
 
-    .brand-text h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.22rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: #fff;
-    }
-
-    .brand-text span {
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: #38bdf8;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .nav-actions {
+    .brand-titles {
       display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: 0.02em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
       gap: 6px;
     }
 
-    /* Duolingo 3D Button Utility */
-    .btn-3d-mini {
-      background: #223259;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #f1f5f9;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      padding: 7px 11px;
+    .btn-icon-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      height: 34px;
+      padding: 0 10px;
       border-radius: var(--radius-sm);
-      box-shadow: 0 3px 0 #131c33;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
       cursor: pointer;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+      transition: all 0.1s ease;
+    }
+
+    .btn-icon-pill:active {
+      transform: translateY(2px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-icon-pill.active {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: #34d399;
+    }
+
+    /* ===================================================
+       2. HERO CARD (BALANCED, CLEAN, NO OVERLAPPING)
+       =================================================== */
+    .hero-card {
+      background: linear-gradient(155deg, #131c33 0%, #0d1527 100%);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      border-radius: var(--radius-xl);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-pills-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: nowrap;
+    }
+
+    .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      transition: all 0.08s ease;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 800;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    .btn-3d-mini:active {
-      transform: translateY(3px);
-      box-shadow: 0 0 0 #131c33;
+    .pill-streak {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(234, 88, 12, 0.2) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #fbbf24;
     }
 
-    .btn-3d-mini.active-sound {
-      background: #065f46;
-      border-color: #10b981;
-      box-shadow: 0 3px 0 #064e3b;
+    .pill-shield {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
     }
 
-    /* MASCOT & STREAK SHIELD HERO CARD */
-    .mascot-card {
-      background: linear-gradient(160deg, #1e2c52 0%, #151e38 100%);
-      border: 2px solid rgba(16, 185, 129, 0.4);
-      border-radius: var(--radius-xl);
-      padding: 18px 20px;
-      margin-bottom: 14px;
-      box-shadow: 0 8px 0 #0d1426, 0 12px 25px rgba(0, 0, 0, 0.4);
-      position: relative;
+    .pill-level {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      margin-left: auto;
     }
 
-    .mascot-header {
+    .hero-main-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 12px;
       margin-bottom: 12px;
     }
 
-    .streak-badges-group {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .streak-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-      color: #0b1329;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 900;
-      font-size: 0.8rem;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      box-shadow: 0 3px 0 #b45309;
-    }
-
-    .shield-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(56, 189, 248, 0.2);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      color: #38bdf8;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 0.72rem;
-      padding: 4px 8px;
-      border-radius: 9999px;
-    }
-
-    .stage-badge {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.76rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      background: rgba(16, 185, 129, 0.2);
-      color: #34d399;
-      padding: 4px 9px;
-      border-radius: 9999px;
-      border: 1px solid rgba(52, 211, 153, 0.4);
-    }
-
-    .mascot-body {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .mascot-avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-      box-shadow: 0 5px 0 #0891b2;
+    .hero-badge-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.2rem;
+      font-size: 1.7rem;
       flex-shrink: 0;
-      animation: gentle-bounce 3s infinite ease-in-out;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
     }
 
-    @keyframes gentle-bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
+    .hero-copy {
+      flex: 1;
+      min-width: 0;
     }
 
-    .mascot-info h2 {
+    .hero-headline {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 900;
+      font-size: 1.05rem;
+      font-weight: 800;
       color: #fff;
-      line-height: 1.2;
-      margin-bottom: 3px;
+      line-height: 1.25;
+      margin-bottom: 2px;
     }
 
-    .mascot-info p {
-      font-size: 0.8rem;
-      color: #cbd5e1;
+    .hero-subtext {
+      font-size: 0.76rem;
+      color: #94a3b8;
       line-height: 1.35;
     }
 
-    .xp-meter-wrap {
-      background: #11182c;
+    .progress-track-wrap {
+      background: rgba(0, 0, 0, 0.4);
       border-radius: 9999px;
-      height: 13px;
-      padding: 2px;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      height: 8px;
+      padding: 1.5px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       margin-bottom: 6px;
     }
 
-    .xp-meter-fill {
+    .progress-track-fill {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
       border-radius: 9999px;
-      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
-      transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .xp-label-row {
+    .progress-label-row {
       display: flex;
       justify-content: space-between;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.76rem;
-      font-weight: 800;
+      font-size: 0.72rem;
+      font-weight: 700;
       color: #94a3b8;
     }
 
-    /* VIRTUAL GROWTH RULER & MILESTONES */
-    .ruler-card {
-      background: linear-gradient(150deg, #18223d 0%, #12192e 100%);
-      border: 2px solid rgba(56, 189, 248, 0.35);
+    /* ===================================================
+       3. GROWTH ROADMAP (SLEEK 4-STAGE STEPPER)
+       =================================================== */
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-lg);
-      padding: 16px 18px;
-      margin-bottom: 14px;
-      box-shadow: 0 6px 0 #0c1221;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     }
 
-    .ruler-top {
+    .card-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
     }
 
-    .ruler-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 900;
-      color: #fff;
+    .card-title-group {
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .ruler-length-badge {
+    .card-title-text {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 900;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .chip-target-stat {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 800;
       color: #38bdf8;
-      background: rgba(56, 189, 248, 0.2);
-      padding: 3px 10px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 3px 8px;
       border-radius: 9999px;
-      border: 1px solid rgba(56, 189, 248, 0.4);
+      white-space: nowrap;
     }
 
-    /* Visual Ruler Track */
-    .ruler-track-container {
+    /* 4-Stage Stepper Roadmap */
+    .roadmap-track {
       position: relative;
-      margin: 18px 6px 10px;
+      margin: 10px 4px 12px;
     }
 
-    .ruler-rail {
-      width: 100%;
-      height: 10px;
-      background: #0e1529;
+    .roadmap-line-bg {
+      position: absolute;
+      top: 15px;
+      left: 14px;
+      right: 14px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
       border-radius: 9999px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
+      z-index: 1;
     }
 
-    .ruler-fill {
+    .roadmap-line-fill {
       height: 100%;
-      width: 12%; /* Day 1 = 12% of 7.5" */
-      background: linear-gradient(90deg, #38bdf8 0%, #10b981 100%);
+      width: 12%;
+      background: linear-gradient(90deg, #10b981 0%, #38bdf8 100%);
       border-radius: 9999px;
-      box-shadow: 0 0 10px #38bdf8;
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
       transition: width 0.4s ease;
     }
 
-    .ruler-pointer {
-      position: absolute;
-      top: -24px;
-      left: 12%;
-      transform: translateX(-50%);
-      background: #10b981;
-      color: #0b1329;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 900;
-      padding: 2px 6px;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    }
-
-    .ruler-pointer::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
-      border-top: 4px solid #10b981;
-    }
-
-    .ruler-ticks {
+    .roadmap-nodes {
       display: flex;
       justify-content: space-between;
-      margin-top: 6px;
-      font-size: 0.72rem;
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      color: #64748b;
+      position: relative;
+      z-index: 2;
     }
 
-    .ruler-note {
-      font-size: 0.78rem;
-      color: #94a3b8;
-      margin-top: 6px;
+    .roadmap-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 58px;
       text-align: center;
     }
 
-    /* DAILY WATER & PROTEIN */
-    .power-grid {
+    .node-bubble {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #1e293b;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .roadmap-node.active .node-bubble {
+      background: #0f766e;
+      border-color: #34d399;
+      box-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
+      transform: scale(1.1);
+    }
+
+    .node-inch {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .node-name {
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: #94a3b8;
+      white-space: nowrap;
+    }
+
+    .roadmap-node.active .node-name {
+      color: #34d399;
+      font-weight: 700;
+    }
+
+    .roadmap-forecast {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .forecast-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .forecast-text {
+      font-size: 0.74rem;
+      color: #cbd5e1;
+      line-height: 1.35;
+    }
+
+    .forecast-text strong {
+      color: #38bdf8;
+    }
+
+    /* ===================================================
+       4. DAILY ESSENTIALS (WATER & PROTEIN COMPACT)
+       =================================================== */
+    .daily-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
-      margin-bottom: 14px;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
-    .water-station-card {
+    .water-box {
       background: var(--card-bg);
-      border: 2px solid rgba(6, 182, 212, 0.35);
+      border: 1px solid rgba(6, 182, 212, 0.25);
       border-radius: var(--radius-lg);
-      padding: 15px 18px;
-      box-shadow: 0 6px 0 #0e1526;
+      padding: 13px 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .station-head {
+    .water-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
     }
 
-    .station-title {
+    .water-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 800;
       color: #fff;
       display: flex;
@@ -427,71 +471,70 @@
       gap: 6px;
     }
 
-    .station-badge {
+    .water-badge {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 900;
+      font-size: 0.76rem;
+      font-weight: 800;
       color: #38bdf8;
-      background: rgba(6, 182, 212, 0.2);
+      background: rgba(6, 182, 212, 0.15);
       padding: 2px 8px;
       border-radius: 6px;
     }
 
-    .water-cups-row {
+    .cups-flex-row {
       display: grid;
       grid-template-columns: repeat(8, 1fr);
-      gap: 6px;
-      margin-bottom: 6px;
+      gap: 5px;
+      margin-bottom: 8px;
     }
 
-    .cup-btn {
+    .cup-chip {
       aspect-ratio: 1;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(255, 255, 255, 0.05);
-      color: #64748b;
-      font-size: 1.15rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: #475569;
+      font-size: 1.1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
-      transition: all 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.12s ease;
     }
 
-    .cup-btn.filled {
-      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+    .cup-chip.filled {
+      background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
       border-color: #38bdf8;
       color: #fff;
-      box-shadow: 0 3px 0 #0284c7, 0 0 10px rgba(6, 182, 212, 0.5);
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
       transform: translateY(-2px);
     }
 
-    .cup-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 0 0 #000;
+    .cup-chip:active {
+      transform: scale(0.92);
     }
 
-    .water-subtext {
-      font-size: 0.74rem;
+    .water-caption {
+      font-size: 0.72rem;
       color: #94a3b8;
       text-align: center;
     }
 
-    .protein-strip {
+    /* Protein Row */
+    .protein-bar-box {
       background: var(--card-bg);
-      border: 2px solid rgba(245, 158, 11, 0.35);
+      border: 1px solid rgba(245, 158, 11, 0.25);
       border-radius: var(--radius-lg);
-      padding: 14px 18px;
+      padding: 12px 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 6px 0 #0e1526;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .protein-title {
+    .protein-info h4 {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 800;
       color: #fff;
       display: flex;
@@ -499,215 +542,218 @@
       gap: 6px;
     }
 
-    .protein-note {
-      font-size: 0.74rem;
+    .protein-info span {
+      font-size: 0.72rem;
       color: #94a3b8;
     }
 
-    .protein-stepper {
+    .protein-stepper-ctrl {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .protein-score {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: #fbbf24;
-      min-width: 50px;
-      text-align: center;
-    }
-
-    .btn-chunky-step {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: #24335c;
+    .btn-step {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #1e293b;
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
       font-family: 'Outfit', sans-serif;
       font-size: 1.1rem;
-      font-weight: 900;
+      font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 3px 0 #131d36;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
       transition: all 0.08s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    .btn-chunky-step:active {
-      transform: translateY(3px);
-      box-shadow: 0 0 0 #000;
+    .btn-step:active {
+      transform: translateY(2px);
+      box-shadow: 0 0 0 transparent;
     }
 
-    /* 4-MINUTE MASSAGE ARCADE STOPWATCH */
-    .arcade-card {
-      background: linear-gradient(145deg, #221b3b 0%, #181329 100%);
-      border: 2px solid rgba(168, 85, 247, 0.45);
-      border-radius: var(--radius-xl);
-      padding: 18px 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 8px 0 #100b1d, 0 10px 25px rgba(168, 85, 247, 0.2);
+    .btn-step.add {
+      background: #d97706;
+      border-color: #f59e0b;
     }
 
-    .arcade-top {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .arcade-badge-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-      box-shadow: 0 4px 0 #7e22ce;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      flex-shrink: 0;
-    }
-
-    .arcade-heading {
-      flex: 1;
-    }
-
-    .arcade-title-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .arcade-heading h3 {
+    .protein-count {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 900;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fbbf24;
+      min-width: 45px;
+      text-align: center;
+    }
+
+    /* ===================================================
+       5. 4-MINUTE MASSAGE (CLEAN AUDIO-STOPWATCH)
+       =================================================== */
+    .arcade-box {
+      background: linear-gradient(150deg, #1b1633 0%, #120e24 100%);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 13px 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .arcade-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .arcade-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .arcade-icon-tile {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .arcade-h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 800;
       color: #fff;
     }
 
-    /* Spa Sound Toggle */
-    .btn-spa-toggle {
-      background: rgba(168, 85, 247, 0.2);
-      border: 1px solid rgba(168, 85, 247, 0.4);
+    .btn-spa-pill {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.35);
       color: #d8b4fe;
       font-size: 0.72rem;
       font-weight: 800;
-      padding: 3px 8px;
+      padding: 4px 8px;
       border-radius: 9999px;
       cursor: pointer;
       font-family: 'Outfit', sans-serif;
     }
 
-    .arcade-shout {
-      font-size: 0.8rem;
-      color: #f3e8ff;
-      line-height: 1.35;
-      margin-top: 2px;
-    }
-
-    .arcade-dial-row {
+    .arcade-controls-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: rgba(0, 0, 0, 0.35);
-      padding: 12px 18px;
+      padding: 10px 14px;
       border-radius: var(--radius-md);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 8px;
     }
 
-    .big-digits {
+    .timer-digits-text {
       font-family: 'Outfit', sans-serif;
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       font-weight: 900;
       color: #fff;
       letter-spacing: -0.02em;
-      text-shadow: 0 0 14px rgba(168, 85, 247, 0.7);
+      text-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
     }
 
-    .arcade-btns {
+    .arcade-action-btns {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .btn-3d-play {
+    .btn-timer-primary {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       border: none;
       color: #fff;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 900;
-      padding: 10px 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 0 #047857, 0 6px 14px rgba(16, 185, 129, 0.4);
+      font-size: 0.88rem;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 10px;
+      box-shadow: 0 3px 0 #047857;
       cursor: pointer;
       transition: all 0.08s ease;
     }
 
-    .btn-3d-play:active {
-      transform: translateY(4px);
-      box-shadow: 0 0 0 #047857;
+    .btn-timer-primary:active {
+      transform: translateY(3px);
+      box-shadow: 0 0 0 transparent;
     }
 
-    .btn-3d-reset {
-      background: #2a2245;
+    .btn-timer-sec {
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #cbd5e1;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 800;
-      padding: 10px 14px;
-      border-radius: 12px;
-      box-shadow: 0 3px 0 #181329;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 10px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.08s ease;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
     }
 
-    .btn-3d-reset:active {
-      transform: translateY(3px);
-      box-shadow: 0 0 0 #000;
+    .arcade-coach-note {
+      font-size: 0.74rem;
+      color: #e9d5ff;
+      line-height: 1.35;
+      text-align: center;
     }
 
-    /* PHOTO PROGRESS VAULT CARD */
-    .vault-card {
-      background: linear-gradient(150deg, #1e1e38 0%, #15162a 100%);
-      border: 2px solid rgba(244, 63, 94, 0.35);
+    /* ===================================================
+       6. MONTHLY PHOTO VAULT (SLEEK POLAROID COMPARISON)
+       =================================================== */
+    .vault-box {
+      background: var(--card-bg);
+      border: 1px solid rgba(244, 63, 94, 0.25);
       border-radius: var(--radius-lg);
-      padding: 16px 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 6px 0 #101021;
+      padding: 13px 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .vault-head {
+    .vault-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    .vault-title {
+    .vault-heading {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 900;
+      font-size: 0.92rem;
+      font-weight: 800;
       color: #fff;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .vault-compare-box {
+    .vault-privacy-chip {
+      font-size: 0.7rem;
+      color: #fb7185;
+      font-weight: 700;
+    }
+
+    .vault-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-bottom: 10px;
     }
 
-    .vault-photo-slot {
-      background: #0d0f1a;
-      border: 2px dashed rgba(255, 255, 255, 0.18);
+    .polaroid-slot {
+      background: #090e1a;
+      border: 1.5px dashed rgba(255, 255, 255, 0.18);
       border-radius: var(--radius-md);
       aspect-ratio: 1;
       display: flex;
@@ -717,32 +763,37 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      transition: border-color 0.15s ease;
     }
 
-    .vault-photo-slot img {
+    .polaroid-slot:hover {
+      border-color: #fb7185;
+    }
+
+    .polaroid-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    .slot-label {
+    .slot-tag {
       position: absolute;
       bottom: 6px;
-      background: rgba(0, 0, 0, 0.65);
+      background: rgba(0, 0, 0, 0.75);
       padding: 2px 8px;
       border-radius: 9999px;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 800;
       color: #fff;
     }
 
-    .btn-snap {
+    .btn-snap-photo {
       width: 100%;
-      background: rgba(244, 63, 94, 0.18);
-      border: 1px solid rgba(244, 63, 94, 0.4);
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.35);
       color: #fb7185;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 800;
       padding: 8px;
       border-radius: var(--radius-sm);
@@ -753,317 +804,289 @@
       gap: 6px;
     }
 
-    .btn-snap:active {
+    .btn-snap-photo:active {
       transform: scale(0.97);
     }
 
-    /* PROTOCOL CARDS */
-    .section-bar {
+    /* ===================================================
+       7. WEEKLY PROTOCOL CARDS (CLEAN TACTILE CHECKLIST)
+       =================================================== */
+    .section-header-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 20px 4px 10px;
+      margin: 16px 4px 10px;
     }
 
-    .section-bar h2 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 900;
-      color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .section-bar span {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #38bdf8;
-    }
-
-    .cards-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
-
-    .task-card {
-      background: var(--card-bg);
-      border: 2px solid var(--card-border);
-      border-radius: var(--radius-lg);
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      cursor: pointer;
-      box-shadow: 0 5px 0 #0d1426;
-      transition: all 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-    }
-
-    .task-card:active {
-      transform: translateY(4px);
-      box-shadow: 0 1px 0 #0d1426;
-    }
-
-    .task-card.today {
-      border-color: #38bdf8;
-      background: linear-gradient(145deg, #1b2848 0%, #141f38 100%);
-      box-shadow: 0 6px 0 #095982, 0 0 18px rgba(56, 189, 248, 0.35);
-    }
-
-    .task-card.completed {
-      background: rgba(16, 185, 129, 0.12);
-      border-color: #10b981;
-      box-shadow: 0 4px 0 #047857;
-    }
-
-    .task-card.completed .task-name {
-      text-decoration: line-through;
-      color: #64748b;
-    }
-
-    .btn-chunky-check {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      border: 2px solid rgba(255, 255, 255, 0.25);
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      font-weight: 900;
-      color: transparent;
-      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
-      flex-shrink: 0;
-    }
-
-    .task-card.completed .btn-chunky-check {
-      background: #10b981;
-      border-color: #34d399;
-      box-shadow: 0 3px 0 #047857;
-      color: #fff;
-      transform: scale(1.06);
-    }
-
-    .task-details {
-      flex: 1;
-    }
-
-    .task-meta-line {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 2px;
-      flex-wrap: wrap;
-    }
-
-    .day-tag {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 2px 8px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      color: #cbd5e1;
-    }
-
-    .day-tag.today-tag {
-      background: #38bdf8;
-      color: #0b1329;
-      font-weight: 900;
-      box-shadow: 0 0 10px #38bdf8;
-    }
-
-    .type-badge {
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 2px 7px;
-      border-radius: 9999px;
-    }
-
-    .badge-wash { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-    .badge-oil { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    .badge-rest { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; }
-    .badge-massage { background: rgba(16, 185, 129, 0.2); color: #34d399; }
-
-    .task-name {
+    .section-header-bar h2 {
       font-family: 'Outfit', sans-serif;
       font-size: 1.02rem;
       font-weight: 800;
       color: #fff;
-      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .task-hint {
-      font-size: 0.8rem;
+    .section-header-bar span {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .routine-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .protocol-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
+      transition: all 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .protocol-card:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .protocol-card.today {
+      border-color: #38bdf8;
+      background: linear-gradient(145deg, #14213d 0%, #0f192e 100%);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+    }
+
+    .protocol-card.completed {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    .protocol-card.completed .routine-name {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+
+    .btn-card-checkbox {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: transparent;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .protocol-card.completed .btn-card-checkbox {
+      background: #10b981;
+      border-color: #34d399;
+      color: #fff;
+    }
+
+    .routine-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .routine-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .day-chip {
+      font-size: 0.68rem;
+      font-weight: 700;
       color: #94a3b8;
-      line-height: 1.35;
-      margin-top: 2px;
     }
 
-    /* TABS */
-    .tabs-shelf {
-      margin-bottom: 28px;
+    .day-chip.today-badge {
+      color: #38bdf8;
+      font-weight: 800;
     }
 
-    .tab-nav-pills {
+    .routine-type-tag {
+      font-size: 0.65rem;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .tag-wash { background: rgba(6, 182, 212, 0.2); color: #38bdf8; }
+    .tag-oil { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .tag-rest { background: rgba(148, 163, 184, 0.18); color: #cbd5e1; }
+    .tag-massage { background: rgba(168, 85, 247, 0.2); color: #d8b4fe; }
+
+    .routine-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+
+    .routine-hint {
+      font-size: 0.74rem;
+      color: #94a3b8;
+      line-height: 1.3;
+    }
+
+    /* ===================================================
+       8. EDUCATION SHELF TABS
+       =================================================== */
+    .edu-shelf {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+
+    .edu-pills-nav {
       display: flex;
       gap: 6px;
-      background: #11182d;
-      padding: 5px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--card-border);
-      margin-bottom: 12px;
       overflow-x: auto;
+      padding-bottom: 10px;
       scrollbar-width: none;
     }
 
-    .tab-nav-pills::-webkit-scrollbar { display: none; }
+    .edu-pills-nav::-webkit-scrollbar { display: none; }
 
-    .nav-pill {
-      flex: 1;
-      padding: 9px 12px;
-      border: none;
-      background: transparent;
+    .nav-tab-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: #94a3b8;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 800;
-      border-radius: var(--radius-sm);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 9999px;
       cursor: pointer;
-      transition: all 0.12s ease;
       white-space: nowrap;
+      transition: all 0.12s ease;
     }
 
-    .nav-pill.active {
-      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-      color: #0b1329;
-      box-shadow: 0 3px 0 #059669;
+    .nav-tab-btn.active {
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+      border-color: #38bdf8;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
     }
 
-    .tab-sheet {
-      display: none;
-      background: var(--card-bg);
-      border: 2px solid var(--card-border);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      box-shadow: 0 6px 0 #0d1426;
+    .edu-sheet { display: none; }
+    .edu-sheet.active { display: block; }
+
+    .faq-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      margin-bottom: 8px;
     }
 
-    .tab-sheet.active {
-      display: block;
-    }
-
-    .qa-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .qa-item {
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .qa-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .qa-q {
+    .faq-q {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       font-weight: 800;
       color: #38bdf8;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
     }
 
-    .qa-a {
-      font-size: 0.84rem;
+    .faq-a {
+      font-size: 0.76rem;
       color: #cbd5e1;
-      line-height: 1.45;
+      line-height: 1.35;
     }
 
-    .barber-permit {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
-      border: 2px dashed #f59e0b;
+    .barber-permit-box {
+      background: linear-gradient(145deg, #1e1b4b 0%, #0f172a 100%);
+      border: 2px solid #6366f1;
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 14px;
       text-align: center;
     }
 
     .permit-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 900;
-      color: #f59e0b;
-      margin-bottom: 6px;
-      display: inline-block;
+      color: #a5b4fc;
+      margin-bottom: 4px;
     }
 
-    .permit-dialogue {
-      font-size: 1rem;
-      font-weight: 800;
-      color: #fef08a;
-      font-style: italic;
-      line-height: 1.5;
+    .permit-speech {
       background: rgba(0, 0, 0, 0.4);
-      padding: 14px;
-      border-radius: 12px;
+      border-left: 3px solid #6366f1;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: #fff;
       margin-top: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: left;
     }
 
-    .dodont-grid {
+    .dodont-deck {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
 
-    .box-do {
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      border-radius: 14px;
-      padding: 14px;
+    .box-good {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 10px;
     }
 
-    .box-dont {
-      background: rgba(239, 68, 68, 0.12);
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      border-radius: 14px;
-      padding: 14px;
+    .box-bad {
+      background: rgba(244, 63, 94, 0.08);
+      border: 1px solid rgba(244, 63, 94, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 10px;
     }
 
     .box-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 900;
-      margin-bottom: 8px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 6px;
     }
 
-    .box-do .box-title { color: #34d399; }
-    .box-dont .box-title { color: #f87171; }
+    .box-good .box-title { color: #34d399; }
+    .box-bad .box-title { color: #fb7185; }
 
-    .bullet-list {
+    .checklist-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      font-size: 0.78rem;
+      gap: 5px;
+      font-size: 0.72rem;
       color: #cbd5e1;
     }
 
-    /* Hidden File Input for Vault */
     #photo-file-input { display: none; }
 
     @media print {
       body { background: #fff !important; color: #000 !important; }
-      .top-nav, .btn-3d-mini, .water-cups-row, .protein-stepper, .arcade-btns, .tabs-shelf, .vault-card { display: none !important; }
+      .app-header, .btn-icon-pill, .cups-flex-row, .protein-stepper-ctrl, .arcade-action-btns, .edu-shelf, .vault-box { display: none !important; }
     }
   </style>
 </head>
@@ -1071,321 +1094,347 @@
   <canvas id="confetti-canvas"></canvas>
   <input type="file" id="photo-file-input" accept="image/*" />
 
-  <div class="app-shell">
+  <div class="app-container">
 
-    <!-- Top Navigation -->
-    <header class="top-nav">
-      <div class="brand">
-        <div class="brand-mascot">🦁</div>
-        <div class="brand-text">
-          <h1>Hair Flow Quest</h1>
-          <span>Daily Growth Game</span>
+    <!-- 1. TOP BAR -->
+    <header class="app-header">
+      <div class="brand-group">
+        <div class="brand-avatar">🦁</div>
+        <div class="brand-titles">
+          <div class="brand-name">Hair Flow Quest</div>
+          <div class="brand-sub">Daily Hair Transformation</div>
         </div>
       </div>
 
-      <div class="nav-actions">
-        <!-- Feature 1: Sound & Haptics Toggle -->
-        <button class="btn-3d-mini" id="btn-sound-toggle" onclick="toggleSound()">🔊 Sound</button>
-        <button class="btn-3d-mini" onclick="resetWeek()">🔄 Reset</button>
-        <button class="btn-3d-mini" onclick="window.print()">📄 PDF</button>
+      <div class="header-actions">
+        <button class="btn-icon-pill" id="btn-sound-toggle" onclick="toggleSound()" title="Sound Toggle">
+          <span id="sound-icon">🔊</span>
+        </button>
+        <button class="btn-icon-pill" onclick="resetWeek()" title="Reset Week">
+          <span>🔄 Reset</span>
+        </button>
+        <button class="btn-icon-pill" onclick="window.print()" title="Save PDF">
+          <span>📄</span>
+        </button>
       </div>
     </header>
 
-    <!-- MASCOT & STREAK SHIELD HERO CARD -->
-    <div class="mascot-card">
-      <div class="mascot-header">
-        <div class="streak-badges-group">
-          <div class="streak-pill" id="streak-badge">
-            🔥 <span id="streak-num">1</span> Day Streak!
-          </div>
-          <!-- Feature 4: Streak Shield Status -->
-          <div class="shield-pill" id="shield-badge">🛡️ Shield Active</div>
+    <!-- 2. HERO STATUS CARD -->
+    <div class="hero-card">
+      <div class="hero-pills-row">
+        <div class="status-pill pill-streak">
+          <span>🔥</span> <span id="streak-num">1</span> Day Streak
         </div>
-        <div class="stage-badge" id="stage-badge">Level 1 • Sprout 🌱</div>
-      </div>
-
-      <div class="mascot-body">
-        <div class="mascot-avatar" id="mascot-avatar">🦁</div>
-        <div class="mascot-info">
-          <h2>Short Cut &rarr; Flow King 👑</h2>
-          <p>Upar ke baal bilkul mat kato! Roz 4 min massage karo aur 8 glass paani piyo.</p>
+        <div class="status-pill pill-shield" id="shield-badge">
+          <span>🛡️</span> Shield Ready
+        </div>
+        <div class="status-pill pill-level" id="stage-badge">
+          Level 1 • Sprout 🌱
         </div>
       </div>
 
-      <!-- XP Progress Bar -->
-      <div class="xp-meter-wrap">
-        <div class="xp-meter-fill" id="xp-meter-fill"></div>
+      <div class="hero-main-row">
+        <div class="hero-badge-icon" id="mascot-avatar">🌱</div>
+        <div class="hero-copy">
+          <div class="hero-headline">Short Cut → Curtain Flow 👑</div>
+          <div class="hero-subtext">Upar ke baal mat kato! Roz 4 min massage & 8 glass paani.</div>
+        </div>
       </div>
-      <div class="xp-label-row">
-        <span>Iss Hafte Ka Score</span>
+
+      <div class="progress-track-wrap">
+        <div class="progress-track-fill" id="xp-meter-fill"></div>
+      </div>
+      <div class="progress-label-row">
+        <span>Hafte Ka Score</span>
         <span id="xp-text" style="color: #34d399;">0 / 7 Tasks Done 🚀</span>
       </div>
     </div>
 
-    <!-- FEATURE 3: VIRTUAL GROWTH RULER -->
-    <div class="ruler-card">
-      <div class="ruler-top">
-        <span class="ruler-title">📏 Virtual Growth Ruler</span>
-        <span class="ruler-length-badge" id="ruler-curr-len">2.0" &rarr; Target 7.5"</span>
-      </div>
-
-      <div class="ruler-track-container">
-        <div class="ruler-pointer" id="ruler-pointer" style="left: 12%;">2.0"</div>
-        <div class="ruler-rail">
-          <div class="ruler-fill" id="ruler-fill" style="width: 12%;"></div>
+    <!-- 3. GROWTH ROADMAP (4-STAGE VISUAL STEPPER) -->
+    <div class="section-card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span style="font-size: 1.1rem;">📏</span>
+          <div class="card-title-text">Growth Roadmap</div>
+        </div>
+        <div class="chip-target-stat" id="ruler-curr-stat">
+          2.0" → 7.5" Target
         </div>
       </div>
 
-      <div class="ruler-ticks">
-        <span>2.0" Start</span>
-        <span>3.5" Ears</span>
-        <span>5.0" Awkward</span>
-        <span>7.5" Flow King</span>
-      </div>
-      <div class="ruler-note" id="ruler-next-milestone">Next Milestone: 3.5" (Kaan cover honge) in ~60 Days ⏳</div>
-    </div>
-
-    <!-- DAILY WATER & PROTEIN -->
-    <div class="power-grid">
-      <!-- Water Station with 8 Interactive Cups -->
-      <div class="water-station-card">
-        <div class="station-head">
-          <div class="station-title">💧 Paani Target (8 Glasses)</div>
-          <span class="station-badge" id="water-badge">0 / 8 Glasses</span>
+      <div class="roadmap-track">
+        <div class="roadmap-line-bg">
+          <div class="roadmap-line-fill" id="ruler-fill"></div>
         </div>
-
-        <div class="water-cups-row" id="water-cups-container">
-          <button class="cup-btn" onclick="toggleCup(0)">💧</button>
-          <button class="cup-btn" onclick="toggleCup(1)">💧</button>
-          <button class="cup-btn" onclick="toggleCup(2)">💧</button>
-          <button class="cup-btn" onclick="toggleCup(3)">💧</button>
-          <button class="cup-btn" onclick="toggleCup(4)">💧</button>
-          <button class="cup-btn" onclick="toggleCup(5)">💧</button>
-          <button class="cup-btn" onclick="toggleCup(6)">💧</button>
-          <button class="cup-btn" onclick="toggleCup(7)">💧</button>
-        </div>
-        <div class="water-subtext">Tap glasses as you drink to hydrate your hair roots!</div>
-      </div>
-
-      <!-- Protein Goal -->
-      <div class="protein-strip">
-        <div class="protein-label-wrap">
-          <div class="protein-title">🍳 Protein Power</div>
-          <span class="protein-note">Ande, Paneer, Dal, Chicken</span>
-        </div>
-
-        <div class="protein-stepper">
-          <button class="btn-chunky-step" onclick="adjustProtein(-10)">-</button>
-          <span class="protein-score" id="protein-score">0g</span>
-          <button class="btn-chunky-step" style="background:#f59e0b; border-color:#fbbf24; box-shadow:0 3px 0 #b45309;" onclick="adjustProtein(10)">+</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- FEATURE 2: 4-MINUTE MASSAGE ARCADE WITH SPA AMBIENT AUDIO -->
-    <div class="arcade-card">
-      <div class="arcade-top">
-        <div class="arcade-badge-icon">💆‍♂️</div>
-        <div class="arcade-heading">
-          <div class="arcade-title-row">
-            <h3>4-Minute Scalp Massage</h3>
-            <button class="btn-spa-toggle" id="btn-spa-toggle" onclick="toggleSpaAudio()">🎵 Spa Sound: ON</button>
+        <div class="roadmap-nodes">
+          <div class="roadmap-node active" id="node-0">
+            <div class="node-bubble">🌱</div>
+            <div class="node-inch">2.0"</div>
+            <div class="node-name">Start</div>
           </div>
-          <p class="arcade-shout" id="arcade-msg">Ungliyon se sir par gol-gol massage do taaki blood flow double ho!</p>
+          <div class="roadmap-node" id="node-1">
+            <div class="node-bubble">👂</div>
+            <div class="node-inch">3.5"</div>
+            <div class="node-name">Ears</div>
+          </div>
+          <div class="roadmap-node" id="node-2">
+            <div class="node-bubble">🦁</div>
+            <div class="node-inch">5.0"</div>
+            <div class="node-name">Awkward</div>
+          </div>
+          <div class="roadmap-node" id="node-3">
+            <div class="node-bubble">👑</div>
+            <div class="node-inch">7.5"</div>
+            <div class="node-name">Flow King</div>
+          </div>
         </div>
       </div>
 
-      <div class="arcade-dial-row">
-        <div class="big-digits" id="timer-digits">04:00</div>
-        <div class="arcade-btns">
-          <button class="btn-3d-play" id="btn-play" onclick="toggleTimer()">▶ START</button>
-          <button class="btn-3d-reset" onclick="resetTimer()">Reset</button>
+      <div class="roadmap-forecast">
+        <div class="forecast-icon">⏳</div>
+        <div class="forecast-text" id="ruler-next-forecast">
+          <strong>Next: 3.5" (Kaan cover honge) in ~60 Days</strong><br/>
+          Bas haircut mat lena, sirf pichhe gardan se clean karwana!
         </div>
       </div>
     </div>
 
-    <!-- FEATURE 5: MONTHLY PROGRESS PHOTO VAULT -->
-    <div class="vault-card">
-      <div class="vault-head">
-        <span class="vault-title">📸 Monthly Photo Vault</span>
-        <span style="font-size: 0.72rem; color: #fb7185; font-weight: 800;">100% Private on Phone</span>
+    <!-- 4. DAILY ESSENTIALS (WATER & PROTEIN) -->
+    <div class="daily-grid">
+      <div class="water-box">
+        <div class="water-head">
+          <div class="water-title">💧 Paani Target (8 Glasses)</div>
+          <span class="water-badge" id="water-badge">0 / 8 Glasses</span>
+        </div>
+
+        <div class="cups-flex-row">
+          <button class="cup-chip" onclick="toggleCup(0)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(1)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(2)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(3)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(4)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(5)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(6)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(7)">💧</button>
+        </div>
+        <div class="water-caption">Tap glasses as you drink to hydrate your hair roots!</div>
       </div>
 
-      <div class="vault-compare-box">
-        <div class="vault-photo-slot" onclick="promptPhotoUpload('start')">
+      <div class="protein-bar-box">
+        <div class="protein-info">
+          <h4>🍳 Protein Power</h4>
+          <span>Ande, Paneer, Dal, Chicken</span>
+        </div>
+
+        <div class="protein-stepper-ctrl">
+          <button class="btn-step" onclick="adjustProtein(-10)">-</button>
+          <span class="protein-count" id="protein-score">0g</span>
+          <button class="btn-step add" onclick="adjustProtein(10)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 4-MINUTE SCALP MASSAGE -->
+    <div class="arcade-box">
+      <div class="arcade-header">
+        <div class="arcade-title-group">
+          <div class="arcade-icon-tile">💆‍♂️</div>
+          <div class="arcade-h3">4-Minute Scalp Massage</div>
+        </div>
+        <button class="btn-spa-pill" id="btn-spa-toggle" onclick="toggleSpaAudio()">🎵 Spa Sound: ON</button>
+      </div>
+
+      <div class="arcade-controls-row">
+        <div class="timer-digits-text" id="timer-digits">04:00</div>
+        <div class="arcade-action-btns">
+          <button class="btn-timer-primary" id="btn-play" onclick="toggleTimer()">▶ START</button>
+          <button class="btn-timer-sec" onclick="resetTimer()">Reset</button>
+        </div>
+      </div>
+
+      <div class="arcade-coach-note" id="arcade-msg">
+        Ungliyon se circular massage do taaki roots tak blood pahuche! 💆‍♂️
+      </div>
+    </div>
+
+    <!-- 6. MONTHLY PHOTO VAULT -->
+    <div class="vault-box">
+      <div class="vault-top">
+        <div class="vault-heading">📸 Monthly Photo Vault</div>
+        <span class="vault-privacy-chip">🔒 Private on Phone</span>
+      </div>
+
+      <div class="vault-grid">
+        <div class="polaroid-slot" onclick="promptPhotoUpload('start')">
           <img id="img-start" src="" style="display:none;" />
-          <span id="txt-start" style="font-size: 2rem;">🪒</span>
-          <span class="slot-label">Day 1 (Baseline)</span>
+          <span id="txt-start" style="font-size: 1.8rem;">🪒</span>
+          <span class="slot-tag">Day 1 Baseline</span>
         </div>
-        <div class="vault-photo-slot" onclick="promptPhotoUpload('curr')">
+        <div class="polaroid-slot" onclick="promptPhotoUpload('curr')">
           <img id="img-curr" src="" style="display:none;" />
-          <span id="txt-curr" style="font-size: 2rem;">📷</span>
-          <span class="slot-label">Current Month</span>
+          <span id="txt-curr" style="font-size: 1.8rem;">📷</span>
+          <span class="slot-tag">Current Month</span>
         </div>
       </div>
 
-      <button class="btn-snap" onclick="promptPhotoUpload('curr')">
-        📸 Snap / Upload This Month's Progress Photo
+      <button class="btn-snap-photo" onclick="promptPhotoUpload('curr')">
+        📸 Snap / Upload This Month's Photo
       </button>
     </div>
 
-    <!-- WEEKLY PROTOCOL CARDS -->
-    <div class="section-bar">
+    <!-- 7. WEEKLY PROTOCOL -->
+    <div class="section-header-bar">
       <h2>📅 Hafte Ka Game Plan</h2>
       <span>Tap to Complete 🎉</span>
     </div>
 
-    <div class="cards-stack">
+    <div class="routine-stack">
       <!-- Monday -->
-      <div class="task-card" id="card-mon" onclick="toggleCard('mon')">
-        <div class="btn-chunky-check" id="check-mon">✓</div>
-        <div class="task-details">
-          <div class="task-meta-line">
-            <span class="day-tag" id="tag-mon">Somwar</span>
-            <span class="type-badge badge-rest">Aaram</span>
+      <div class="protocol-card" id="card-mon" onclick="toggleCard('mon')">
+        <div class="btn-card-checkbox" id="check-mon">✓</div>
+        <div class="routine-details">
+          <div class="routine-meta-row">
+            <span class="day-chip" id="tag-mon">Somwar</span>
+            <span class="routine-type-tag tag-rest">Aaram</span>
           </div>
-          <div class="task-name">Rest Day (No Shampoo) 😴</div>
-          <p class="task-hint">Shampoo nahi lagana. Pasina ho toh normal paani se dho lo. Thoda sa Argan oil lagao.</p>
+          <div class="routine-name">Rest Day (No Shampoo) 😴</div>
+          <div class="routine-hint">Shampoo nahi lagana. Pasina ho toh normal paani se dho lo. Thoda Argan oil lagao.</div>
         </div>
       </div>
 
       <!-- Tuesday -->
-      <div class="task-card" id="card-tue" onclick="toggleCard('tue')">
-        <div class="btn-chunky-check" id="check-tue">✓</div>
-        <div class="task-details">
-          <div class="task-meta-line">
-            <span class="day-tag" id="tag-tue">Mangalwar</span>
-            <span class="type-badge badge-oil">Tel Day</span>
+      <div class="protocol-card" id="card-tue" onclick="toggleCard('tue')">
+        <div class="btn-card-checkbox" id="check-tue">✓</div>
+        <div class="routine-details">
+          <div class="routine-meta-row">
+            <span class="day-chip" id="tag-tue">Mangalwar</span>
+            <span class="routine-type-tag tag-oil">Tel Day</span>
           </div>
-          <div class="task-name">Nariyal + Rosemary Power Oil 🌿</div>
-          <p class="task-hint">Nariyal tel mein 4 boond Rosemary oil mix karo. Chamdi par 5 min massage karo aur so jao.</p>
+          <div class="routine-name">Nariyal + Rosemary Power Oil 🌿</div>
+          <div class="routine-hint">Nariyal tel mein 4 boond Rosemary mix karo. 5 min massage karke so jao.</div>
         </div>
       </div>
 
       <!-- Wednesday -->
-      <div class="task-card" id="card-wed" onclick="toggleCard('wed')">
-        <div class="btn-chunky-check" id="check-wed">✓</div>
-        <div class="task-details">
-          <div class="task-meta-line">
-            <span class="day-tag" id="tag-wed">Budhwar</span>
-            <span class="type-badge badge-wash">Wash Day</span>
+      <div class="protocol-card" id="card-wed" onclick="toggleCard('wed')">
+        <div class="btn-card-checkbox" id="check-wed">✓</div>
+        <div class="routine-details">
+          <div class="routine-meta-row">
+            <span class="day-chip" id="tag-wed">Budhwar</span>
+            <span class="routine-type-tag tag-wash">Wash Day</span>
           </div>
-          <div class="task-name">Shampoo + Conditioner Routine 🚿</div>
-          <p class="task-hint"><strong>Rule:</strong> Shampoo sirf chamdi par lagao. Conditioner sirf baalon par (chamdi par nahi!).</p>
+          <div class="routine-name">Shampoo + Conditioner Routine 🚿</div>
+          <div class="routine-hint"><strong>Rule:</strong> Shampoo sirf chamdi par. Conditioner sirf baalon par (scalp par nahi!).</div>
         </div>
       </div>
 
       <!-- Thursday -->
-      <div class="task-card" id="card-thu" onclick="toggleCard('thu')">
-        <div class="btn-chunky-check" id="check-thu">✓</div>
-        <div class="task-details">
-          <div class="task-meta-line">
-            <span class="day-tag" id="tag-thu">Guruwar</span>
-            <span class="type-badge badge-massage">Massage</span>
+      <div class="protocol-card" id="card-thu" onclick="toggleCard('thu')">
+        <div class="btn-card-checkbox" id="check-thu">✓</div>
+        <div class="routine-details">
+          <div class="routine-meta-row">
+            <span class="day-chip" id="tag-thu">Guruwar</span>
+            <span class="routine-type-tag tag-massage">Massage</span>
           </div>
-          <div class="task-name">4-Minute Dry Scalp Massage ⚡</div>
-          <p class="task-hint">Timer chalao aur ungliyon se sir ki massage karo. Lakdi ki chaudi kanghi use karo.</p>
+          <div class="routine-name">4-Minute Dry Scalp Massage ⚡</div>
+          <div class="routine-hint">Timer chalao aur ungliyon se sir ki massage karo. Lakdi ki chaudi kanghi use karo.</div>
         </div>
       </div>
 
       <!-- Friday -->
-      <div class="task-card" id="card-fri" onclick="toggleCard('fri')">
-        <div class="btn-chunky-check" id="check-fri">✓</div>
-        <div class="task-details">
-          <div class="task-meta-line">
-            <span class="day-tag" id="tag-fri">Shukrawar</span>
-            <span class="type-badge badge-rest">Check Day</span>
+      <div class="protocol-card" id="card-fri" onclick="toggleCard('fri')">
+        <div class="btn-card-checkbox" id="check-fri">✓</div>
+        <div class="routine-details">
+          <div class="routine-meta-row">
+            <span class="day-chip" id="tag-fri">Shukrawar</span>
+            <span class="routine-type-tag tag-rest">Check Day</span>
           </div>
-          <div class="task-name">Dandruff & Scalp Health Check 🔍</div>
-          <p class="task-hint">Khujli ya dandruff lage toh anti-dandruff shampoo use karo. Sab theek ho toh aaram karo.</p>
+          <div class="routine-name">Dandruff & Scalp Health Check 🔍</div>
+          <div class="routine-hint">Khujli lage toh anti-dandruff shampoo. Sab smooth ho toh mast aaram karo.</div>
         </div>
       </div>
 
       <!-- Saturday -->
-      <div class="task-card" id="card-sat" onclick="toggleCard('sat')">
-        <div class="btn-chunky-check" id="check-sat">✓</div>
-        <div class="task-details">
-          <div class="task-meta-line">
-            <span class="day-tag" id="tag-sat">Shaniwar</span>
-            <span class="type-badge badge-oil">Tel Day</span>
+      <div class="protocol-card" id="card-sat" onclick="toggleCard('sat')">
+        <div class="btn-card-checkbox" id="check-sat">✓</div>
+        <div class="routine-details">
+          <div class="routine-meta-row">
+            <span class="day-chip" id="tag-sat">Shaniwar</span>
+            <span class="routine-type-tag tag-oil">Tel Day</span>
           </div>
-          <div class="task-name">Badam Tel Nourishment 🌰</div>
-          <p class="task-hint">Halka Badam tel lagao. Raat ko pillow par soft kapda ya satin cover daal kar so jao.</p>
+          <div class="routine-name">Badam Tel Nourishment 🌰</div>
+          <div class="routine-hint">Halka Badam tel lagao. Raat ko takiye par soft cover daal kar so jao.</div>
         </div>
       </div>
 
       <!-- Sunday -->
-      <div class="task-card" id="card-sun" onclick="toggleCard('sun')">
-        <div class="btn-chunky-check" id="check-sun">✓</div>
-        <div class="task-details">
-          <div class="task-meta-line">
-            <span class="day-tag" id="tag-sun">Raviwar</span>
-            <span class="type-badge badge-wash">Wash Day</span>
+      <div class="protocol-card" id="card-sun" onclick="toggleCard('sun')">
+        <div class="btn-card-checkbox" id="check-sun">✓</div>
+        <div class="routine-details">
+          <div class="routine-meta-row">
+            <span class="day-chip" id="tag-sun">Raviwar</span>
+            <span class="routine-type-tag tag-wash">Wash Day</span>
           </div>
-          <div class="task-name">Sunday Deep Wash & Soft Dry 🧖‍♂️</div>
-          <p class="task-hint">Shampoo + Conditioner lagao. <strong>Towel se ragdo mat!</strong> Halka dab karke sukhao.</p>
+          <div class="routine-name">Sunday Deep Wash & Soft Dry 🧖‍♂️</div>
+          <div class="routine-hint">Shampoo + Conditioner lagao. <strong>Towel se ragdo mat!</strong> Halka dab karo.</div>
         </div>
       </div>
     </div>
 
-    <!-- TACTILE TABS -->
-    <div class="tabs-shelf">
-      <div class="tab-nav-pills">
-        <button class="nav-pill active" onclick="switchShelf('tab-qna')">💡 Simple Secret</button>
-        <button class="nav-pill" onclick="switchShelf('tab-stages')">🚀 12 Months Map</button>
-        <button class="nav-pill" onclick="switchShelf('tab-barber')">🛡️ Barber Shield</button>
-        <button class="nav-pill" onclick="switchShelf('tab-rules')">⚖️ Do vs Don't</button>
+    <!-- 8. EDUCATIONAL GUIDES TABS -->
+    <div class="edu-shelf">
+      <div class="edu-pills-nav">
+        <button class="nav-tab-btn active" onclick="switchEduTab('tab-faq')">💡 Secret Guide</button>
+        <button class="nav-tab-btn" onclick="switchEduTab('tab-timeline')">🚀 12 Months Map</button>
+        <button class="nav-tab-btn" onclick="switchEduTab('tab-barber')">🛡️ Barber Permit</button>
+        <button class="nav-tab-btn" onclick="switchEduTab('tab-rules')">⚖️ Do vs Don't</button>
       </div>
 
-      <div class="tab-sheet active" id="tab-qna">
-        <div class="qa-stack">
-          <div class="qa-item">
-            <div class="qa-q">Nahane se pehle tel kyun lagana hai?</div>
-            <p class="qa-a">Jab baal geele hote hain toh paani sokh kar kamzor ho jaate hain aur tootte hain. Nariyal tel baalon ko andar se shield bana deta hai taaki nahate waqt ek bhi baal na toote!</p>
-          </div>
-          <div class="qa-item">
-            <div class="qa-q">Rosemary tel ka magic kya hai?</div>
-            <p class="qa-a">Rosemary tel sir mein blood circulation double kar deta hai, jisse baal tezi se aur mote nikalte hain.</p>
-          </div>
-          <div class="qa-item">
-            <div class="qa-q">Roz shampoo lagane se kya nuksan hai?</div>
-            <p class="qa-a">Roz shampoo lagane se sir ka natural oil nikal jaata hai, aur baal jhadu jaise sukhe ho jaate hain. Hafte mein sirf 2 baar shampoo kaafi hai!</p>
-          </div>
+      <div class="edu-sheet active" id="tab-faq">
+        <div class="faq-item">
+          <div class="faq-q">Nahane se pehle tel kyun lagana hai?</div>
+          <div class="faq-a">Geele baal paani sokh kar weak ho jaate hain aur tootte hain. Nariyal tel baalon ko andar se shield bana deta hai taaki nahate waqt ek bhi baal na toote!</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Rosemary tel ka magic kya hai?</div>
+          <div class="faq-a">Rosemary tel sir mein blood circulation double kar deta hai, jisse baal tezi se aur mote nikalte hain.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Roz shampoo lagane se kya nuksan hai?</div>
+          <div class="faq-a">Roz shampoo se sir ka natural oil nikal jaata hai, aur baal sukhe jhadu ban jaate hain. Hafte mein sirf 2 baar shampoo kaafi hai!</div>
         </div>
       </div>
 
-      <div class="tab-sheet" id="tab-stages">
-        <div class="qa-stack">
-          <div class="qa-item">
-            <div class="qa-q">Month 1 - 3: Foundation 🌱</div>
-            <p class="qa-a">Baal thode lambe honge. Upar ke baal bilkul mat kato, sirf gardan ke pichhe se safai karwao.</p>
-          </div>
-          <div class="qa-item">
-            <div class="qa-q">Month 4 - 7: Awkward Phase 🦁 (Sabse Tough)</div>
-            <p class="qa-a">Baal bikhrenge aur ajeeb lagenge. Haar mat maanna! Cap ya hairband use karo. Gusse mein aakar cut mat karwana!</p>
-          </div>
-          <div class="qa-item">
-            <div class="qa-q">Month 8 - 12: God-Level Flow 👑 (Goal)</div>
-            <p class="qa-a">Baal hothon aur chin tak aa jayenge. Salon jao, Photo 2 dikhao aur bolo: 'Sirf layers dalo, length touch mat karna!'</p>
-          </div>
+      <div class="edu-sheet" id="tab-timeline">
+        <div class="faq-item">
+          <div class="faq-q">Month 1 - 3: Foundation 🌱</div>
+          <div class="faq-a">Baal thode lambe honge. Upar ke baal bilkul mat kato, sirf gardan ke pichhe se safai karwao.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Month 4 - 7: Awkward Phase 🦁 (Sabse Tough)</div>
+          <div class="faq-a">Baal bikhrenge aur ajeeb lagenge. Haar mat maanna! Cap ya hairband use karo. Gusse mein aakar cut mat karwana!</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Month 8 - 12: God-Level Flow 👑 (Goal)</div>
+          <div class="faq-a">Baal hothon aur chin tak aa jayenge. Salon jao, Photo dikhao aur bolo: 'Sirf layers dalo, length touch mat karna!'</div>
         </div>
       </div>
 
-      <div class="tab-sheet" id="tab-barber">
-        <div class="barber-permit">
-          <span class="permit-title">🛡️ BARBER EMERGENCY PERMIT</span>
-          <p style="font-size:0.82rem; color:#cbd5e1;">Barber chair par baithte hi use yeh phone screen dikha dena:</p>
-          <div class="permit-dialogue">
+      <div class="edu-sheet" id="tab-barber">
+        <div class="barber-permit-box">
+          <div class="permit-title">🛡️ BARBER EMERGENCY PERMIT</div>
+          <p style="font-size:0.75rem; color:#cbd5e1;">Barber chair par baithte hi use yeh phone screen dikha dena:</p>
+          <div class="permit-speech">
             "Bhaiya, main baal lambe kar raha hoon. Upar ki length ko haath bhi mat lagana. Sirf gardan aur kaan ke paas se clean kar do aur kharab ends trim kar do!"
           </div>
         </div>
       </div>
 
-      <div class="tab-sheet" id="tab-rules">
-        <div class="dodont-grid">
-          <div class="box-do">
+      <div class="edu-sheet" id="tab-rules">
+        <div class="dodont-deck">
+          <div class="box-good">
             <div class="box-title">✓ Yeh Karo</div>
-            <ul class="bullet-list">
+            <ul class="checklist-list">
               <li>• Nahane se pehle tel</li>
               <li>• Lakdi ki chaudi kanghi</li>
               <li>• Conditioner baalon par</li>
@@ -1393,9 +1442,9 @@
               <li>• 8 glass paani & ande</li>
             </ul>
           </div>
-          <div class="box-dont">
+          <div class="box-bad">
             <div class="box-title">✗ Yeh Mat Karo</div>
-            <ul class="bullet-list">
+            <ul class="checklist-list">
               <li>• Roz-roz shampoo</li>
               <li>• Towel se ragadna</li>
               <li>• Garam paani use karna</li>
@@ -1410,20 +1459,20 @@
   </div>
 
   <script>
-    // State Persistence
-    const CARDS_KEY = 'hair_flow_cards_v6';
-    const CUPS_KEY = 'hair_flow_cups_v6';
-    const PROTEIN_KEY = 'hair_flow_protein_v6';
-    const SOUND_KEY = 'hair_flow_sound_v6';
-    const SPA_KEY = 'hair_flow_spa_v6';
-    const START_DATE_KEY = 'hair_flow_start_date_v6';
-    const PHOTO_START_KEY = 'hair_flow_photo_start_v6';
-    const PHOTO_CURR_KEY = 'hair_flow_photo_curr_v6';
-    const STREAK_KEY = 'hair_flow_streak_v6';
-    const LAST_DATE_KEY = 'hair_flow_last_date_v6';
-    const SHIELD_KEY = 'hair_flow_shield_v6';
+    // Storage Keys
+    const CARDS_KEY = 'hair_flow_cards_v7';
+    const CUPS_KEY = 'hair_flow_cups_v7';
+    const PROTEIN_KEY = 'hair_flow_protein_v7';
+    const SOUND_KEY = 'hair_flow_sound_v7';
+    const SPA_KEY = 'hair_flow_spa_v7';
+    const START_DATE_KEY = 'hair_flow_start_date_v7';
+    const PHOTO_START_KEY = 'hair_flow_photo_start_v7';
+    const PHOTO_CURR_KEY = 'hair_flow_photo_curr_v7';
+    const STREAK_KEY = 'hair_flow_streak_v7';
+    const LAST_DATE_KEY = 'hair_flow_last_date_v7';
+    const SHIELD_KEY = 'hair_flow_shield_v7';
 
-    // Days setup
+    // Highlight Today
     const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
     const dayNames = {
       'sun': 'Raviwar', 'mon': 'Somwar', 'tue': 'Mangalwar', 
@@ -1435,21 +1484,22 @@
     if (todayCard) todayCard.classList.add('today');
     const todayTag = document.getElementById('tag-' + currentDay);
     if (todayTag) {
-      todayTag.classList.add('today-tag');
+      todayTag.classList.add('today-badge');
       todayTag.innerText = dayNames[currentDay] + ' (Aaj)';
     }
 
-    // --- FEATURE 1: HAPTICS & SOUND SYSTEM WITH TOGGLE ---
+    // 1. SOUND & HAPTIC SYSTEM
     let soundEnabled = localStorage.getItem(SOUND_KEY) !== 'false';
 
     function updateSoundBtnUI() {
       const btn = document.getElementById('btn-sound-toggle');
+      const icon = document.getElementById('sound-icon');
       if (soundEnabled) {
-        btn.innerText = '🔊 Sound';
-        btn.classList.add('active-sound');
+        btn.classList.add('active');
+        icon.innerText = '🔊';
       } else {
-        btn.innerText = '🔇 Mute';
-        btn.classList.remove('active-sound');
+        btn.classList.remove('active');
+        icon.innerText = '🔇';
       }
     }
 
@@ -1457,44 +1507,61 @@
       soundEnabled = !soundEnabled;
       localStorage.setItem(SOUND_KEY, soundEnabled);
       updateSoundBtnUI();
-      if (soundEnabled) triggerHaptic('light');
+      if (soundEnabled) playWebSound('pop');
     }
 
-    function triggerHaptic(type = 'light') {
-      if ('vibrate' in navigator) {
-        try {
-          if (type === 'light') navigator.vibrate(15);
-          else if (type === 'medium') navigator.vibrate(28);
-          else if (type === 'success') navigator.vibrate([20, 40, 25]);
-          else if (type === 'celebrate') navigator.vibrate([35, 50, 45, 60, 75]);
-          else if (type === 'heavy') navigator.vibrate(45);
-        } catch (e) {}
-      }
-
+    function triggerHaptic(type) {
       if (!soundEnabled) return;
+      if (navigator.vibrate) {
+        if (type === 'light') navigator.vibrate(35);
+        else if (type === 'medium') navigator.vibrate(60);
+        else if (type === 'heavy') navigator.vibrate([40, 60, 100]);
+        else if (type === 'celebrate') navigator.vibrate([50, 50, 50, 50, 120]);
+      }
+      playWebSound(type);
+    }
 
+    function playWebSound(type) {
+      if (!soundEnabled) return;
       try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
         osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        
-        let freq = 600;
-        let dur = 0.015;
-        if (type === 'light') { freq = 900; dur = 0.012; }
-        else if (type === 'medium') { freq = 750; dur = 0.02; }
-        else if (type === 'success') { freq = 1200; dur = 0.04; }
-        
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
-        osc.start();
-        osc.stop(audioCtx.currentTime + dur);
+        gain.connect(ctx.destination);
+
+        const t = ctx.currentTime;
+        if (type === 'light' || type === 'pop') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(480, t);
+          osc.frequency.exponentialRampToValueAtTime(800, t + 0.08);
+          gain.gain.setValueAtTime(0.12, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+          osc.start(t);
+          osc.stop(t + 0.08);
+        } else if (type === 'success' || type === 'medium') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, t);
+          osc.frequency.setValueAtTime(659.25, t + 0.07);
+          gain.gain.setValueAtTime(0.15, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+          osc.start(t);
+          osc.stop(t + 0.18);
+        } else if (type === 'celebrate') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, t);
+          osc.frequency.setValueAtTime(659.25, t + 0.1);
+          osc.frequency.setValueAtTime(783.99, t + 0.2);
+          osc.frequency.setValueAtTime(1046.5, t + 0.3);
+          gain.gain.setValueAtTime(0.18, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+          osc.start(t);
+          osc.stop(t + 0.45);
+        }
       } catch (e) {}
     }
 
-    // --- FEATURE 2: 4-MIN SPA AMBIENT AUDIO SYNTHESIZER ---
+    // 2. SPA AMBIENT AUDIO (432Hz)
     let spaAudioEnabled = localStorage.getItem(SPA_KEY) !== 'false';
     let spaAudioContext = null;
     let spaOscillator = null;
@@ -1503,6 +1570,7 @@
     function updateSpaBtnUI() {
       const btn = document.getElementById('btn-spa-toggle');
       btn.innerText = spaAudioEnabled ? '🎵 Spa Sound: ON' : '🎵 Spa Sound: OFF';
+      btn.style.opacity = spaAudioEnabled ? '1' : '0.6';
     }
 
     function toggleSpaAudio() {
@@ -1524,12 +1592,11 @@
         spaOscillator = spaAudioContext.createOscillator();
         spaGain = spaAudioContext.createGain();
 
-        // 432Hz Healing Frequency Drone
         spaOscillator.type = 'sine';
         spaOscillator.frequency.setValueAtTime(432, spaAudioContext.currentTime);
 
         spaGain.gain.setValueAtTime(0.01, spaAudioContext.currentTime);
-        spaGain.gain.linearRampToValueAtTime(0.08, spaAudioContext.currentTime + 2);
+        spaGain.gain.linearRampToValueAtTime(0.07, spaAudioContext.currentTime + 2);
 
         spaOscillator.connect(spaGain);
         spaGain.connect(spaAudioContext.destination);
@@ -1542,13 +1609,16 @@
         try {
           spaGain.gain.linearRampToValueAtTime(0.0001, spaAudioContext.currentTime + 1);
           setTimeout(() => {
-            if (spaOscillator) spaOscillator.stop();
+            if (spaOscillator) {
+              spaOscillator.stop();
+              spaOscillator = null;
+            }
           }, 1000);
         } catch (e) {}
       }
     }
 
-    // --- FEATURE 3: VIRTUAL GROWTH RULER & MILESTONES ---
+    // 3. GROWTH ROADMAP ENGINE
     if (!localStorage.getItem(START_DATE_KEY)) {
       localStorage.setItem(START_DATE_KEY, new Date().toISOString());
     }
@@ -1558,30 +1628,35 @@
       const now = new Date();
       const diffDays = Math.max(0, Math.floor((now - startDate) / (1000 * 60 * 60 * 24)));
 
-      // Baseline = 2.0 inches. Hair grows ~0.016 inches per day (~0.5 inches / month)
       const currentLength = Math.min(7.5, (2.0 + diffDays * (0.5 / 30))).toFixed(1);
+      const pct = Math.min(100, Math.max(12, ((currentLength - 2.0) / (7.5 - 2.0)) * 100));
 
-      // Percentage along the ruler from 2.0" to 7.5"
-      const pct = Math.min(100, Math.max(8, ((currentLength - 2.0) / (7.5 - 2.0)) * 100));
-
-      document.getElementById('ruler-curr-len').innerText = `${currentLength}" &rarr; Target 7.5"`;
-      document.getElementById('ruler-pointer').style.left = pct + '%';
-      document.getElementById('ruler-pointer').innerText = `${currentLength}"`;
+      document.getElementById('ruler-curr-stat').innerText = `${currentLength}" → 7.5" Target`;
       document.getElementById('ruler-fill').style.width = pct + '%';
 
-      const milestoneNote = document.getElementById('ruler-next-milestone');
+      // Highlight active node
+      document.querySelectorAll('.roadmap-node').forEach(n => n.classList.remove('active'));
+      const forecast = document.getElementById('ruler-next-forecast');
+
       if (currentLength < 3.5) {
-        milestoneNote.innerText = `Next Milestone: 3.5" (Kaan touch honge) in ~${Math.max(1, Math.round((3.5 - currentLength) / (0.5 / 30)))} Days ⏳`;
+        document.getElementById('node-0').classList.add('active');
+        const daysLeft = Math.max(1, Math.round((3.5 - currentLength) / (0.5 / 30)));
+        forecast.innerHTML = `<strong>Next: 3.5" (Kaan cover honge) in ~${daysLeft} Days</strong><br/>Bas haircut mat lena, sirf pichhe gardan se clean karwana!`;
       } else if (currentLength < 5.0) {
-        milestoneNote.innerText = `Next Milestone: 5.0" (Awkward stage cross) in ~${Math.max(1, Math.round((5.0 - currentLength) / (0.5 / 30)))} Days 🦁`;
+        document.getElementById('node-1').classList.add('active');
+        const daysLeft = Math.max(1, Math.round((5.0 - currentLength) / (0.5 / 30)));
+        forecast.innerHTML = `<strong>Next: 5.0" (Awkward Phase cross) in ~${daysLeft} Days</strong><br/>Hairband ya cap use karo, sabse critical phase chal raha hai!`;
       } else if (currentLength < 7.5) {
-        milestoneNote.innerText = `Next Milestone: 7.5" (Greek God Flow King) in ~${Math.max(1, Math.round((7.5 - currentLength) / (0.5 / 30)))} Days 👑`;
+        document.getElementById('node-2').classList.add('active');
+        const daysLeft = Math.max(1, Math.round((7.5 - currentLength) / (0.5 / 30)));
+        forecast.innerHTML = `<strong>Next: 7.5" (Curtain Flow King) in ~${daysLeft} Days</strong><br/>Baal chin tak aane lage hain, full Greek God flow loading!`;
       } else {
-        milestoneNote.innerText = 'Goal Reached! Greek God Flow Master! 👑🔥';
+        document.getElementById('node-3').classList.add('active');
+        forecast.innerHTML = `<strong>🏆 GOAL REACHED! Greek God Flow Master!</strong><br/>Ab salon jao aur layers maintain karo!`;
       }
     }
 
-    // --- FEATURE 4: STREAK SHIELD PRESERVATION ---
+    // 4. DUOLINGO STREAK SHIELD ENGINE
     function checkStreakEngine() {
       const todayStr = new Date().toISOString().split('T')[0];
       const lastStr = localStorage.getItem(LAST_DATE_KEY);
@@ -1597,15 +1672,12 @@
         const dayDiff = Math.floor((todayDate - lastDate) / (1000 * 60 * 60 * 24));
 
         if (dayDiff === 1) {
-          // Continuous
           streak++;
           localStorage.setItem(STREAK_KEY, streak);
         } else if (dayDiff === 2 && !shieldUsed) {
-          // 1 Day missed, Streak Shield rescues!
           localStorage.setItem(SHIELD_KEY, 'used');
-          alert("🛡️ Streak Shield Activated! Aapka 1 din miss hua tha par shield ne streak bacha li!");
+          alert('🛡️ Streak Shield Activated! 1 din miss hone ke baad bhi streak protect ho gayi!');
         } else if (dayDiff > 1) {
-          // Reset
           streak = 1;
           localStorage.setItem(STREAK_KEY, 1);
         }
@@ -1615,14 +1687,15 @@
       document.getElementById('streak-num').innerText = streak;
       const shieldBadge = document.getElementById('shield-badge');
       if (localStorage.getItem(SHIELD_KEY) === 'used') {
-        shieldBadge.innerText = '🛡️ Shield Used';
+        shieldBadge.innerHTML = '<span>🛡️</span> Shield Used';
         shieldBadge.style.opacity = '0.5';
       } else {
-        shieldBadge.innerText = '🛡️ Shield Ready';
+        shieldBadge.innerHTML = '<span>🛡️</span> Shield Ready';
+        shieldBadge.style.opacity = '1';
       }
     }
 
-    // --- FEATURE 5: PHOTO VAULT LOGIC ---
+    // 5. PHOTO VAULT WITH CANVAS AUTO-COMPRESSION
     let activeUploadSlot = 'curr';
     const fileInput = document.getElementById('photo-file-input');
 
@@ -1663,7 +1736,7 @@
             triggerHaptic('celebrate');
             launchConfetti();
           } catch(err) {
-            alert('Storage full! Thoda purana data clear karein.');
+            alert('Phone storage full hai! Thoda cache clear karein.');
           }
         };
         img.src = evt.target.result;
@@ -1687,7 +1760,7 @@
       }
     }
 
-    // Protocol Cards State
+    // 6. PROTOCOL CARDS STATE & LEVEL METRIC
     function renderCards() {
       const saved = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
       let done = 0;
@@ -1706,7 +1779,7 @@
       const total = 7;
       const pct = Math.round((done / total) * 100);
       document.getElementById('xp-meter-fill').style.width = pct + '%';
-      document.getElementById('xp-text').innerText = `${done} / ${total} Tasks Done 🚀`;
+      document.getElementById('xp-text').innerText = `${done} / ${total} Tasks (${pct}%) 🚀`;
 
       const avatar = document.getElementById('mascot-avatar');
       const badge = document.getElementById('stage-badge');
@@ -1733,8 +1806,8 @@
     }
 
     function resetWeek() {
-      triggerHaptic('heavy');
-      if (confirm('Kya aap iss hafte ke saare tasks aur paani cups reset karna chahte hain?')) {
+      triggerHaptic('medium');
+      if (confirm('Kya aap iss hafte ke saare tasks aur paani count reset karna chahte hain?')) {
         localStorage.removeItem(CARDS_KEY);
         localStorage.removeItem(CUPS_KEY);
         renderCards();
@@ -1742,35 +1815,35 @@
       }
     }
 
-    // 8 Interactive Water Cups
+    // 7. WATER & PROTEIN
     function getCups() {
       return JSON.parse(localStorage.getItem(CUPS_KEY) || '[]');
     }
 
     function renderCups() {
       const cups = getCups();
-      const cupBtns = document.querySelectorAll('.cup-btn');
+      const chips = document.querySelectorAll('.cup-chip');
       let filledCount = 0;
 
-      cupBtns.forEach((btn, index) => {
-        if (cups.includes(index)) {
-          btn.classList.add('filled');
+      chips.forEach((chip, idx) => {
+        if (cups.includes(idx)) {
+          chip.classList.add('filled');
           filledCount++;
         } else {
-          btn.classList.remove('filled');
+          chip.classList.remove('filled');
         }
       });
 
       document.getElementById('water-badge').innerText = `${filledCount} / 8 Glasses`;
     }
 
-    function toggleCup(index) {
+    function toggleCup(idx) {
       triggerHaptic('light');
       let cups = getCups();
-      if (cups.includes(index)) {
-        cups = cups.filter(i => i !== index);
+      if (cups.includes(idx)) {
+        cups = cups.filter(i => i !== idx);
       } else {
-        cups.push(index);
+        cups.push(idx);
         if (cups.length === 8) {
           triggerHaptic('celebrate');
           launchConfetti();
@@ -1780,7 +1853,6 @@
       renderCups();
     }
 
-    // Protein Stepper
     function getProtein() {
       return parseInt(localStorage.getItem(PROTEIN_KEY)) || 0;
     }
@@ -1796,9 +1868,9 @@
       renderProtein();
     }
 
-    // 4-Min Scalp Massage Stopwatch
-    const TOTAL_SECONDS = 240;
-    let secLeft = TOTAL_SECONDS;
+    // 8. 4-MIN STOPWATCH
+    const TOTAL_SEC = 240;
+    let secLeft = TOTAL_SEC;
     let timerRunning = false;
     let timerId = null;
 
@@ -1807,10 +1879,10 @@
     const btnPlay = document.getElementById('btn-play');
 
     const shouts = [
-      { time: 240, msg: "Shuru karo! Ungliyon se circular massage do 💆‍♂️" },
-      { time: 180, msg: "Blood flow badh raha hai, roots ko fuel mil raha hai! 🩸" },
-      { time: 120, msg: "Half way there! Scalp mein warmth feel ho rahi hogi ✨" },
-      { time: 60,  msg: "Last 1 minute baaki! Finish strong champion! 🏆" }
+      { time: 240, msg: 'Ungliyon se circular massage do taaki roots tak blood pahuche! 💆‍♂️' },
+      { time: 180, msg: 'Great pace! Scalp mein warmth aur circulation feel ho rahi hogi ✨' },
+      { time: 120, msg: 'Aadhe time ho gaya! Baalon ki roots ko direct oxygen mil rahi hai 🩸' },
+      { time: 60,  msg: 'Aakhiri 1 minute baaki hai champion, finish strong! 🏆' }
     ];
 
     function updateTimer() {
@@ -1843,7 +1915,7 @@
             clearInterval(timerId);
             timerRunning = false;
             btnPlay.innerText = 'DONE 🏆';
-            arcadeMsg.innerText = 'Shabash! 4-min massage complete! Roots charged ⚡';
+            arcadeMsg.innerText = 'Shabash! 4-minute scalp massage complete! Roots fully charged ⚡';
             stopSpaSound();
             triggerHaptic('celebrate');
             launchConfetti();
@@ -1856,52 +1928,52 @@
       triggerHaptic('light');
       clearInterval(timerId);
       timerRunning = false;
-      secLeft = TOTAL_SECONDS;
+      secLeft = TOTAL_SEC;
       btnPlay.innerText = '▶ START';
-      arcadeMsg.innerText = 'Ungliyon se sir par gol-gol massage do taaki blood flow double ho!';
+      arcadeMsg.innerText = 'Ungliyon se circular massage do taaki roots tak blood pahuche! 💆‍♂️';
       stopSpaSound();
       updateTimer();
     }
 
-    // Tabs
-    function switchShelf(id) {
+    // 9. TABS SWITCHER
+    function switchEduTab(tabId) {
       triggerHaptic('light');
-      document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.tab-sheet').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.edu-sheet').forEach(s => s.classList.remove('active'));
       event.target.classList.add('active');
-      document.getElementById(id).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
     }
 
-    // Bouncy Confetti
+    // 10. LIGHTWEIGHT CONFETTI
     function launchConfetti() {
-      const canvas = document.getElementById('confetti-canvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const cvs = document.getElementById('confetti-canvas');
+      const ctx = cvs.getContext('2d');
+      cvs.width = window.innerWidth;
+      cvs.height = window.innerHeight;
 
       const particles = [];
       const colors = ['#10b981', '#06b6d4', '#f59e0b', '#ec4899', '#8b5cf6', '#3b82f6'];
 
-      for (let i = 0; i < 55; i++) {
+      for (let i = 0; i < 45; i++) {
         particles.push({
-          x: canvas.width / 2,
-          y: canvas.height / 2,
-          vx: (Math.random() - 0.5) * 14,
-          vy: (Math.random() - 0.5) * 14 - 3,
-          size: Math.random() * 8 + 4,
+          x: cvs.width / 2,
+          y: cvs.height / 2,
+          vx: (Math.random() - 0.5) * 12,
+          vy: (Math.random() - 0.5) * 12 - 3,
+          size: Math.random() * 7 + 4,
           color: colors[Math.floor(Math.random() * colors.length)],
           rot: Math.random() * 360,
-          vrot: (Math.random() - 0.5) * 8
+          vrot: (Math.random() - 0.5) * 7
         });
       }
 
-      let count = 0;
+      let frames = 0;
       function step() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
         particles.forEach(p => {
           p.x += p.vx;
           p.y += p.vy;
-          p.vy += 0.3;
+          p.vy += 0.28;
           p.rot += p.vrot;
 
           ctx.save();
@@ -1912,17 +1984,17 @@
           ctx.restore();
         });
 
-        count++;
-        if (count < 65) {
+        frames++;
+        if (frames < 60) {
           requestAnimationFrame(step);
         } else {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.clearRect(0, 0, cvs.width, cvs.height);
         }
       }
       step();
     }
 
-    // Init All Features
+    // Initialize UI
     updateSoundBtnUI();
     updateSpaBtnUI();
     checkStreakEngine();
