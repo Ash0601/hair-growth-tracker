@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#0d1527" />
+  <meta name="theme-color" content="#0f172a" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="manifest" href="/manifest.json" />
@@ -11,32 +11,44 @@
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <title>Hair Flow Quest — Fun Daily Growth Tracker</title>
+  <title>Hair Flow Quest — Daily Habit Game</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0b1120;
-      --card-bg: rgba(19, 29, 51, 0.75);
-      --card-border: rgba(255, 255, 255, 0.1);
-      --card-hover: rgba(27, 41, 71, 0.85);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --green-glow: #10b981;
-      --emerald: #10b981;
-      --emerald-light: #34d399;
+      --bg: #0b1329;
+      --card-bg: #16203a;
+      --card-inner: #1c2a4d;
+      --card-border: rgba(255, 255, 255, 0.12);
+      
+      /* Vibrant Playful Palette */
+      --green: #10b981;
+      --green-dark: #059669;
+      --green-glow: rgba(16, 185, 129, 0.35);
+      
       --cyan: #06b6d4;
+      --cyan-dark: #0891b2;
+      
       --amber: #f59e0b;
-      --coral: #f97316;
-      --purple: #a855f7;
-      --blue: #3b82f6;
-      --radius-sm: 10px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      --radius-xl: 24px;
+      --amber-dark: #d97706;
+      
+      --purple: #8b5cf6;
+      --purple-dark: #7c3aed;
+      
+      --coral: #f43f5e;
+      --coral-dark: #e11d48;
+      
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --text-muted: #64748b;
+      
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-xl: 30px;
     }
 
     * {
@@ -53,15 +65,16 @@
       line-height: 1.5;
       padding: 16px 14px 100px;
       background-image: 
-        radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.16) 0%, transparent 45%),
-        radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.14) 0%, transparent 50%);
+        radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 90% 25%, rgba(6, 182, 212, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(139, 92, 246, 0.18) 0%, transparent 50%);
       background-attachment: fixed;
       overflow-x: hidden;
+      user-select: none;
     }
 
     .app-shell {
-      max-width: 600px;
+      max-width: 540px;
       margin: 0 auto;
     }
 
@@ -76,13 +89,13 @@
       z-index: 9999;
     }
 
-    /* Top Nav: Playful & Clean */
+    /* Top Bar with Duolingo-style Chunky Buttons */
     .top-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 4px 16px;
-      margin-bottom: 12px;
+      padding: 4px 4px 16px;
+      margin-bottom: 8px;
     }
 
     .brand {
@@ -91,27 +104,40 @@
       gap: 10px;
     }
 
-    .brand-icon {
-      font-size: 1.6rem;
-      animation: wave 2.5s infinite ease-in-out;
-      display: inline-block;
-      transform-origin: 70% 70%;
+    .brand-mascot {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      box-shadow: 0 4px 0 #059669;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transform: rotate(-4deg);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    @keyframes wave {
-      0%, 100% { transform: rotate(0deg); }
-      20%, 60% { transform: rotate(14deg); }
-      40%, 80% { transform: rotate(-10deg); }
+    .brand-mascot:active {
+      transform: rotate(6deg) scale(0.95);
     }
 
-    .brand-title {
+    .brand-text h1 {
       font-family: 'Outfit', sans-serif;
       font-size: 1.25rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #34d399 0%, #38bdf8 50%, #c084fc 100%);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: -0.02em;
+    }
+
+    .brand-text span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .nav-actions {
@@ -119,423 +145,505 @@
       gap: 8px;
     }
 
-    .btn-pill {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid var(--card-border);
-      color: #e2e8f0;
+    /* Duolingo 3D Button Utility */
+    .btn-3d-mini {
+      background: #223259;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      font-family: 'Outfit', sans-serif;
       font-size: 0.8rem;
-      font-weight: 700;
-      padding: 7px 12px;
-      border-radius: 9999px;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 3px 0 #131c33;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
-      backdrop-filter: blur(10px);
+      gap: 5px;
+      transition: all 0.08s ease;
     }
 
-    .btn-pill:active {
-      transform: scale(0.92);
-      background: rgba(255, 255, 255, 0.15);
+    .btn-3d-mini:active {
+      transform: translateY(3px);
+      box-shadow: 0 0 0 #131c33;
     }
 
-    /* LEVEL & STREAK HERO CARD */
-    .hero-card {
-      background: linear-gradient(145deg, rgba(30, 41, 69, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
-      border: 1px solid rgba(52, 211, 153, 0.3);
+    /* CHARACTER PROGRESS CARD (Mascot & Transformation) */
+    .mascot-card {
+      background: linear-gradient(160deg, #1e2c52 0%, #151e38 100%);
+      border: 2px solid rgba(16, 185, 129, 0.4);
       border-radius: var(--radius-xl);
-      padding: 18px 20px;
+      padding: 20px;
       margin-bottom: 14px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.15);
+      box-shadow: 0 8px 0 #0d1426, 0 12px 25px rgba(0, 0, 0, 0.4);
       position: relative;
-      overflow: hidden;
     }
 
-    .hero-card::after {
-      content: '🦁';
-      position: absolute;
-      right: 15px;
-      bottom: -10px;
-      font-size: 5rem;
-      opacity: 0.12;
-      pointer-events: none;
-    }
-
-    .hero-top {
+    .mascot-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      justify-content: space-between;
+      margin-bottom: 12px;
     }
 
-    .streak-badge {
+    .streak-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(245, 158, 11, 0.2);
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      color: #fbbf24;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #0b1329;
       font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
-      padding: 4px 12px;
+      font-weight: 900;
+      font-size: 0.82rem;
+      padding: 5px 12px;
       border-radius: 9999px;
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+      box-shadow: 0 3px 0 #b45309;
+      letter-spacing: 0.02em;
     }
 
-    .level-badge {
+    .stage-badge {
       font-family: 'Outfit', sans-serif;
       font-size: 0.78rem;
-      font-weight: 800;
+      font-weight: 900;
       text-transform: uppercase;
-      color: var(--emerald-light);
-      background: rgba(16, 185, 129, 0.15);
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
       padding: 4px 10px;
       border-radius: 9999px;
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(52, 211, 153, 0.4);
     }
 
-    .hero-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 4px;
+    .mascot-body {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
-    .hero-desc {
-      font-size: 0.85rem;
+    .mascot-avatar {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      box-shadow: 0 5px 0 #0891b2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.3rem;
+      flex-shrink: 0;
+      animation: gentle-bounce 3s infinite ease-in-out;
+    }
+
+    @keyframes gentle-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .mascot-info h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .mascot-info p {
+      font-size: 0.82rem;
       color: #cbd5e1;
-      line-height: 1.4;
-      margin-bottom: 14px;
+      line-height: 1.35;
     }
 
-    /* Animated Level Progress Bar */
-    .xp-bar-wrap {
-      background: rgba(255, 255, 255, 0.08);
+    /* XP Progress Bar (Duolingo Style) */
+    .xp-meter-wrap {
+      background: #11182c;
       border-radius: 9999px;
-      height: 10px;
-      width: 100%;
-      overflow: hidden;
-      margin-bottom: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      height: 14px;
+      padding: 2px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 8px;
     }
 
-    .xp-fill {
+    .xp-meter-fill {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
       border-radius: 9999px;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
       transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 0 12px #10b981;
     }
 
-    .xp-meta {
+    .xp-label-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
       color: #94a3b8;
     }
 
-    /* DAILY MINI QUESTS (Water & Protein) */
-    .mini-quests {
+    /* DAILY POWER METRICS: 8 TACTILE WATER CUPS & PROTEIN */
+    .power-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: 1fr;
+      gap: 12px;
       margin-bottom: 14px;
     }
 
-    .quest-card {
+    /* Interactive Water Tracker with 8 Actual Cups */
+    .water-station-card {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 2px solid rgba(6, 182, 212, 0.35);
       border-radius: var(--radius-lg);
-      padding: 14px 16px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      padding: 16px 18px;
+      box-shadow: 0 6px 0 #0e1526;
     }
 
-    .quest-card.water { border-left: 4px solid var(--cyan); }
-    .quest-card.protein { border-left: 4px solid var(--amber); }
-
-    .quest-header {
+    .station-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
 
-    .quest-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #e2e8f0;
+    .station-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
 
-    .quest-count {
+    .station-badge {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 900;
+      color: #38bdf8;
+      background: rgba(6, 182, 212, 0.2);
+      padding: 2px 8px;
+      border-radius: 6px;
     }
 
-    .quest-ctrls {
-      display: flex;
-      gap: 8px;
-      margin-top: 8px;
+    .water-cups-row {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
     }
 
-    .btn-quest {
-      flex: 1;
-      height: 32px;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 800;
+    .cup-btn {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #64748b;
+      font-size: 1.15rem;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.1s ease;
+      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
+      transition: all 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .btn-quest:active {
-      transform: scale(0.9);
-      background: rgba(255, 255, 255, 0.2);
+    .cup-btn.filled {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+      border-color: #38bdf8;
+      color: #fff;
+      box-shadow: 0 3px 0 #0284c7, 0 0 10px rgba(6, 182, 212, 0.5);
+      transform: translateY(-2px);
     }
 
-    /* MASSAGE TIMER: GAME STOPWATCH */
-    .timer-card {
-      background: linear-gradient(135deg, rgba(20, 30, 55, 0.85) 0%, rgba(13, 21, 39, 0.95) 100%);
-      border: 1px solid rgba(168, 85, 247, 0.3);
+    .cup-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 0 0 #000;
+    }
+
+    .water-subtext {
+      font-size: 0.76rem;
+      color: #94a3b8;
+      text-align: center;
+    }
+
+    /* Protein Meter */
+    .protein-strip {
+      background: var(--card-bg);
+      border: 2px solid rgba(245, 158, 11, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 0 #0e1526;
+    }
+
+    .protein-label-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .protein-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .protein-note {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .protein-stepper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .protein-score {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #fbbf24;
+      min-width: 54px;
+      text-align: center;
+    }
+
+    .btn-chunky-step {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #24335c;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #131d36;
+      transition: all 0.08s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-chunky-step:active {
+      transform: translateY(3px);
+      box-shadow: 0 0 0 #000;
+    }
+
+    /* 4-MINUTE MASSAGE ARCADE STOPWATCH */
+    .arcade-card {
+      background: linear-gradient(145deg, #221b3b 0%, #181329 100%);
+      border: 2px solid rgba(168, 85, 247, 0.45);
       border-radius: var(--radius-xl);
       padding: 18px 20px;
       margin-bottom: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(168, 85, 247, 0.1);
-      position: relative;
+      box-shadow: 0 8px 0 #100b1d, 0 10px 25px rgba(168, 85, 247, 0.2);
     }
 
-    .timer-header {
+    .arcade-top {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 12px;
     }
 
-    .timer-ring-wrap {
-      position: relative;
-      width: 56px;
-      height: 56px;
+    .arcade-badge-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+      box-shadow: 0 4px 0 #7e22ce;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1.6rem;
       flex-shrink: 0;
     }
 
-    .timer-ring-wrap svg {
-      width: 56px;
-      height: 56px;
-      transform: rotate(-90deg);
-    }
-
-    .timer-ring-wrap circle.bg {
-      fill: none;
-      stroke: rgba(255, 255, 255, 0.1);
-      stroke-width: 5;
-    }
-
-    .timer-ring-wrap circle.bar {
-      fill: none;
-      stroke: #a855f7;
-      stroke-width: 5;
-      stroke-linecap: round;
-      stroke-dasharray: 157;
-      stroke-dashoffset: 0;
-      transition: stroke-dashoffset 1s linear;
-    }
-
-    .timer-ring-wrap.running circle.bar {
-      stroke: #10b981;
-      filter: drop-shadow(0 0 6px #10b981);
-    }
-
-    .timer-center-icon {
-      position: absolute;
-      font-size: 1.3rem;
-    }
-
-    .timer-text-wrap h3 {
+    .arcade-heading h3 {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 800;
+      font-size: 1.1rem;
+      font-weight: 900;
       color: #fff;
     }
 
-    .timer-msg {
-      font-size: 0.8rem;
-      color: #cbd5e1;
+    .arcade-shout {
+      font-size: 0.82rem;
+      color: #f3e8ff;
       line-height: 1.35;
     }
 
-    .timer-actions-row {
+    .arcade-dial-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.35);
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .timer-digits {
+    .big-digits {
       font-family: 'Outfit', sans-serif;
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 900;
-      letter-spacing: -0.02em;
       color: #fff;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 14px rgba(168, 85, 247, 0.7);
     }
 
-    .timer-btns {
+    .arcade-btns {
       display: flex;
       gap: 8px;
     }
 
-    .btn-timer-play {
+    /* 3D Giant Play Button */
+    .btn-3d-play {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border: none;
       color: #fff;
       font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 0.9rem;
-      padding: 8px 18px;
-      border-radius: 9999px;
-      border: none;
+      font-size: 0.95rem;
+      font-weight: 900;
+      padding: 10px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 0 #047857, 0 6px 14px rgba(16, 185, 129, 0.4);
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
-      transition: all 0.15s ease;
+      transition: all 0.08s ease;
     }
 
-    .btn-timer-play:active {
-      transform: scale(0.92);
+    .btn-3d-play:active {
+      transform: translateY(4px);
+      box-shadow: 0 0 0 #047857;
     }
 
-    .btn-timer-reset {
-      background: rgba(255, 255, 255, 0.08);
+    .btn-3d-reset {
+      background: #2a2245;
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: #cbd5e1;
       font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 0.82rem;
-      padding: 8px 14px;
-      border-radius: 9999px;
-      border: 1px solid var(--card-border);
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 10px 14px;
+      border-radius: 12px;
+      box-shadow: 0 3px 0 #181329;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.08s ease;
     }
 
-    .btn-timer-reset:active {
-      transform: scale(0.92);
+    .btn-3d-reset:active {
+      transform: translateY(3px);
+      box-shadow: 0 0 0 #000;
     }
 
-    /* PROTOCOL CARDS (FUN & BOUNCY) */
-    .section-headline {
+    /* PROTOCOL CARDS (CHUNKY DUOLINGO STYLE) */
+    .section-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 18px 4px 10px;
+      margin: 20px 4px 10px;
     }
 
-    .section-headline h2 {
+    .section-bar h2 {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #94a3b8;
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .section-sub {
+    .section-bar span {
       font-size: 0.75rem;
-      color: #64748b;
+      font-weight: 700;
+      color: #38bdf8;
     }
 
-    .protocol-cards {
+    .cards-stack {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .task-card {
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 2px solid var(--card-border);
       border-radius: var(--radius-lg);
       padding: 14px 16px;
       display: flex;
       align-items: center;
       gap: 14px;
       cursor: pointer;
-      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 5px 0 #0d1426;
+      transition: all 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .task-card:active {
-      transform: scale(0.97);
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #0d1426;
     }
 
+    /* Highlight Today with Cyan Glowing Border */
     .task-card.today {
-      border: 2px solid #38bdf8;
-      background: linear-gradient(135deg, rgba(20, 38, 70, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+      border-color: #38bdf8;
+      background: linear-gradient(145deg, #1b2848 0%, #141f38 100%);
+      box-shadow: 0 6px 0 #095982, 0 0 18px rgba(56, 189, 248, 0.35);
     }
 
+    /* Completed State: Satisfying Green */
     .task-card.completed {
-      background: rgba(16, 185, 129, 0.08);
-      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.12);
+      border-color: #10b981;
+      box-shadow: 0 4px 0 #047857;
     }
 
-    .task-card.completed .task-title {
+    .task-card.completed .task-name {
       text-decoration: line-through;
       color: #64748b;
     }
 
-    /* Playful Bouncy Checkbox */
-    .checkbox-bubble {
-      width: 28px;
-      height: 28px;
-      border-radius: 9px;
+    /* Chunky Checkbox Button */
+    .btn-chunky-check {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
       border: 2px solid rgba(255, 255, 255, 0.25);
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.2rem;
       font-weight: 900;
       color: transparent;
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
       flex-shrink: 0;
     }
 
-    .task-card.completed .checkbox-bubble {
+    .task-card.completed .btn-chunky-check {
       background: #10b981;
-      border-color: #10b981;
+      border-color: #34d399;
+      box-shadow: 0 3px 0 #047857;
       color: #fff;
-      transform: scale(1.1);
-      box-shadow: 0 0 12px #10b981;
+      transform: scale(1.06);
     }
 
-    .task-content {
+    .task-details {
       flex: 1;
     }
 
-    .task-top {
+    .task-meta-line {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -543,7 +651,7 @@
       flex-wrap: wrap;
     }
 
-    .day-pill {
+    .day-tag {
       font-family: 'Outfit', sans-serif;
       font-size: 0.72rem;
       font-weight: 800;
@@ -554,198 +662,204 @@
       color: #cbd5e1;
     }
 
-    .day-pill.today-pill {
+    .day-tag.today-tag {
       background: #38bdf8;
-      color: #0b1120;
+      color: #0b1329;
       font-weight: 900;
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+      box-shadow: 0 0 10px #38bdf8;
     }
 
-    .tag-bubble {
-      font-size: 0.7rem;
+    .type-badge {
+      font-size: 0.68rem;
       font-weight: 800;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 9999px;
     }
 
-    .tag-wash { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-    .tag-oil { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    .tag-rest { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; }
-    .tag-massage { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .badge-wash { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+    .badge-oil { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .badge-rest { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; }
+    .badge-massage { background: rgba(16, 185, 129, 0.2); color: #34d399; }
 
-    .task-title {
+    .task-name {
       font-family: 'Outfit', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
+      font-size: 1.02rem;
+      font-weight: 800;
       color: #fff;
-      transition: all 0.15s ease;
+      letter-spacing: -0.01em;
     }
 
-    .task-desc {
+    .task-hint {
       font-size: 0.8rem;
       color: #94a3b8;
       line-height: 1.35;
       margin-top: 2px;
     }
 
-    /* PLAYFUL KNOWLEDGE TABS */
-    .tabs-wrapper {
-      margin-top: 10px;
-      margin-bottom: 24px;
+    /* DUOLINGO TABS: ROUNDED, TACTILE PILLS */
+    .tabs-shelf {
+      margin-bottom: 28px;
     }
 
-    .tab-pills-row {
+    .tab-nav-pills {
       display: flex;
       gap: 6px;
-      background: rgba(19, 29, 51, 0.7);
-      padding: 4px;
+      background: #11182d;
+      padding: 5px;
       border-radius: var(--radius-md);
       border: 1px solid var(--card-border);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       overflow-x: auto;
       scrollbar-width: none;
     }
 
-    .tab-pills-row::-webkit-scrollbar { display: none; }
+    .tab-nav-pills::-webkit-scrollbar { display: none; }
 
-    .t-pill {
+    .nav-pill {
       flex: 1;
-      padding: 8px 12px;
+      padding: 9px 12px;
       border: none;
       background: transparent;
       color: #94a3b8;
       font-family: 'Outfit', sans-serif;
       font-size: 0.82rem;
-      font-weight: 700;
+      font-weight: 800;
       border-radius: var(--radius-sm);
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.12s ease;
       white-space: nowrap;
     }
 
-    .t-pill.active {
+    .nav-pill.active {
       background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-      color: #0b1120;
-      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3);
+      color: #0b1329;
+      box-shadow: 0 3px 0 #059669;
     }
 
-    .tab-box {
+    .tab-sheet {
       display: none;
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 2px solid var(--card-border);
       border-radius: var(--radius-lg);
       padding: 18px;
-      backdrop-filter: blur(12px);
+      box-shadow: 0 6px 0 #0d1426;
     }
 
-    .tab-box.active {
+    .tab-sheet.active {
       display: block;
     }
 
-    .fun-qna {
+    /* Q&A List */
+    .qa-stack {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
 
-    .fun-item {
-      padding-bottom: 10px;
+    .qa-item {
+      padding-bottom: 12px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .fun-item:last-child {
+    .qa-item:last-child {
       border-bottom: none;
       padding-bottom: 0;
     }
 
-    .fun-q {
+    .qa-q {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: #38bdf8;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
-    .fun-a {
-      font-size: 0.82rem;
+    .qa-a {
+      font-size: 0.84rem;
       color: #cbd5e1;
       line-height: 1.45;
     }
 
-    /* BARBER DEFENSE SHIELD */
-    .barber-shield {
+    /* Barber Warning Shield */
+    .barber-permit {
       background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
       border: 2px dashed #f59e0b;
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-md);
       padding: 16px;
       text-align: center;
     }
 
-    .shield-badge {
+    .permit-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       font-weight: 900;
       color: #f59e0b;
       margin-bottom: 6px;
       display: inline-block;
     }
 
-    .shield-quote {
-      font-size: 0.95rem;
-      font-weight: 700;
+    .permit-dialogue {
+      font-size: 1rem;
+      font-weight: 800;
       color: #fef08a;
       font-style: italic;
       line-height: 1.5;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 12px;
-      border-radius: var(--radius-sm);
-      margin-top: 6px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 14px;
+      border-radius: 12px;
+      margin-top: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* DOs & DONTs */
-    .rules-split {
+    /* Do vs Don't Dual Grid */
+    .dodont-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
 
-    .r-box {
-      padding: 12px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--card-border);
+    .box-do {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 14px;
+      padding: 14px;
     }
 
-    .r-box.do { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); }
-    .r-box.dont { background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); }
+    .box-dont {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      border-radius: 14px;
+      padding: 14px;
+    }
 
-    .r-title {
+    .box-title {
       font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      font-weight: 900;
       margin-bottom: 8px;
     }
 
-    .r-box.do .r-title { color: #34d399; }
-    .r-box.dont .r-title { color: #f87171; }
+    .box-do .box-title { color: #34d399; }
+    .box-dont .box-title { color: #f87171; }
 
-    .r-list {
+    .bullet-list {
       list-style: none;
-      font-size: 0.78rem;
-      color: #cbd5e1;
       display: flex;
       flex-direction: column;
       gap: 6px;
+      font-size: 0.78rem;
+      color: #cbd5e1;
     }
 
-    /* Print Clean */
+    /* Print View */
     @media print {
       body { background: #fff !important; color: #000 !important; }
-      .top-nav, .btn-pill, .btn-quest, .timer-btns, .tabs-wrapper { display: none !important; }
+      .top-nav, .btn-3d-mini, .water-cups-row, .protein-stepper, .arcade-btns, .tabs-shelf { display: none !important; }
     }
   </style>
 </head>
 <body>
-  <!-- Confetti Canvas for celebration -->
+  <!-- Confetti Canvas -->
   <canvas id="confetti-canvas"></canvas>
 
   <div class="app-shell">
@@ -753,251 +867,264 @@
     <!-- Top Navigation -->
     <header class="top-nav">
       <div class="brand">
-        <span class="brand-icon">🌊</span>
-        <span class="brand-title">Hair Flow Quest</span>
+        <div class="brand-mascot">🦁</div>
+        <div class="brand-text">
+          <h1>Hair Flow Quest</h1>
+          <span>Daily Growth Game</span>
+        </div>
       </div>
 
       <div class="nav-actions">
-        <button class="btn-pill" onclick="resetWeek()">🔄 Reset</button>
-        <button class="btn-pill" onclick="window.print()">📄 PDF</button>
+        <button class="btn-3d-mini" onclick="resetWeek()">🔄 Reset</button>
+        <button class="btn-3d-mini" onclick="window.print()">📄 PDF</button>
       </div>
     </header>
 
-    <!-- LEVEL & STREAK HERO CARD -->
-    <div class="hero-card">
-      <div class="hero-top">
-        <div class="streak-badge" id="streak-badge">
-          🔥 <span id="streak-count">1</span> Day Streak!
+    <!-- CHARACTER PROGRESS CARD (Duolingo / Mascot Vibe) -->
+    <div class="mascot-card">
+      <div class="mascot-header">
+        <div class="streak-pill" id="streak-badge">
+          🔥 <span id="streak-num">1</span> Day Streak!
         </div>
-        <div class="level-badge" id="level-badge">Level 1 • Sprout 🌱</div>
+        <div class="stage-badge" id="stage-badge">Level 1 • Sprout 🌱</div>
       </div>
 
-      <h1 class="hero-title">Short Cut ➔ Greek God Flow 👑</h1>
-      <p class="hero-desc">Bhai bas upar ke baal mat kato aur roz 4 min massage karo. 8-10 mahine mein photo 2 pakka!</p>
-
-      <!-- Animated Adherence Bar -->
-      <div class="xp-bar-wrap">
-        <div class="xp-fill" id="xp-fill"></div>
-      </div>
-      <div class="xp-meta">
-        <span id="xp-label">Iss Hafte Ka Score</span>
-        <span id="xp-score">0 / 7 Tasks Done 🚀</span>
-      </div>
-    </div>
-
-    <!-- DAILY MINI QUESTS (Water & Protein) -->
-    <div class="mini-quests">
-      <!-- Water Card -->
-      <div class="quest-card water">
-        <div class="quest-header">
-          <span class="quest-title">💧 Paani Target</span>
-          <span class="quest-count" id="water-val">0 / 8</span>
-        </div>
-        <p style="font-size: 0.7rem; color: #94a3b8;">8 glass = Shiny hair roots</p>
-        <div class="quest-ctrls">
-          <button class="btn-quest" onclick="adjustWater(-1)">-</button>
-          <button class="btn-quest" style="background: rgba(6, 182, 212, 0.25); color: #38bdf8;" onclick="adjustWater(1)">+ Glass</button>
+      <div class="mascot-body">
+        <div class="mascot-avatar" id="mascot-avatar">🦁</div>
+        <div class="mascot-info">
+          <h2>Short Cut &rarr; Flow King 👑</h2>
+          <p>Upar ke baal bilkul mat kato! Roz 4 min massage karo aur 8 glass paani piyo.</p>
         </div>
       </div>
 
-      <!-- Protein Card -->
-      <div class="quest-card protein">
-        <div class="quest-header">
-          <span class="quest-title">🍳 Protein Goal</span>
-          <span class="quest-count" id="protein-val">0g</span>
-        </div>
-        <p style="font-size: 0.7rem; color: #94a3b8;">Ande / Paneer / Dals</p>
-        <div class="quest-ctrls">
-          <button class="btn-quest" onclick="adjustProtein(-10)">-</button>
-          <button class="btn-quest" style="background: rgba(245, 158, 11, 0.25); color: #fbbf24;" onclick="adjustProtein(10)">+ 10g</button>
-        </div>
+      <!-- XP Progress Bar -->
+      <div class="xp-meter-wrap">
+        <div class="xp-meter-fill" id="xp-meter-fill"></div>
+      </div>
+      <div class="xp-label-row">
+        <span>Iss Hafte Ka Score</span>
+        <span id="xp-text" style="color: #34d399;">0 / 7 Tasks Done 🚀</span>
       </div>
     </div>
 
-    <!-- 4-MINUTE MASSAGE STOPWATCH -->
-    <div class="timer-card">
-      <div class="timer-header">
-        <div class="timer-ring-wrap" id="timer-wrap">
-          <svg>
-            <circle class="bg" cx="28" cy="28" r="25"></circle>
-            <circle class="bar" id="timer-bar" cx="28" cy="28" r="25"></circle>
-          </svg>
-          <span class="timer-center-icon" id="timer-icon">💆‍♂️</span>
+    <!-- DAILY POWER METRICS: 8 TACTILE WATER CUPS & PROTEIN STEPPER -->
+    <div class="power-grid">
+      <!-- Water Station with 8 Interactive Cups -->
+      <div class="water-station-card">
+        <div class="station-head">
+          <div class="station-title">💧 Paani Target (8 Glasses)</div>
+          <span class="station-badge" id="water-badge">0 / 8 Glasses</span>
         </div>
-        <div class="timer-text-wrap">
+
+        <div class="water-cups-row" id="water-cups-container">
+          <!-- 8 Tap-able Cups -->
+          <button class="cup-btn" onclick="toggleCup(0)">💧</button>
+          <button class="cup-btn" onclick="toggleCup(1)">💧</button>
+          <button class="cup-btn" onclick="toggleCup(2)">💧</button>
+          <button class="cup-btn" onclick="toggleCup(3)">💧</button>
+          <button class="cup-btn" onclick="toggleCup(4)">💧</button>
+          <button class="cup-btn" onclick="toggleCup(5)">💧</button>
+          <button class="cup-btn" onclick="toggleCup(6)">💧</button>
+          <button class="cup-btn" onclick="toggleCup(7)">💧</button>
+        </div>
+        <div class="water-subtext">Tap glasses as you drink to hydrate your hair roots!</div>
+      </div>
+
+      <!-- Protein Goal -->
+      <div class="protein-strip">
+        <div class="protein-label-wrap">
+          <div class="protein-title">🍳 Protein Power</div>
+          <span class="protein-note">Ande, Paneer, Dal, Chicken</span>
+        </div>
+
+        <div class="protein-stepper">
+          <button class="btn-chunky-step" onclick="adjustProtein(-10)">-</button>
+          <span class="protein-score" id="protein-score">0g</span>
+          <button class="btn-chunky-step" style="background:#f59e0b; border-color:#fbbf24; box-shadow:0 3px 0 #b45309;" onclick="adjustProtein(10)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-MINUTE MASSAGE ARCADE STOPWATCH -->
+    <div class="arcade-card">
+      <div class="arcade-top">
+        <div class="arcade-badge-icon">💆‍♂️</div>
+        <div class="arcade-heading">
           <h3>4-Minute Scalp Massage</h3>
-          <p class="timer-msg" id="timer-msg">Ungliyon se sir par gol-gol ghumao. Blood flow badhega toh baal double speed se badhenge!</p>
+          <p class="arcade-shout" id="arcade-msg">Ungliyon se sir par gol-gol massage do taaki blood flow double ho!</p>
         </div>
       </div>
 
-      <div class="timer-actions-row">
-        <div class="timer-digits" id="timer-digits">04:00</div>
-        <div class="timer-btns">
-          <button class="btn-timer-play" id="btn-timer-play" onclick="toggleTimer()">▶ Start</button>
-          <button class="btn-timer-reset" onclick="resetTimer()">Reset</button>
+      <div class="arcade-dial-row">
+        <div class="big-digits" id="timer-digits">04:00</div>
+        <div class="arcade-btns">
+          <button class="btn-3d-play" id="btn-play" onclick="toggleTimer()">▶ START</button>
+          <button class="btn-3d-reset" onclick="resetTimer()">Reset</button>
         </div>
       </div>
     </div>
 
-    <!-- WEEKLY PROTOCOL CARDS -->
-    <div class="section-headline">
-      <h2>Hafte Ka Game Plan</h2>
-      <span class="section-sub">Khatam karne par tap karo 🎉</span>
+    <!-- WEEKLY PROTOCOL CARDS (CHUNKY DUOLINGO STYLE) -->
+    <div class="section-bar">
+      <h2>📅 Hafte Ka Game Plan</h2>
+      <span>Tap to Complete 🎉</span>
     </div>
 
-    <div class="protocol-cards">
+    <div class="cards-stack">
       <!-- Monday -->
-      <div class="task-card" id="card-mon" onclick="toggleTask('mon')">
-        <div class="checkbox-bubble" id="box-mon">✓</div>
-        <div class="task-content">
-          <div class="task-top">
-            <span class="day-pill" id="pill-mon">Somwar</span>
-            <span class="tag-bubble tag-rest">Aaram</span>
+      <div class="task-card" id="card-mon" onclick="toggleCard('mon')">
+        <div class="btn-chunky-check" id="check-mon">✓</div>
+        <div class="task-details">
+          <div class="task-meta-line">
+            <span class="day-tag" id="tag-mon">Somwar</span>
+            <span class="type-badge badge-rest">Aaram</span>
           </div>
-          <div class="task-title">Rest Day (No Shampoo) 😴</div>
-          <p class="task-desc">Shampoo bilkul mat lagao. Pasina ho toh sirf normal paani. Halka Argan oil lagao.</p>
+          <div class="task-name">Rest Day (No Shampoo) 😴</div>
+          <p class="task-hint">Shampoo nahi lagana. Pasina ho toh normal paani se dho lo. Thoda sa Argan oil lagao.</p>
         </div>
       </div>
 
       <!-- Tuesday -->
-      <div class="task-card" id="card-tue" onclick="toggleTask('tue')">
-        <div class="checkbox-bubble" id="box-tue">✓</div>
-        <div class="task-content">
-          <div class="task-top">
-            <span class="day-pill" id="pill-tue">Mangalwar</span>
-            <span class="tag-bubble tag-oil">Tel Day</span>
+      <div class="task-card" id="card-tue" onclick="toggleCard('tue')">
+        <div class="btn-chunky-check" id="check-tue">✓</div>
+        <div class="task-details">
+          <div class="task-meta-line">
+            <span class="day-tag" id="tag-tue">Mangalwar</span>
+            <span class="type-badge badge-oil">Tel Day</span>
           </div>
-          <div class="task-title">Nariyal + Rosemary Power Oil 🌿</div>
-          <p class="task-desc">Nariyal tel mein 4 boond Rosemary oil dalo. Chamdi par 5 min massage karo. Raat ko laga kar so jao.</p>
+          <div class="task-name">Nariyal + Rosemary Power Oil 🌿</div>
+          <p class="task-hint">Nariyal tel mein 4 boond Rosemary oil mix karo. Chamdi par 5 min massage karo aur so jao.</p>
         </div>
       </div>
 
       <!-- Wednesday -->
-      <div class="task-card" id="card-wed" onclick="toggleTask('wed')">
-        <div class="checkbox-bubble" id="box-wed">✓</div>
-        <div class="task-content">
-          <div class="task-top">
-            <span class="day-pill" id="pill-wed">Budhwar</span>
-            <span class="tag-bubble tag-wash">Wash Day</span>
+      <div class="task-card" id="card-wed" onclick="toggleCard('wed')">
+        <div class="btn-chunky-check" id="check-wed">✓</div>
+        <div class="task-details">
+          <div class="task-meta-line">
+            <span class="day-tag" id="tag-wed">Budhwar</span>
+            <span class="type-badge badge-wash">Wash Day</span>
           </div>
-          <div class="task-title">Shampoo + Conditioner Routine 🚿</div>
-          <p class="task-desc"><strong>Rule:</strong> Shampoo sirf chamdi saaf karne ke liye. Conditioner sirf baalon par (chamdi par nahi!).</p>
+          <div class="task-name">Shampoo + Conditioner Routine 🚿</div>
+          <p class="task-hint"><strong>Rule:</strong> Shampoo sirf chamdi par lagao. Conditioner sirf baalon par (chamdi par nahi!).</p>
         </div>
       </div>
 
       <!-- Thursday -->
-      <div class="task-card" id="card-thu" onclick="toggleTask('thu')">
-        <div class="checkbox-bubble" id="box-thu">✓</div>
-        <div class="task-content">
-          <div class="task-top">
-            <span class="day-pill" id="pill-thu">Guruwar</span>
-            <span class="tag-bubble tag-massage">Massage</span>
+      <div class="task-card" id="card-thu" onclick="toggleCard('thu')">
+        <div class="btn-chunky-check" id="check-thu">✓</div>
+        <div class="task-details">
+          <div class="task-meta-line">
+            <span class="day-tag" id="tag-thu">Guruwar</span>
+            <span class="type-badge badge-massage">Massage</span>
           </div>
-          <div class="task-title">4-Min Dry Scalp Massage ⚡</div>
-          <p class="task-desc">Upar wala timer chala kar ungliyon ke poron se massage karo. Lakdi ki chaudi kanghi use karo.</p>
+          <div class="task-name">4-Minute Dry Scalp Massage ⚡</div>
+          <p class="task-hint">Timer chalao aur ungliyon se sir ki massage karo. Lakdi ki chaudi kanghi use karo.</p>
         </div>
       </div>
 
       <!-- Friday -->
-      <div class="task-card" id="card-fri" onclick="toggleTask('fri')">
-        <div class="checkbox-bubble" id="box-fri">✓</div>
-        <div class="task-content">
-          <div class="task-top">
-            <span class="day-pill" id="pill-fri">Shukrawar</span>
-            <span class="tag-bubble tag-rest">Check Day</span>
+      <div class="task-card" id="card-fri" onclick="toggleCard('fri')">
+        <div class="btn-chunky-check" id="check-fri">✓</div>
+        <div class="task-details">
+          <div class="task-meta-line">
+            <span class="day-tag" id="tag-fri">Shukrawar</span>
+            <span class="type-badge badge-rest">Check Day</span>
           </div>
-          <div class="task-title">Dandruff & Scalp Health Check 🔍</div>
-          <p class="task-desc">Khujli ya dandruff lage toh anti-dandruff shampoo use karo. Sab theek ho toh aaram karo.</p>
+          <div class="task-name">Dandruff & Scalp Health Check 🔍</div>
+          <p class="task-hint">Khujli ya dandruff lage toh anti-dandruff shampoo use karo. Sab theek ho toh aaram karo.</p>
         </div>
       </div>
 
       <!-- Saturday -->
-      <div class="task-card" id="card-sat" onclick="toggleTask('sat')">
-        <div class="checkbox-bubble" id="box-sat">✓</div>
-        <div class="task-content">
-          <div class="task-top">
-            <span class="day-pill" id="pill-sat">Shaniwar</span>
-            <span class="tag-bubble tag-oil">Tel Day</span>
+      <div class="task-card" id="card-sat" onclick="toggleCard('sat')">
+        <div class="btn-chunky-check" id="check-sat">✓</div>
+        <div class="task-details">
+          <div class="task-meta-line">
+            <span class="day-tag" id="tag-sat">Shaniwar</span>
+            <span class="type-badge badge-oil">Tel Day</span>
           </div>
-          <div class="task-title">Badam Tel Nourishment 🌰</div>
-          <p class="task-desc">Halka Badam tel lagao. Raat ko pillow par soft kapda ya satin cover daal kar so jao.</p>
+          <div class="task-name">Badam Tel Nourishment 🌰</div>
+          <p class="task-hint">Halka Badam tel lagao. Raat ko pillow par soft kapda ya satin cover daal kar so jao.</p>
         </div>
       </div>
 
       <!-- Sunday -->
-      <div class="task-card" id="card-sun" onclick="toggleTask('sun')">
-        <div class="checkbox-bubble" id="box-sun">✓</div>
-        <div class="task-content">
-          <div class="task-top">
-            <span class="day-pill" id="pill-sun">Raviwar</span>
-            <span class="tag-bubble tag-wash">Wash Day</span>
+      <div class="task-card" id="card-sun" onclick="toggleCard('sun')">
+        <div class="btn-chunky-check" id="check-sun">✓</div>
+        <div class="task-details">
+          <div class="task-meta-line">
+            <span class="day-tag" id="tag-sun">Raviwar</span>
+            <span class="type-badge badge-wash">Wash Day</span>
           </div>
-          <div class="task-title">Sunday Deep Wash & Soft Dry 🧖‍♂️</div>
-          <p class="task-desc">Full shampoo-conditioner. <strong>Towel se ragdo mat!</strong> Halka tap-tap karke sukhne do.</p>
+          <div class="task-name">Sunday Deep Wash & Soft Dry 🧖‍♂️</div>
+          <p class="task-hint">Shampoo + Conditioner lagao. <strong>Towel se ragdo mat!</strong> Halka dab karke sukhao.</p>
         </div>
       </div>
     </div>
 
-    <!-- TABS: FUN KNOWLEDGE & BARBER SHIELD -->
-    <div class="tabs-wrapper">
-      <div class="tab-pills-row">
-        <button class="t-pill active" onclick="showTab('tab-qna')">💡 Simple Secret</button>
-        <button class="t-pill" onclick="showTab('tab-stages')">🚀 12 Months Map</button>
-        <button class="t-pill" onclick="showTab('tab-barber')">🛡️ Barber Shield</button>
-        <button class="t-pill" onclick="showTab('tab-rules')">⚖️ Do vs Don't</button>
+    <!-- TACTILE KNOWLEDGE TABS -->
+    <div class="tabs-shelf">
+      <div class="tab-nav-pills">
+        <button class="nav-pill active" onclick="switchShelf('tab-qna')">💡 Simple Secret</button>
+        <button class="nav-pill" onclick="switchShelf('tab-stages')">🚀 12 Months Map</button>
+        <button class="nav-pill" onclick="switchShelf('tab-barber')">🛡️ Barber Shield</button>
+        <button class="nav-pill" onclick="switchShelf('tab-rules')">⚖️ Do vs Don't</button>
       </div>
 
       <!-- Tab 1: Q&A -->
-      <div class="tab-box active" id="tab-qna">
-        <div class="fun-qna">
-          <div class="fun-item">
-            <div class="fun-q">Nahane se pehle tel kyun?</div>
-            <p class="fun-a">Geele baal bahut kamzor hote hain aur tootte hain. Nariyal tel baalon ko andar se shield bana deta hai taaki nahate waqt ek bhi baal na toote!</p>
+      <div class="tab-sheet active" id="tab-qna">
+        <div class="qa-stack">
+          <div class="qa-item">
+            <div class="qa-q">Nahane se pehle tel kyun lagana hai?</div>
+            <p class="qa-a">Jab baal geele hote hain toh paani sokh kar kamzor ho jaate hain aur tootte hain. Nariyal tel baalon ko andar se shield bana deta hai taaki nahate waqt ek bhi baal na toote!</p>
           </div>
-          <div class="fun-item">
-            <div class="fun-q">Rosemary tel ka magic kya hai?</div>
-            <p class="fun-a">Science ne prove kiya hai ki Rosemary tel sir mein blood circulation double kar deta hai, jisse baal tezi se aur mote nikalte hain.</p>
+          <div class="qa-item">
+            <div class="qa-q">Rosemary tel ka magic kya hai?</div>
+            <p class="qa-a">Rosemary tel sir mein blood circulation double kar deta hai, jisse baal tezi se aur mote nikalte hain.</p>
           </div>
-          <div class="fun-item">
-            <div class="fun-q">Roz shampoo lagane se kya hoga?</div>
-            <p class="fun-a">Roz shampoo lagane se sir ka natural tel chala jaata hai, aur baal jhadu jaise sukhe ho jaate hain. Hafte mein sirf 2 baar kaafi hai!</p>
+          <div class="qa-item">
+            <div class="qa-q">Roz shampoo lagane se kya nuksan hai?</div>
+            <p class="qa-a">Roz shampoo lagane se sir ka natural oil nikal jaata hai, aur baal jhadu jaise sukhe ho jaate hain. Hafte mein sirf 2 baar shampoo kaafi hai!</p>
           </div>
         </div>
       </div>
 
       <!-- Tab 2: Stages -->
-      <div class="tab-box" id="tab-stages">
-        <div class="fun-qna">
-          <div class="fun-item">
-            <div class="fun-q">Month 1 - 3: Foundation 🌱</div>
-            <p class="fun-a">Baal thode lambe honge. Upar bilkul mat kato, sirf gardan ke pichhe se safai karwao.</p>
+      <div class="tab-sheet" id="tab-stages">
+        <div class="qa-stack">
+          <div class="qa-item">
+            <div class="qa-q">Month 1 - 3: Foundation 🌱</div>
+            <p class="qa-a">Baal thode lambe honge. Upar ke baal bilkul mat kato, sirf gardan ke pichhe se safai karwao.</p>
           </div>
-          <div class="fun-item">
-            <div class="fun-q">Month 4 - 7: Awkward Phase 🦁 (Toughest)</div>
-            <p class="fun-a">Baal bikhrenge aur ajeeb lagenge. Haar mat maanna! Cap ya hairband use karo. Gusse mein aakar cut mat karwana!</p>
+          <div class="qa-item">
+            <div class="qa-q">Month 4 - 7: Awkward Phase 🦁 (Sabse Tough)</div>
+            <p class="qa-a">Baal bikhrenge aur ajeeb lagenge. Haar mat maanna! Cap ya hairband use karo. Gusse mein aakar cut mat karwana!</p>
           </div>
-          <div class="fun-item">
-            <div class="fun-q">Month 8 - 12: God-Level Flow 👑 (Goal)</div>
-            <p class="fun-a">Baal hothon aur chin tak aa jayenge. Salon jao, Photo 2 dikhao aur bolo: 'Sirf layers dalo, length touch mat karna!'</p>
+          <div class="qa-item">
+            <div class="qa-q">Month 8 - 12: God-Level Flow 👑 (Goal)</div>
+            <p class="qa-a">Baal hothon aur chin tak aa jayenge. Salon jao, Photo 2 dikhao aur bolo: 'Sirf layers dalo, length touch mat karna!'</p>
           </div>
         </div>
       </div>
 
       <!-- Tab 3: Barber Shield -->
-      <div class="tab-box" id="tab-barber">
-        <div class="barber-shield">
-          <span class="shield-badge">🛡️ BARBER EMERGENCY SCRIPT</span>
-          <p style="font-size:0.8rem; color:#cbd5e1;">Salon chair par baithte hi barber ko yeh line bolna:</p>
-          <p class="shield-quote">"Bhaiya, main baal lambe kar raha hoon. Upar ki length ko haath bhi mat lagana. Sirf gardan aur kaan ke paas se clean kar do aur kharab ends trim kar do!"</p>
+      <div class="tab-sheet" id="tab-barber">
+        <div class="barber-permit">
+          <span class="permit-title">🛡️ BARBER EMERGENCY PERMIT</span>
+          <p style="font-size:0.82rem; color:#cbd5e1;">Barber chair par baithte hi use yeh phone screen dikha dena:</p>
+          <div class="permit-dialogue">
+            "Bhaiya, main baal lambe kar raha hoon. Upar ki length ko haath bhi mat lagana. Sirf gardan aur kaan ke paas se clean kar do aur kharab ends trim kar do!"
+          </div>
         </div>
       </div>
 
       <!-- Tab 4: Rules -->
-      <div class="tab-box" id="tab-rules">
-        <div class="rules-split">
-          <div class="r-box do">
-            <div class="r-title">✓ Yeh Karo</div>
-            <ul class="r-list">
+      <div class="tab-sheet" id="tab-rules">
+        <div class="dodont-grid">
+          <div class="box-do">
+            <div class="box-title">✓ Yeh Karo</div>
+            <ul class="bullet-list">
               <li>• Nahane se pehle tel</li>
               <li>• Lakdi ki chaudi kanghi</li>
               <li>• Conditioner baalon par</li>
@@ -1005,9 +1132,9 @@
               <li>• 8 glass paani & ande</li>
             </ul>
           </div>
-          <div class="r-box dont">
-            <div class="r-title">✗ Yeh Mat Karo</div>
-            <ul class="r-list">
+          <div class="box-dont">
+            <div class="box-title">✗ Yeh Mat Karo</div>
+            <ul class="bullet-list">
               <li>• Roz-roz shampoo</li>
               <li>• Towel se ragadna</li>
               <li>• Garam paani use karna</li>
@@ -1022,157 +1149,176 @@
   </div>
 
   <script>
-    // State Keys
-    const TASKS_KEY = 'hair_quest_tasks_v4';
-    const WATER_KEY = 'hair_quest_water_v4';
-    const PROTEIN_KEY = 'hair_quest_protein_v4';
-    const STREAK_KEY = 'hair_quest_streak_v4';
+    // State Persistence
+    const CARDS_KEY = 'hair_flow_cards_v5';
+    const CUPS_KEY = 'hair_flow_cups_v5';
+    const PROTEIN_KEY = 'hair_flow_protein_v5';
 
-    // Highlight Current Day
-    const dayList = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    // Day Detection
+    const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
     const dayNames = {
       'sun': 'Raviwar', 'mon': 'Somwar', 'tue': 'Mangalwar', 
       'wed': 'Budhwar', 'thu': 'Guruwar', 'fri': 'Shukrawar', 'sat': 'Shaniwar'
     };
 
-    const todayIdx = new Date().getDay();
-    const todayId = dayList[todayIdx];
+    const currentDay = days[new Date().getDay()];
 
-    const todayCard = document.getElementById('card-' + todayId);
+    const todayCard = document.getElementById('card-' + currentDay);
     if (todayCard) todayCard.classList.add('today');
-    const todayPill = document.getElementById('pill-' + todayId);
-    if (todayPill) {
-      todayPill.classList.add('today-pill');
-      todayPill.innerText = dayNames[todayId] + ' (Aaj)';
+    const todayTag = document.getElementById('tag-' + currentDay);
+    if (todayTag) {
+      todayTag.classList.add('today-tag');
+      todayTag.innerText = dayNames[currentDay] + ' (Aaj)';
     }
 
-    // Load Tasks & Update Score
-    function loadTasks() {
-      const saved = JSON.parse(localStorage.getItem(TASKS_KEY) || '{}');
-      let completed = 0;
+    // Protocol Cards State
+    function renderCards() {
+      const saved = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
+      let done = 0;
 
-      dayList.forEach(id => {
-        const card = document.getElementById('card-' + id);
+      days.forEach(d => {
+        const card = document.getElementById('card-' + d);
         if (!card) return;
-        if (saved[id]) {
+        if (saved[d]) {
           card.classList.add('completed');
-          completed++;
+          done++;
         } else {
           card.classList.remove('completed');
         }
       });
 
       const total = 7;
-      const pct = Math.round((completed / total) * 100);
-      document.getElementById('xp-fill').style.width = pct + '%';
-      document.getElementById('xp-score').innerText = `${completed} / ${total} Tasks Done 🚀`;
+      const pct = Math.round((done / total) * 100);
+      document.getElementById('xp-meter-fill').style.width = pct + '%';
+      document.getElementById('xp-text').innerText = `${done} / ${total} Tasks Done 🚀`;
 
-      // Level Gamification
-      const lvlBadge = document.getElementById('level-badge');
-      if (completed >= 6) {
-        lvlBadge.innerText = 'Level 3 • Hair King 👑';
-      } else if (completed >= 3) {
-        lvlBadge.innerText = 'Level 2 • Flow Warrior 🦁';
+      // Dynamic Character Evolution
+      const avatar = document.getElementById('mascot-avatar');
+      const badge = document.getElementById('stage-badge');
+
+      if (done >= 6) {
+        avatar.innerText = '👑';
+        badge.innerText = 'Level 3 • Hair King 👑';
+      } else if (done >= 3) {
+        avatar.innerText = '🦁';
+        badge.innerText = 'Level 2 • Flow Warrior 🦁';
       } else {
-        lvlBadge.innerText = 'Level 1 • Sprout 🌱';
+        avatar.innerText = '🌱';
+        badge.innerText = 'Level 1 • Sprout 🌱';
       }
     }
 
-    function toggleTask(id) {
-      const saved = JSON.parse(localStorage.getItem(TASKS_KEY) || '{}');
-      saved[id] = !saved[id];
-      localStorage.setItem(TASKS_KEY, JSON.stringify(saved));
-      
-      if (saved[id]) {
-        launchConfetti();
-      }
-      loadTasks();
+    function toggleCard(d) {
+      const saved = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
+      saved[d] = !saved[d];
+      localStorage.setItem(CARDS_KEY, JSON.stringify(saved));
+      if (saved[d]) launchConfetti();
+      renderCards();
     }
 
     function resetWeek() {
-      if (confirm('Kya aap iss hafte ke saare tasks reset karna chahte hain?')) {
-        localStorage.removeItem(TASKS_KEY);
-        loadTasks();
+      if (confirm('Kya aap iss hafte ke saare tasks aur paani cups reset karna chahte hain?')) {
+        localStorage.removeItem(CARDS_KEY);
+        localStorage.removeItem(CUPS_KEY);
+        renderCards();
+        renderCups();
       }
     }
 
-    // Water & Protein
-    function getVal(key, def) {
-      return parseInt(localStorage.getItem(key)) || def;
+    // 8 Interactive Water Cups
+    function getCups() {
+      return JSON.parse(localStorage.getItem(CUPS_KEY) || '[]');
     }
 
-    function renderQuests() {
-      document.getElementById('water-val').innerText = `${getVal(WATER_KEY, 0)} / 8`;
-      document.getElementById('protein-val').innerText = `${getVal(PROTEIN_KEY, 0)}g`;
+    function renderCups() {
+      const cups = getCups();
+      const cupBtns = document.querySelectorAll('.cup-btn');
+      let filledCount = 0;
+
+      cupBtns.forEach((btn, index) => {
+        if (cups.includes(index)) {
+          btn.classList.add('filled');
+          filledCount++;
+        } else {
+          btn.classList.remove('filled');
+        }
+      });
+
+      document.getElementById('water-badge').innerText = `${filledCount} / 8 Glasses`;
     }
 
-    function adjustWater(delta) {
-      const next = Math.max(0, getVal(WATER_KEY, 0) + delta);
-      localStorage.setItem(WATER_KEY, next);
-      if (next === 8) launchConfetti();
-      renderQuests();
+    function toggleCup(index) {
+      let cups = getCups();
+      if (cups.includes(index)) {
+        cups = cups.filter(i => i !== index);
+      } else {
+        cups.push(index);
+        if (cups.length === 8) launchConfetti();
+      }
+      localStorage.setItem(CUPS_KEY, JSON.stringify(cups));
+      renderCups();
+    }
+
+    // Protein Stepper
+    function getProtein() {
+      return parseInt(localStorage.getItem(PROTEIN_KEY)) || 0;
+    }
+
+    function renderProtein() {
+      document.getElementById('protein-score').innerText = `${getProtein()}g`;
     }
 
     function adjustProtein(delta) {
-      const next = Math.max(0, getVal(PROTEIN_KEY, 0) + delta);
+      const next = Math.max(0, getProtein() + delta);
       localStorage.setItem(PROTEIN_KEY, next);
-      renderQuests();
+      renderProtein();
     }
 
-    // 4-Min Timer with Pulse Messages
-    const TOTAL_SEC = 240;
-    let secLeft = TOTAL_SEC;
+    // 4-Min Scalp Massage Stopwatch
+    const TOTAL_SECONDS = 240;
+    let secLeft = TOTAL_SECONDS;
     let timerRunning = false;
-    let interval = null;
+    let timerId = null;
 
     const timerDigits = document.getElementById('timer-digits');
-    const timerBar = document.getElementById('timer-bar');
-    const timerMsg = document.getElementById('timer-msg');
-    const btnPlay = document.getElementById('btn-timer-play');
-    const timerWrap = document.getElementById('timer-wrap');
-    const CIRCLE = 157; // 2 * PI * 25
+    const arcadeMsg = document.getElementById('arcade-msg');
+    const btnPlay = document.getElementById('btn-play');
 
-    const messages = [
+    const shouts = [
       { time: 240, msg: "Shuru karo! Ungliyon se circular massage do 💆‍♂️" },
-      { time: 180, msg: "Blood circulation badh raha hai, baalon ko fuel mil raha hai! 🩸" },
-      { time: 120, msg: "Aadhe raste pahunch gaye! Scalp mein warmth feel ho rahi hogi ✨" },
-      { time: 60,  msg: "Sirf 1 minute baaki! Finish strong champion! 🏆" }
+      { time: 180, msg: "Blood flow badh raha hai, roots ko fuel mil raha hai! 🩸" },
+      { time: 120, msg: "Half way there! Scalp mein warmth feel ho rahi hogi ✨" },
+      { time: 60,  msg: "Last 1 minute baaki! Finish strong champion! 🏆" }
     ];
 
-    function updateTimerUI() {
+    function updateTimer() {
       const m = Math.floor(secLeft / 60).toString().padStart(2, '0');
       const s = (secLeft % 60).toString().padStart(2, '0');
       timerDigits.innerText = `${m}:${s}`;
 
-      const fraction = (TOTAL_SEC - secLeft) / TOTAL_SEC;
-      timerBar.style.strokeDashoffset = CIRCLE * fraction;
-
-      messages.forEach(m => {
-        if (secLeft <= m.time) timerMsg.innerText = m.msg;
+      shouts.forEach(item => {
+        if (secLeft <= item.time) arcadeMsg.innerText = item.msg;
       });
     }
 
     function toggleTimer() {
       if (timerRunning) {
-        clearInterval(interval);
+        clearInterval(timerId);
         timerRunning = false;
-        btnPlay.innerText = '▶ Resume';
-        timerWrap.classList.remove('running');
+        btnPlay.innerText = '▶ RESUME';
       } else {
         timerRunning = true;
-        btnPlay.innerText = '⏸ Pause';
-        timerWrap.classList.add('running');
+        btnPlay.innerText = '⏸ PAUSE';
 
-        interval = setInterval(() => {
+        timerId = setInterval(() => {
           if (secLeft > 0) {
             secLeft--;
-            updateTimerUI();
+            updateTimer();
           } else {
-            clearInterval(interval);
+            clearInterval(timerId);
             timerRunning = false;
-            btnPlay.innerText = 'Done 🎉';
-            timerWrap.classList.remove('running');
-            timerMsg.innerText = 'Shabash! Aaj ka massage complete! Roots charged! ⚡';
+            btnPlay.innerText = 'DONE 🏆';
+            arcadeMsg.innerText = 'Shabash! 4-min massage complete! Roots charged ⚡';
             launchConfetti();
           }
         }, 1000);
@@ -1180,53 +1326,52 @@
     }
 
     function resetTimer() {
-      clearInterval(interval);
+      clearInterval(timerId);
       timerRunning = false;
-      secLeft = TOTAL_SEC;
-      btnPlay.innerText = '▶ Start';
-      timerWrap.classList.remove('running');
-      timerMsg.innerText = 'Ungliyon se sir par gol-gol ghumao. Blood flow badhega toh baal double speed se badhenge!';
-      updateTimerUI();
+      secLeft = TOTAL_SECONDS;
+      btnPlay.innerText = '▶ START';
+      arcadeMsg.innerText = 'Ungliyon se sir par gol-gol massage do taaki blood flow double ho!';
+      updateTimer();
     }
 
     // Tabs
-    function showTab(id) {
-      document.querySelectorAll('.t-pill').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-box').forEach(t => t.classList.remove('active'));
+    function switchShelf(id) {
+      document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-sheet').forEach(s => s.classList.remove('active'));
       event.target.classList.add('active');
       document.getElementById(id).classList.add('active');
     }
 
-    // Interactive Confetti Animation (Zero dependencies)
+    // Bouncy Confetti Cannon
     function launchConfetti() {
       const canvas = document.getElementById('confetti-canvas');
       const ctx = canvas.getContext('2d');
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
-      const pieces = [];
-      const colors = ['#10b981', '#38bdf8', '#f59e0b', '#ec4899', '#a855f7', '#fbbf24'];
+      const particles = [];
+      const colors = ['#10b981', '#06b6d4', '#f59e0b', '#ec4899', '#8b5cf6', '#3b82f6'];
 
-      for (let i = 0; i < 60; i++) {
-        pieces.push({
+      for (let i = 0; i < 55; i++) {
+        particles.push({
           x: canvas.width / 2,
           y: canvas.height / 2,
-          vx: (Math.random() - 0.5) * 16,
-          vy: (Math.random() - 0.5) * 16 - 3,
+          vx: (Math.random() - 0.5) * 14,
+          vy: (Math.random() - 0.5) * 14 - 3,
           size: Math.random() * 8 + 4,
           color: colors[Math.floor(Math.random() * colors.length)],
           rot: Math.random() * 360,
-          vrot: (Math.random() - 0.5) * 10
+          vrot: (Math.random() - 0.5) * 8
         });
       }
 
-      let frames = 0;
-      function render() {
+      let count = 0;
+      function step() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        pieces.forEach(p => {
+        particles.forEach(p => {
           p.x += p.vx;
           p.y += p.vy;
-          p.vy += 0.35; // gravity
+          p.vy += 0.3; // gravity
           p.rot += p.vrot;
 
           ctx.save();
@@ -1237,20 +1382,21 @@
           ctx.restore();
         });
 
-        frames++;
-        if (frames < 70) {
-          requestAnimationFrame(render);
+        count++;
+        if (count < 65) {
+          requestAnimationFrame(step);
         } else {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
       }
-      render();
+      step();
     }
 
-    // Initialize
-    loadTasks();
-    renderQuests();
-    updateTimerUI();
+    // Init on load
+    renderCards();
+    renderCups();
+    renderProtein();
+    updateTimer();
   </script>
 </body>
 </html>
