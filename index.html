@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#0f172a" />
+  <meta name="theme-color" content="#0b1329" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <link rel="manifest" href="/manifest.json" />
@@ -15,7 +15,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -24,22 +24,12 @@
       --card-inner: #1c2a4d;
       --card-border: rgba(255, 255, 255, 0.12);
       
-      /* Vibrant Playful Palette */
       --green: #10b981;
       --green-dark: #059669;
-      --green-glow: rgba(16, 185, 129, 0.35);
-      
       --cyan: #06b6d4;
-      --cyan-dark: #0891b2;
-      
       --amber: #f59e0b;
-      --amber-dark: #d97706;
-      
       --purple: #8b5cf6;
-      --purple-dark: #7c3aed;
-      
       --coral: #f43f5e;
-      --coral-dark: #e11d48;
       
       --text-main: #f8fafc;
       --text-sub: #94a3b8;
@@ -78,7 +68,6 @@
       margin: 0 auto;
     }
 
-    /* Confetti Canvas */
     #confetti-canvas {
       position: fixed;
       top: 0;
@@ -89,12 +78,12 @@
       z-index: 9999;
     }
 
-    /* Top Bar with Duolingo-style Chunky Buttons */
+    /* Top Bar */
     .top-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 4px 4px 16px;
+      padding: 4px 4px 14px;
       margin-bottom: 8px;
     }
 
@@ -115,26 +104,19 @@
       justify-content: center;
       font-size: 1.5rem;
       transform: rotate(-4deg);
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .brand-mascot:active {
-      transform: rotate(6deg) scale(0.95);
     }
 
     .brand-text h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.22rem;
       font-weight: 900;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #fff;
     }
 
     .brand-text span {
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.7rem;
+      font-weight: 800;
       color: #38bdf8;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -142,7 +124,7 @@
 
     .nav-actions {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
 
     /* Duolingo 3D Button Utility */
@@ -151,9 +133,9 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #f1f5f9;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
-      padding: 8px 14px;
+      padding: 7px 11px;
       border-radius: var(--radius-sm);
       box-shadow: 0 3px 0 #131c33;
       cursor: pointer;
@@ -168,12 +150,18 @@
       box-shadow: 0 0 0 #131c33;
     }
 
-    /* CHARACTER PROGRESS CARD (Mascot & Transformation) */
+    .btn-3d-mini.active-sound {
+      background: #065f46;
+      border-color: #10b981;
+      box-shadow: 0 3px 0 #064e3b;
+    }
+
+    /* MASCOT & STREAK SHIELD HERO CARD */
     .mascot-card {
       background: linear-gradient(160deg, #1e2c52 0%, #151e38 100%);
       border: 2px solid rgba(16, 185, 129, 0.4);
       border-radius: var(--radius-xl);
-      padding: 20px;
+      padding: 18px 20px;
       margin-bottom: 14px;
       box-shadow: 0 8px 0 #0d1426, 0 12px 25px rgba(0, 0, 0, 0.4);
       position: relative;
@@ -186,29 +174,48 @@
       margin-bottom: 12px;
     }
 
+    .streak-badges-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .streak-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
       color: #0b1329;
       font-family: 'Outfit', sans-serif;
       font-weight: 900;
-      font-size: 0.82rem;
-      padding: 5px 12px;
+      font-size: 0.8rem;
+      padding: 4px 10px;
       border-radius: 9999px;
       box-shadow: 0 3px 0 #b45309;
-      letter-spacing: 0.02em;
+    }
+
+    .shield-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 4px 8px;
+      border-radius: 9999px;
     }
 
     .stage-badge {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 900;
       text-transform: uppercase;
       background: rgba(16, 185, 129, 0.2);
       color: #34d399;
-      padding: 4px 10px;
+      padding: 4px 9px;
       border-radius: 9999px;
       border: 1px solid rgba(52, 211, 153, 0.4);
     }
@@ -216,20 +223,20 @@
     .mascot-body {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 16px;
+      gap: 14px;
+      margin-bottom: 14px;
     }
 
     .mascot-avatar {
-      width: 68px;
-      height: 68px;
-      border-radius: 20px;
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
       background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
       box-shadow: 0 5px 0 #0891b2;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.3rem;
+      font-size: 2.2rem;
       flex-shrink: 0;
       animation: gentle-bounce 3s infinite ease-in-out;
     }
@@ -241,28 +248,27 @@
 
     .mascot-info h2 {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 900;
       color: #fff;
       line-height: 1.2;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .mascot-info p {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: #cbd5e1;
       line-height: 1.35;
     }
 
-    /* XP Progress Bar (Duolingo Style) */
     .xp-meter-wrap {
       background: #11182c;
       border-radius: 9999px;
-      height: 14px;
+      height: 13px;
       padding: 2px;
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .xp-meter-fill {
@@ -278,12 +284,117 @@
       display: flex;
       justify-content: space-between;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 800;
       color: #94a3b8;
     }
 
-    /* DAILY POWER METRICS: 8 TACTILE WATER CUPS & PROTEIN */
+    /* VIRTUAL GROWTH RULER & MILESTONES */
+    .ruler-card {
+      background: linear-gradient(150deg, #18223d 0%, #12192e 100%);
+      border: 2px solid rgba(56, 189, 248, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 0 #0c1221;
+    }
+
+    .ruler-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .ruler-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ruler-length-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 900;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.2);
+      padding: 3px 10px;
+      border-radius: 9999px;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+
+    /* Visual Ruler Track */
+    .ruler-track-container {
+      position: relative;
+      margin: 18px 6px 10px;
+    }
+
+    .ruler-rail {
+      width: 100%;
+      height: 10px;
+      background: #0e1529;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .ruler-fill {
+      height: 100%;
+      width: 12%; /* Day 1 = 12% of 7.5" */
+      background: linear-gradient(90deg, #38bdf8 0%, #10b981 100%);
+      border-radius: 9999px;
+      box-shadow: 0 0 10px #38bdf8;
+      transition: width 0.4s ease;
+    }
+
+    .ruler-pointer {
+      position: absolute;
+      top: -24px;
+      left: 12%;
+      transform: translateX(-50%);
+      background: #10b981;
+      color: #0b1329;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 900;
+      padding: 2px 6px;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .ruler-pointer::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #10b981;
+    }
+
+    .ruler-ticks {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: 0.72rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: #64748b;
+    }
+
+    .ruler-note {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* DAILY WATER & PROTEIN */
     .power-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -291,12 +402,11 @@
       margin-bottom: 14px;
     }
 
-    /* Interactive Water Tracker with 8 Actual Cups */
     .water-station-card {
       background: var(--card-bg);
       border: 2px solid rgba(6, 182, 212, 0.35);
       border-radius: var(--radius-lg);
-      padding: 16px 18px;
+      padding: 15px 18px;
       box-shadow: 0 6px 0 #0e1526;
     }
 
@@ -309,7 +419,7 @@
 
     .station-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: #fff;
       display: flex;
@@ -319,7 +429,7 @@
 
     .station-badge {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 900;
       color: #38bdf8;
       background: rgba(6, 182, 212, 0.2);
@@ -331,7 +441,7 @@
       display: grid;
       grid-template-columns: repeat(8, 1fr);
       gap: 6px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .cup-btn {
@@ -363,12 +473,11 @@
     }
 
     .water-subtext {
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       color: #94a3b8;
       text-align: center;
     }
 
-    /* Protein Meter */
     .protein-strip {
       background: var(--card-bg);
       border: 2px solid rgba(245, 158, 11, 0.35);
@@ -380,14 +489,9 @@
       box-shadow: 0 6px 0 #0e1526;
     }
 
-    .protein-label-wrap {
-      display: flex;
-      flex-direction: column;
-    }
-
     .protein-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: #fff;
       display: flex;
@@ -396,7 +500,7 @@
     }
 
     .protein-note {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: #94a3b8;
     }
 
@@ -411,7 +515,7 @@
       font-size: 1.3rem;
       font-weight: 900;
       color: #fbbf24;
-      min-width: 54px;
+      min-width: 50px;
       text-align: center;
     }
 
@@ -456,29 +560,53 @@
     }
 
     .arcade-badge-icon {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       border-radius: 14px;
       background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
       box-shadow: 0 4px 0 #7e22ce;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       flex-shrink: 0;
+    }
+
+    .arcade-heading {
+      flex: 1;
+    }
+
+    .arcade-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .arcade-heading h3 {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 900;
       color: #fff;
     }
 
+    /* Spa Sound Toggle */
+    .btn-spa-toggle {
+      background: rgba(168, 85, 247, 0.2);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #d8b4fe;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+    }
+
     .arcade-shout {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: #f3e8ff;
       line-height: 1.35;
+      margin-top: 2px;
     }
 
     .arcade-dial-row {
@@ -505,7 +633,6 @@
       gap: 8px;
     }
 
-    /* 3D Giant Play Button */
     .btn-3d-play {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       border: none;
@@ -530,7 +657,7 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #cbd5e1;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 800;
       padding: 10px 14px;
       border-radius: 12px;
@@ -544,7 +671,93 @@
       box-shadow: 0 0 0 #000;
     }
 
-    /* PROTOCOL CARDS (CHUNKY DUOLINGO STYLE) */
+    /* PHOTO PROGRESS VAULT CARD */
+    .vault-card {
+      background: linear-gradient(150deg, #1e1e38 0%, #15162a 100%);
+      border: 2px solid rgba(244, 63, 94, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 0 #101021;
+    }
+
+    .vault-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .vault-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .vault-compare-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .vault-photo-slot {
+      background: #0d0f1a;
+      border: 2px dashed rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius-md);
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .vault-photo-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slot-label {
+      position: absolute;
+      bottom: 6px;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .btn-snap {
+      width: 100%;
+      background: rgba(244, 63, 94, 0.18);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      color: #fb7185;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-snap:active {
+      transform: scale(0.97);
+    }
+
+    /* PROTOCOL CARDS */
     .section-bar {
       display: flex;
       justify-content: space-between;
@@ -594,14 +807,12 @@
       box-shadow: 0 1px 0 #0d1426;
     }
 
-    /* Highlight Today with Cyan Glowing Border */
     .task-card.today {
       border-color: #38bdf8;
       background: linear-gradient(145deg, #1b2848 0%, #141f38 100%);
       box-shadow: 0 6px 0 #095982, 0 0 18px rgba(56, 189, 248, 0.35);
     }
 
-    /* Completed State: Satisfying Green */
     .task-card.completed {
       background: rgba(16, 185, 129, 0.12);
       border-color: #10b981;
@@ -613,7 +824,6 @@
       color: #64748b;
     }
 
-    /* Chunky Checkbox Button */
     .btn-chunky-check {
       width: 36px;
       height: 36px;
@@ -696,7 +906,7 @@
       margin-top: 2px;
     }
 
-    /* DUOLINGO TABS: ROUNDED, TACTILE PILLS */
+    /* TABS */
     .tabs-shelf {
       margin-bottom: 28px;
     }
@@ -749,7 +959,6 @@
       display: block;
     }
 
-    /* Q&A List */
     .qa-stack {
       display: flex;
       flex-direction: column;
@@ -780,7 +989,6 @@
       line-height: 1.45;
     }
 
-    /* Barber Warning Shield */
     .barber-permit {
       background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
       border: 2px dashed #f59e0b;
@@ -811,7 +1019,6 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* Do vs Don't Dual Grid */
     .dodont-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -851,16 +1058,18 @@
       color: #cbd5e1;
     }
 
-    /* Print View */
+    /* Hidden File Input for Vault */
+    #photo-file-input { display: none; }
+
     @media print {
       body { background: #fff !important; color: #000 !important; }
-      .top-nav, .btn-3d-mini, .water-cups-row, .protein-stepper, .arcade-btns, .tabs-shelf { display: none !important; }
+      .top-nav, .btn-3d-mini, .water-cups-row, .protein-stepper, .arcade-btns, .tabs-shelf, .vault-card { display: none !important; }
     }
   </style>
 </head>
 <body>
-  <!-- Confetti Canvas -->
   <canvas id="confetti-canvas"></canvas>
+  <input type="file" id="photo-file-input" accept="image/*" />
 
   <div class="app-shell">
 
@@ -875,16 +1084,22 @@
       </div>
 
       <div class="nav-actions">
+        <!-- Feature 1: Sound & Haptics Toggle -->
+        <button class="btn-3d-mini" id="btn-sound-toggle" onclick="toggleSound()">🔊 Sound</button>
         <button class="btn-3d-mini" onclick="resetWeek()">🔄 Reset</button>
         <button class="btn-3d-mini" onclick="window.print()">📄 PDF</button>
       </div>
     </header>
 
-    <!-- CHARACTER PROGRESS CARD (Duolingo / Mascot Vibe) -->
+    <!-- MASCOT & STREAK SHIELD HERO CARD -->
     <div class="mascot-card">
       <div class="mascot-header">
-        <div class="streak-pill" id="streak-badge">
-          🔥 <span id="streak-num">1</span> Day Streak!
+        <div class="streak-badges-group">
+          <div class="streak-pill" id="streak-badge">
+            🔥 <span id="streak-num">1</span> Day Streak!
+          </div>
+          <!-- Feature 4: Streak Shield Status -->
+          <div class="shield-pill" id="shield-badge">🛡️ Shield Active</div>
         </div>
         <div class="stage-badge" id="stage-badge">Level 1 • Sprout 🌱</div>
       </div>
@@ -907,7 +1122,30 @@
       </div>
     </div>
 
-    <!-- DAILY POWER METRICS: 8 TACTILE WATER CUPS & PROTEIN STEPPER -->
+    <!-- FEATURE 3: VIRTUAL GROWTH RULER -->
+    <div class="ruler-card">
+      <div class="ruler-top">
+        <span class="ruler-title">📏 Virtual Growth Ruler</span>
+        <span class="ruler-length-badge" id="ruler-curr-len">2.0" &rarr; Target 7.5"</span>
+      </div>
+
+      <div class="ruler-track-container">
+        <div class="ruler-pointer" id="ruler-pointer" style="left: 12%;">2.0"</div>
+        <div class="ruler-rail">
+          <div class="ruler-fill" id="ruler-fill" style="width: 12%;"></div>
+        </div>
+      </div>
+
+      <div class="ruler-ticks">
+        <span>2.0" Start</span>
+        <span>3.5" Ears</span>
+        <span>5.0" Awkward</span>
+        <span>7.5" Flow King</span>
+      </div>
+      <div class="ruler-note" id="ruler-next-milestone">Next Milestone: 3.5" (Kaan cover honge) in ~60 Days ⏳</div>
+    </div>
+
+    <!-- DAILY WATER & PROTEIN -->
     <div class="power-grid">
       <!-- Water Station with 8 Interactive Cups -->
       <div class="water-station-card">
@@ -917,7 +1155,6 @@
         </div>
 
         <div class="water-cups-row" id="water-cups-container">
-          <!-- 8 Tap-able Cups -->
           <button class="cup-btn" onclick="toggleCup(0)">💧</button>
           <button class="cup-btn" onclick="toggleCup(1)">💧</button>
           <button class="cup-btn" onclick="toggleCup(2)">💧</button>
@@ -945,12 +1182,15 @@
       </div>
     </div>
 
-    <!-- 4-MINUTE MASSAGE ARCADE STOPWATCH -->
+    <!-- FEATURE 2: 4-MINUTE MASSAGE ARCADE WITH SPA AMBIENT AUDIO -->
     <div class="arcade-card">
       <div class="arcade-top">
         <div class="arcade-badge-icon">💆‍♂️</div>
         <div class="arcade-heading">
-          <h3>4-Minute Scalp Massage</h3>
+          <div class="arcade-title-row">
+            <h3>4-Minute Scalp Massage</h3>
+            <button class="btn-spa-toggle" id="btn-spa-toggle" onclick="toggleSpaAudio()">🎵 Spa Sound: ON</button>
+          </div>
           <p class="arcade-shout" id="arcade-msg">Ungliyon se sir par gol-gol massage do taaki blood flow double ho!</p>
         </div>
       </div>
@@ -964,7 +1204,32 @@
       </div>
     </div>
 
-    <!-- WEEKLY PROTOCOL CARDS (CHUNKY DUOLINGO STYLE) -->
+    <!-- FEATURE 5: MONTHLY PROGRESS PHOTO VAULT -->
+    <div class="vault-card">
+      <div class="vault-head">
+        <span class="vault-title">📸 Monthly Photo Vault</span>
+        <span style="font-size: 0.72rem; color: #fb7185; font-weight: 800;">100% Private on Phone</span>
+      </div>
+
+      <div class="vault-compare-box">
+        <div class="vault-photo-slot" onclick="promptPhotoUpload('start')">
+          <img id="img-start" src="" style="display:none;" />
+          <span id="txt-start" style="font-size: 2rem;">🪒</span>
+          <span class="slot-label">Day 1 (Baseline)</span>
+        </div>
+        <div class="vault-photo-slot" onclick="promptPhotoUpload('curr')">
+          <img id="img-curr" src="" style="display:none;" />
+          <span id="txt-curr" style="font-size: 2rem;">📷</span>
+          <span class="slot-label">Current Month</span>
+        </div>
+      </div>
+
+      <button class="btn-snap" onclick="promptPhotoUpload('curr')">
+        📸 Snap / Upload This Month's Progress Photo
+      </button>
+    </div>
+
+    <!-- WEEKLY PROTOCOL CARDS -->
     <div class="section-bar">
       <h2>📅 Hafte Ka Game Plan</h2>
       <span>Tap to Complete 🎉</span>
@@ -1063,7 +1328,7 @@
       </div>
     </div>
 
-    <!-- TACTILE KNOWLEDGE TABS -->
+    <!-- TACTILE TABS -->
     <div class="tabs-shelf">
       <div class="tab-nav-pills">
         <button class="nav-pill active" onclick="switchShelf('tab-qna')">💡 Simple Secret</button>
@@ -1072,7 +1337,6 @@
         <button class="nav-pill" onclick="switchShelf('tab-rules')">⚖️ Do vs Don't</button>
       </div>
 
-      <!-- Tab 1: Q&A -->
       <div class="tab-sheet active" id="tab-qna">
         <div class="qa-stack">
           <div class="qa-item">
@@ -1090,7 +1354,6 @@
         </div>
       </div>
 
-      <!-- Tab 2: Stages -->
       <div class="tab-sheet" id="tab-stages">
         <div class="qa-stack">
           <div class="qa-item">
@@ -1108,7 +1371,6 @@
         </div>
       </div>
 
-      <!-- Tab 3: Barber Shield -->
       <div class="tab-sheet" id="tab-barber">
         <div class="barber-permit">
           <span class="permit-title">🛡️ BARBER EMERGENCY PERMIT</span>
@@ -1119,7 +1381,6 @@
         </div>
       </div>
 
-      <!-- Tab 4: Rules -->
       <div class="tab-sheet" id="tab-rules">
         <div class="dodont-grid">
           <div class="box-do">
@@ -1149,26 +1410,69 @@
   </div>
 
   <script>
-    // --- NATIVE HAPTICS & TACTILE AUDIO ENGINE ---
+    // State Persistence
+    const CARDS_KEY = 'hair_flow_cards_v6';
+    const CUPS_KEY = 'hair_flow_cups_v6';
+    const PROTEIN_KEY = 'hair_flow_protein_v6';
+    const SOUND_KEY = 'hair_flow_sound_v6';
+    const SPA_KEY = 'hair_flow_spa_v6';
+    const START_DATE_KEY = 'hair_flow_start_date_v6';
+    const PHOTO_START_KEY = 'hair_flow_photo_start_v6';
+    const PHOTO_CURR_KEY = 'hair_flow_photo_curr_v6';
+    const STREAK_KEY = 'hair_flow_streak_v6';
+    const LAST_DATE_KEY = 'hair_flow_last_date_v6';
+    const SHIELD_KEY = 'hair_flow_shield_v6';
+
+    // Days setup
+    const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const dayNames = {
+      'sun': 'Raviwar', 'mon': 'Somwar', 'tue': 'Mangalwar', 
+      'wed': 'Budhwar', 'thu': 'Guruwar', 'fri': 'Shukrawar', 'sat': 'Shaniwar'
+    };
+
+    const currentDay = days[new Date().getDay()];
+    const todayCard = document.getElementById('card-' + currentDay);
+    if (todayCard) todayCard.classList.add('today');
+    const todayTag = document.getElementById('tag-' + currentDay);
+    if (todayTag) {
+      todayTag.classList.add('today-tag');
+      todayTag.innerText = dayNames[currentDay] + ' (Aaj)';
+    }
+
+    // --- FEATURE 1: HAPTICS & SOUND SYSTEM WITH TOGGLE ---
+    let soundEnabled = localStorage.getItem(SOUND_KEY) !== 'false';
+
+    function updateSoundBtnUI() {
+      const btn = document.getElementById('btn-sound-toggle');
+      if (soundEnabled) {
+        btn.innerText = '🔊 Sound';
+        btn.classList.add('active-sound');
+      } else {
+        btn.innerText = '🔇 Mute';
+        btn.classList.remove('active-sound');
+      }
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      localStorage.setItem(SOUND_KEY, soundEnabled);
+      updateSoundBtnUI();
+      if (soundEnabled) triggerHaptic('light');
+    }
+
     function triggerHaptic(type = 'light') {
-      // 1. Mobile Physical Vibration (Android / Supported Browsers)
       if ('vibrate' in navigator) {
         try {
-          if (type === 'light') {
-            navigator.vibrate(15);
-          } else if (type === 'medium') {
-            navigator.vibrate(28);
-          } else if (type === 'success') {
-            navigator.vibrate([20, 40, 25]);
-          } else if (type === 'celebrate') {
-            navigator.vibrate([35, 50, 45, 60, 75]);
-          } else if (type === 'heavy') {
-            navigator.vibrate(45);
-          }
+          if (type === 'light') navigator.vibrate(15);
+          else if (type === 'medium') navigator.vibrate(28);
+          else if (type === 'success') navigator.vibrate([20, 40, 25]);
+          else if (type === 'celebrate') navigator.vibrate([35, 50, 45, 60, 75]);
+          else if (type === 'heavy') navigator.vibrate(45);
         } catch (e) {}
       }
 
-      // 2. Crisp Tactile Click Sound (Apple-style micro-click)
+      if (!soundEnabled) return;
+
       try {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         const osc = audioCtx.createOscillator();
@@ -1190,26 +1494,197 @@
       } catch (e) {}
     }
 
-    // State Persistence
-    const CARDS_KEY = 'hair_flow_cards_v5';
-    const CUPS_KEY = 'hair_flow_cups_v5';
-    const PROTEIN_KEY = 'hair_flow_protein_v5';
+    // --- FEATURE 2: 4-MIN SPA AMBIENT AUDIO SYNTHESIZER ---
+    let spaAudioEnabled = localStorage.getItem(SPA_KEY) !== 'false';
+    let spaAudioContext = null;
+    let spaOscillator = null;
+    let spaGain = null;
 
-    // Day Detection
-    const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-    const dayNames = {
-      'sun': 'Raviwar', 'mon': 'Somwar', 'tue': 'Mangalwar', 
-      'wed': 'Budhwar', 'thu': 'Guruwar', 'fri': 'Shukrawar', 'sat': 'Shaniwar'
-    };
+    function updateSpaBtnUI() {
+      const btn = document.getElementById('btn-spa-toggle');
+      btn.innerText = spaAudioEnabled ? '🎵 Spa Sound: ON' : '🎵 Spa Sound: OFF';
+    }
 
-    const currentDay = days[new Date().getDay()];
+    function toggleSpaAudio() {
+      spaAudioEnabled = !spaAudioEnabled;
+      localStorage.setItem(SPA_KEY, spaAudioEnabled);
+      updateSpaBtnUI();
+      triggerHaptic('light');
+      if (!spaAudioEnabled && spaAudioContext) {
+        stopSpaSound();
+      } else if (spaAudioEnabled && timerRunning) {
+        startSpaSound();
+      }
+    }
 
-    const todayCard = document.getElementById('card-' + currentDay);
-    if (todayCard) todayCard.classList.add('today');
-    const todayTag = document.getElementById('tag-' + currentDay);
-    if (todayTag) {
-      todayTag.classList.add('today-tag');
-      todayTag.innerText = dayNames[currentDay] + ' (Aaj)';
+    function startSpaSound() {
+      if (!spaAudioEnabled) return;
+      try {
+        spaAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+        spaOscillator = spaAudioContext.createOscillator();
+        spaGain = spaAudioContext.createGain();
+
+        // 432Hz Healing Frequency Drone
+        spaOscillator.type = 'sine';
+        spaOscillator.frequency.setValueAtTime(432, spaAudioContext.currentTime);
+
+        spaGain.gain.setValueAtTime(0.01, spaAudioContext.currentTime);
+        spaGain.gain.linearRampToValueAtTime(0.08, spaAudioContext.currentTime + 2);
+
+        spaOscillator.connect(spaGain);
+        spaGain.connect(spaAudioContext.destination);
+        spaOscillator.start();
+      } catch (e) {}
+    }
+
+    function stopSpaSound() {
+      if (spaGain && spaAudioContext) {
+        try {
+          spaGain.gain.linearRampToValueAtTime(0.0001, spaAudioContext.currentTime + 1);
+          setTimeout(() => {
+            if (spaOscillator) spaOscillator.stop();
+          }, 1000);
+        } catch (e) {}
+      }
+    }
+
+    // --- FEATURE 3: VIRTUAL GROWTH RULER & MILESTONES ---
+    if (!localStorage.getItem(START_DATE_KEY)) {
+      localStorage.setItem(START_DATE_KEY, new Date().toISOString());
+    }
+
+    function updateRuler() {
+      const startDate = new Date(localStorage.getItem(START_DATE_KEY));
+      const now = new Date();
+      const diffDays = Math.max(0, Math.floor((now - startDate) / (1000 * 60 * 60 * 24)));
+
+      // Baseline = 2.0 inches. Hair grows ~0.016 inches per day (~0.5 inches / month)
+      const currentLength = Math.min(7.5, (2.0 + diffDays * (0.5 / 30))).toFixed(1);
+
+      // Percentage along the ruler from 2.0" to 7.5"
+      const pct = Math.min(100, Math.max(8, ((currentLength - 2.0) / (7.5 - 2.0)) * 100));
+
+      document.getElementById('ruler-curr-len').innerText = `${currentLength}" &rarr; Target 7.5"`;
+      document.getElementById('ruler-pointer').style.left = pct + '%';
+      document.getElementById('ruler-pointer').innerText = `${currentLength}"`;
+      document.getElementById('ruler-fill').style.width = pct + '%';
+
+      const milestoneNote = document.getElementById('ruler-next-milestone');
+      if (currentLength < 3.5) {
+        milestoneNote.innerText = `Next Milestone: 3.5" (Kaan touch honge) in ~${Math.max(1, Math.round((3.5 - currentLength) / (0.5 / 30)))} Days ⏳`;
+      } else if (currentLength < 5.0) {
+        milestoneNote.innerText = `Next Milestone: 5.0" (Awkward stage cross) in ~${Math.max(1, Math.round((5.0 - currentLength) / (0.5 / 30)))} Days 🦁`;
+      } else if (currentLength < 7.5) {
+        milestoneNote.innerText = `Next Milestone: 7.5" (Greek God Flow King) in ~${Math.max(1, Math.round((7.5 - currentLength) / (0.5 / 30)))} Days 👑`;
+      } else {
+        milestoneNote.innerText = 'Goal Reached! Greek God Flow Master! 👑🔥';
+      }
+    }
+
+    // --- FEATURE 4: STREAK SHIELD PRESERVATION ---
+    function checkStreakEngine() {
+      const todayStr = new Date().toISOString().split('T')[0];
+      const lastStr = localStorage.getItem(LAST_DATE_KEY);
+      let streak = parseInt(localStorage.getItem(STREAK_KEY)) || 1;
+      let shieldUsed = localStorage.getItem(SHIELD_KEY) === 'used';
+
+      if (!lastStr) {
+        localStorage.setItem(LAST_DATE_KEY, todayStr);
+        localStorage.setItem(STREAK_KEY, 1);
+      } else if (lastStr !== todayStr) {
+        const lastDate = new Date(lastStr);
+        const todayDate = new Date(todayStr);
+        const dayDiff = Math.floor((todayDate - lastDate) / (1000 * 60 * 60 * 24));
+
+        if (dayDiff === 1) {
+          // Continuous
+          streak++;
+          localStorage.setItem(STREAK_KEY, streak);
+        } else if (dayDiff === 2 && !shieldUsed) {
+          // 1 Day missed, Streak Shield rescues!
+          localStorage.setItem(SHIELD_KEY, 'used');
+          alert("🛡️ Streak Shield Activated! Aapka 1 din miss hua tha par shield ne streak bacha li!");
+        } else if (dayDiff > 1) {
+          // Reset
+          streak = 1;
+          localStorage.setItem(STREAK_KEY, 1);
+        }
+        localStorage.setItem(LAST_DATE_KEY, todayStr);
+      }
+
+      document.getElementById('streak-num').innerText = streak;
+      const shieldBadge = document.getElementById('shield-badge');
+      if (localStorage.getItem(SHIELD_KEY) === 'used') {
+        shieldBadge.innerText = '🛡️ Shield Used';
+        shieldBadge.style.opacity = '0.5';
+      } else {
+        shieldBadge.innerText = '🛡️ Shield Ready';
+      }
+    }
+
+    // --- FEATURE 5: PHOTO VAULT LOGIC ---
+    let activeUploadSlot = 'curr';
+    const fileInput = document.getElementById('photo-file-input');
+
+    function promptPhotoUpload(slot) {
+      activeUploadSlot = slot;
+      fileInput.click();
+    }
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const img = new Image();
+        img.onload = function() {
+          const maxDim = 500;
+          let w = img.width, h = img.height;
+          if (w > h) {
+            if (w > maxDim) { h = Math.round((h * maxDim) / w); w = maxDim; }
+          } else {
+            if (h > maxDim) { w = Math.round((w * maxDim) / h); h = maxDim; }
+          }
+          const cvs = document.createElement('canvas');
+          cvs.width = w;
+          cvs.height = h;
+          const ctx = cvs.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const compressedBase64 = cvs.toDataURL('image/jpeg', 0.82);
+
+          try {
+            if (activeUploadSlot === 'start') {
+              localStorage.setItem(PHOTO_START_KEY, compressedBase64);
+            } else {
+              localStorage.setItem(PHOTO_CURR_KEY, compressedBase64);
+            }
+            renderVault();
+            triggerHaptic('celebrate');
+            launchConfetti();
+          } catch(err) {
+            alert('Storage full! Thoda purana data clear karein.');
+          }
+        };
+        img.src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function renderVault() {
+      const startImg = localStorage.getItem(PHOTO_START_KEY);
+      const currImg = localStorage.getItem(PHOTO_CURR_KEY);
+
+      if (startImg) {
+        document.getElementById('img-start').src = startImg;
+        document.getElementById('img-start').style.display = 'block';
+        document.getElementById('txt-start').style.display = 'none';
+      }
+      if (currImg) {
+        document.getElementById('img-curr').src = currImg;
+        document.getElementById('img-curr').style.display = 'block';
+        document.getElementById('txt-curr').style.display = 'none';
+      }
     }
 
     // Protocol Cards State
@@ -1233,7 +1708,6 @@
       document.getElementById('xp-meter-fill').style.width = pct + '%';
       document.getElementById('xp-text').innerText = `${done} / ${total} Tasks Done 🚀`;
 
-      // Dynamic Character Evolution
       const avatar = document.getElementById('mascot-avatar');
       const badge = document.getElementById('stage-badge');
 
@@ -1254,7 +1728,7 @@
       const saved = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
       saved[d] = !saved[d];
       localStorage.setItem(CARDS_KEY, JSON.stringify(saved));
-      if (saved[d]) launchConfetti(); triggerHaptic('celebrate');
+      if (saved[d]) launchConfetti();
       renderCards();
     }
 
@@ -1297,7 +1771,10 @@
         cups = cups.filter(i => i !== index);
       } else {
         cups.push(index);
-        if (cups.length === 8) launchConfetti(); triggerHaptic('celebrate');
+        if (cups.length === 8) {
+          triggerHaptic('celebrate');
+          launchConfetti();
+        }
       }
       localStorage.setItem(CUPS_KEY, JSON.stringify(cups));
       renderCups();
@@ -1352,9 +1829,11 @@
         clearInterval(timerId);
         timerRunning = false;
         btnPlay.innerText = '▶ RESUME';
+        stopSpaSound();
       } else {
         timerRunning = true;
         btnPlay.innerText = '⏸ PAUSE';
+        startSpaSound();
 
         timerId = setInterval(() => {
           if (secLeft > 0) {
@@ -1365,7 +1844,9 @@
             timerRunning = false;
             btnPlay.innerText = 'DONE 🏆';
             arcadeMsg.innerText = 'Shabash! 4-min massage complete! Roots charged ⚡';
-            launchConfetti(); triggerHaptic('celebrate');
+            stopSpaSound();
+            triggerHaptic('celebrate');
+            launchConfetti();
           }
         }, 1000);
       }
@@ -1378,6 +1859,7 @@
       secLeft = TOTAL_SECONDS;
       btnPlay.innerText = '▶ START';
       arcadeMsg.innerText = 'Ungliyon se sir par gol-gol massage do taaki blood flow double ho!';
+      stopSpaSound();
       updateTimer();
     }
 
@@ -1390,7 +1872,7 @@
       document.getElementById(id).classList.add('active');
     }
 
-    // Bouncy Confetti Cannon
+    // Bouncy Confetti
     function launchConfetti() {
       const canvas = document.getElementById('confetti-canvas');
       const ctx = canvas.getContext('2d');
@@ -1419,7 +1901,7 @@
         particles.forEach(p => {
           p.x += p.vx;
           p.y += p.vy;
-          p.vy += 0.3; // gravity
+          p.vy += 0.3;
           p.rot += p.vrot;
 
           ctx.save();
@@ -1440,7 +1922,12 @@
       step();
     }
 
-    // Init on load
+    // Init All Features
+    updateSoundBtnUI();
+    updateSpaBtnUI();
+    checkStreakEngine();
+    updateRuler();
+    renderVault();
     renderCards();
     renderCups();
     renderProtein();
