@@ -6,12 +6,12 @@
   <meta name="theme-color" content="#09090b" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <link rel="manifest" href="/manifest.json" />
+  <link rel="manifest" href="/manifest.json" />
   <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <title>Mera Hair Routine — Simple Daily Tracker</title>
+  <title>Mera Hair Routine â€” Simple Daily Tracker</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,22 +20,22 @@
   <style>
     :root {
       --bg: #09090b;
-      --surface: #111115;
-      --surface-elevated: #16171d;
-      --surface-active: #1c1e26;
-      --border: #22232a;
-      --border-subtle: #191a20;
-      --border-hover: #323540;
-      --text-main: #f4f4f6;
-      --text-secondary: #9496a1;
-      --text-muted: #5e606e;
+      --surface: #121318;
+      --surface-elevated: #181920;
+      --surface-active: #20222c;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.04);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --text-main: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
       --accent: #10b981;
-      --accent-glow: rgba(16, 185, 129, 0.15);
+      --accent-glow: rgba(16, 185, 129, 0.18);
       --font-mono: 'JetBrains Mono', monospace;
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 16px;
-      --radius-xl: 22px;
+      --radius-xl: 20px;
     }
 
     * {
@@ -50,126 +50,120 @@
       color: var(--text-main);
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.5;
-      padding: 32px 20px 100px;
+      padding: 20px 16px 90px;
       letter-spacing: -0.01em;
       -webkit-font-smoothing: antialiased;
     }
 
     .app-shell {
-      max-width: 760px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
-    /* Top Navigation Bar */
+    /* Top Navigation Bar - Clean, Compact & No Overlap */
     .top-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 24px;
+      padding-bottom: 16px;
       border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
+    /* Actual Hair Flow Logo (No Dollar Sign!) */
     .brand-mark {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #27272a 0%, #18181b 100%);
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #181920 0%, #0e0f14 100%);
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     .brand-mark svg {
-      width: 14px;
-      height: 14px;
+      width: 18px;
+      height: 18px;
       stroke: var(--accent);
     }
 
     .brand-title {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--text-main);
-    }
-
-    .brand-version {
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      background: var(--surface);
-      padding: 2px 6px;
-      border-radius: 4px;
-      border: 1px solid var(--border-subtle);
+      letter-spacing: -0.02em;
     }
 
     .nav-actions {
       display: flex;
       gap: 8px;
       align-items: center;
+      flex-shrink: 0;
     }
 
     .btn-action {
       background: var(--surface);
       border: 1px solid var(--border);
       color: var(--text-secondary);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      padding: 6px 12px;
+      padding: 6px 11px;
       border-radius: var(--radius-sm);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       transition: all 0.15s ease;
       font-family: inherit;
     }
 
-    .btn-action:hover {
+    .btn-action:active {
+      transform: scale(0.96);
       background: var(--surface-active);
-      color: var(--text-main);
-      border-color: var(--border-hover);
     }
 
     .btn-action svg {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       stroke: currentColor;
     }
 
     /* Bento Overview Strip */
     .overview-grid {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 14px;
-      margin-bottom: 28px;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
     .bento-card {
-      background: var(--surface);
+      background: linear-gradient(180deg, #14161d 0%, #101116 100%);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 20px;
+      padding: 18px 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     }
 
     .bento-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .meta-eyebrow {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-family: var(--font-mono);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       color: var(--text-muted);
     }
 
@@ -179,7 +173,7 @@
       gap: 5px;
       font-size: 0.72rem;
       font-family: var(--font-mono);
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 9999px;
       background: var(--accent-glow);
       color: var(--accent);
@@ -187,18 +181,19 @@
     }
 
     .status-dot {
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--accent);
       box-shadow: 0 0 8px var(--accent);
     }
 
     .phase-headline {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       color: var(--text-main);
+      letter-spacing: -0.02em;
     }
 
     .phase-subtext {
@@ -208,7 +203,7 @@
     }
 
     .progress-bar-container {
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .progress-meta {
@@ -217,12 +212,12 @@
       font-size: 0.75rem;
       font-family: var(--font-mono);
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .progress-track {
       width: 100%;
-      height: 6px;
+      height: 7px;
       background: var(--surface-active);
       border-radius: 9999px;
       overflow: hidden;
@@ -233,56 +228,56 @@
       width: 0%;
       background: var(--accent);
       border-radius: 9999px;
+      box-shadow: 0 0 10px var(--accent);
       transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Daily Micro Metrics (Right Bento) */
+    /* Daily Micro Metrics (Bento Card 2) */
     .metric-rows {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
 
     .metric-row {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
       background: var(--surface-elevated);
-      padding: 10px 12px;
+      padding: 12px 14px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
+      gap: 8px;
     }
 
     .metric-label {
-      font-size: 0.82rem;
-      font-weight: 500;
+      font-size: 0.78rem;
+      font-weight: 600;
       color: var(--text-secondary);
     }
 
     .metric-ctrl {
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: space-between;
     }
 
     .metric-val {
       font-family: var(--font-mono);
-      font-size: 0.88rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
       color: var(--text-main);
-      min-width: 44px;
-      text-align: center;
     }
 
     .btn-step {
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--text-main);
       font-family: var(--font-mono);
-      font-size: 0.9rem;
+      font-size: 1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -290,43 +285,41 @@
       transition: all 0.15s ease;
     }
 
-    .btn-step:hover {
+    .btn-step:active {
+      transform: scale(0.92);
       background: var(--surface-active);
-      border-color: var(--border-hover);
     }
 
     /* 4-Minute Scalp Massage Stopwatch */
     .timer-strip {
-      background: var(--surface);
+      background: linear-gradient(180deg, #14161d 0%, #101116 100%);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 18px 22px;
-      margin-bottom: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     }
 
-    .timer-info-col {
+    .timer-top-line {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
+      margin-bottom: 12px;
     }
 
     .timer-dial {
       position: relative;
-      width: 62px;
-      height: 62px;
+      width: 52px;
+      height: 52px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .timer-dial svg {
-      width: 62px;
-      height: 62px;
+      width: 52px;
+      height: 52px;
       transform: rotate(-90deg);
     }
 
@@ -341,7 +334,7 @@
       stroke: var(--accent);
       stroke-width: 4;
       stroke-linecap: round;
-      stroke-dasharray: 188;
+      stroke-dasharray: 144;
       stroke-dashoffset: 0;
       transition: stroke-dashoffset 1s linear;
     }
@@ -370,18 +363,21 @@
     .timer-subline {
       font-size: 0.8rem;
       color: var(--text-secondary);
+      line-height: 1.35;
     }
 
-    .timer-ctrl-col {
+    .timer-bottom-controls {
       display: flex;
       align-items: center;
-      gap: 14px;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
     }
 
     .timer-clock {
       font-family: var(--font-mono);
-      font-size: 1.7rem;
-      font-weight: 600;
+      font-size: 1.8rem;
+      font-weight: 700;
       letter-spacing: -0.03em;
       color: var(--text-main);
     }
@@ -393,19 +389,19 @@
 
     .btn-timer {
       background: var(--text-main);
-      color: var(--bg);
+      color: #09090b;
       font-weight: 700;
-      font-size: 0.82rem;
-      padding: 8px 14px;
+      font-size: 0.85rem;
+      padding: 8px 16px;
       border-radius: var(--radius-sm);
       border: none;
       cursor: pointer;
-      transition: all 0.15s ease;
       font-family: inherit;
+      transition: all 0.15s ease;
     }
 
-    .btn-timer:hover {
-      opacity: 0.9;
+    .btn-timer:active {
+      transform: scale(0.95);
     }
 
     .btn-timer-secondary {
@@ -421,9 +417,8 @@
       transition: all 0.15s ease;
     }
 
-    .btn-timer-secondary:hover {
-      background: var(--surface-active);
-      color: var(--text-main);
+    .btn-timer-secondary:active {
+      transform: scale(0.95);
     }
 
     /* Section Title */
@@ -431,12 +426,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       padding: 0 2px;
     }
 
     .section-title {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -445,7 +440,7 @@
     }
 
     .section-tagline {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
     }
 
@@ -453,31 +448,30 @@
     .protocol-list {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 28px;
+      gap: 8px;
+      margin-bottom: 24px;
     }
 
     .protocol-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 18px;
+      padding: 13px 16px;
       background: var(--surface);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
       transition: all 0.15s ease;
       cursor: pointer;
       position: relative;
     }
 
-    .protocol-item:hover {
-      background: var(--surface-elevated);
-      border-color: var(--border);
+    .protocol-item:active {
+      transform: scale(0.985);
     }
 
     .protocol-item.today {
       border-left: 3px solid var(--accent);
-      background: var(--surface-elevated);
+      background: linear-gradient(90deg, rgba(16, 185, 129, 0.06) 0%, var(--surface) 100%);
     }
 
     .protocol-item.completed {
@@ -492,11 +486,11 @@
     .item-left {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 13px;
       flex: 1;
     }
 
-    /* Custom Checkbox */
+    /* Custom Minimal Checkbox */
     .custom-check {
       width: 20px;
       height: 20px;
@@ -537,7 +531,7 @@
     .item-header-line {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
@@ -556,7 +550,7 @@
     }
 
     .item-title {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--text-main);
     }
@@ -565,7 +559,7 @@
       font-size: 0.68rem;
       font-family: var(--font-mono);
       font-weight: 600;
-      padding: 1px 7px;
+      padding: 1px 6px;
       border-radius: 4px;
       letter-spacing: 0.02em;
     }
@@ -576,15 +570,15 @@
     .tag-massage { background: rgba(16, 185, 129, 0.12); color: #10b981; }
 
     .item-desc {
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       color: var(--text-secondary);
       line-height: 1.4;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     /* Tabs */
     .tab-container {
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .tab-bar {
@@ -594,8 +588,13 @@
       padding: 4px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+
+    .tab-bar::-webkit-scrollbar { display: none; }
 
     .tab-btn {
       flex: 1;
@@ -612,10 +611,6 @@
       white-space: nowrap;
     }
 
-    .tab-btn:hover {
-      color: var(--text-main);
-    }
-
     .tab-btn.active {
       background: var(--surface-active);
       color: var(--text-main);
@@ -627,7 +622,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 20px;
+      padding: 18px;
     }
 
     .tab-content.active {
@@ -638,11 +633,11 @@
     .simple-rules-list {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
     }
 
     .rule-item {
-      padding-bottom: 12px;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border-subtle);
     }
 
@@ -668,25 +663,25 @@
     .roadmap-timeline {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     .roadmap-step {
       display: flex;
-      gap: 14px;
+      gap: 12px;
     }
 
     .step-indicator {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 20px;
+      width: 18px;
       flex-shrink: 0;
     }
 
     .step-circle {
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--border-hover);
       margin-top: 5px;
@@ -701,12 +696,12 @@
       width: 1px;
       flex: 1;
       background: var(--border-subtle);
-      margin-top: 6px;
+      margin-top: 5px;
     }
 
     .step-content {
       flex: 1;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
     }
 
     .step-meta {
@@ -718,16 +713,16 @@
     }
 
     .step-name {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: var(--text-main);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .step-text {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
     /* Barber dialogue box */
@@ -735,12 +730,12 @@
       background: var(--surface-elevated);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 16px;
+      padding: 14px;
       margin-top: 10px;
     }
 
     .dialogue-text {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-style: italic;
       color: #fef08a;
       line-height: 1.5;
@@ -750,14 +745,14 @@
     .rules-dual {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
     }
 
     .rule-col {
       background: var(--surface-elevated);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 14px;
+      padding: 12px;
     }
 
     .rule-col-title {
@@ -766,7 +761,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .rule-col.do .rule-col-title { color: var(--accent); }
@@ -776,8 +771,8 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      font-size: 0.8rem;
+      gap: 6px;
+      font-size: 0.78rem;
       color: var(--text-secondary);
     }
 
@@ -802,32 +797,6 @@
         color: #09090b !important;
         page-break-inside: avoid;
       }
-      .item-title, .phase-headline, .brand-title {
-        color: #09090b !important;
-      }
-      .item-desc, .phase-subtext {
-        color: #52525b !important;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .overview-grid {
-        grid-template-columns: 1fr;
-      }
-      .timer-strip {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .timer-ctrl-col {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .rules-dual {
-        grid-template-columns: 1fr;
-      }
-      .tab-bar {
-        overflow-x: auto;
-      }
     }
   </style>
 </head>
@@ -837,21 +806,21 @@
     <!-- Top Navigation -->
     <nav class="top-nav">
       <div class="brand">
+        <!-- New Clean Hair Flow Wave Icon (No Dollar Sign!) -->
         <div class="brand-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 14.5c2.5-2 5-2.8 7.5-2.8s5 1.8 8.5.8" />
+            <path d="M4 18.5c3-2 5.5-2.8 8.5-2.8s5 1.8 8 1" />
+            <path d="M5 10.5c2.5-3 5-3.5 8-3.5s5.5 1.8 7.5 1" />
           </svg>
         </div>
-        <div>
-          <span class="brand-title">Mera Hair Routine</span>
-        </div>
-        <span class="brand-version">v2.2</span>
+        <span class="brand-title">Mera Hair Routine</span>
       </div>
 
       <div class="nav-actions">
         <button class="btn-action" onclick="resetWeek()">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg>
-          Reset Week
+          Reset
         </button>
         <button class="btn-action" onclick="window.print()">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
@@ -862,17 +831,17 @@
 
     <!-- Bento Overview Strip -->
     <div class="overview-grid">
-      <!-- Left Bento: Growth Status -->
+      <!-- Card 1: Growth Status -->
       <div class="bento-card">
         <div class="bento-header">
-          <span class="meta-eyebrow">Mera Mission</span>
+          <span class="meta-eyebrow">Mera Target</span>
           <div class="status-badge">
             <div class="status-dot"></div>
             <span>Month 1 of 12</span>
           </div>
         </div>
 
-        <h1 class="phase-headline">Chote Baal ➔ Lambe Wavy Baal</h1>
+        <h1 class="phase-headline">Chote Baal âž” Lambe Wavy Baal</h1>
         <p class="phase-subtext">Golden Rule: Upar ke baal bilkul mat kato. Sirf gardan saaf rakho aur hafte mein 2 baar shampoo karo.</p>
 
         <div class="progress-bar-container">
@@ -886,11 +855,11 @@
         </div>
       </div>
 
-      <!-- Right Bento: Daily Target -->
+      <!-- Card 2: Daily Target (Water & Protein) -->
       <div class="bento-card">
         <div class="bento-header">
           <span class="meta-eyebrow">Daily Target</span>
-          <span class="meta-eyebrow" id="today-date">Roz Ka Dhyan</span>
+          <span class="meta-eyebrow">Roz Ka Dhyan</span>
         </div>
 
         <div class="metric-rows">
@@ -915,13 +884,13 @@
       </div>
     </div>
 
-    <!-- Minimalist 4-Minute Scalp Massage Stopwatch Strip -->
+    <!-- 4-Minute Scalp Massage Stopwatch Strip -->
     <div class="timer-strip">
-      <div class="timer-info-col">
+      <div class="timer-top-line">
         <div class="timer-dial">
           <svg>
-            <circle class="bg" cx="31" cy="31" r="27"></circle>
-            <circle class="bar" id="timer-svg-bar" cx="31" cy="31" r="27"></circle>
+            <circle class="bg" cx="26" cy="26" r="23"></circle>
+            <circle class="bar" id="timer-svg-bar" cx="26" cy="26" r="23"></circle>
           </svg>
           <div class="timer-center-dot" id="timer-dot"></div>
         </div>
@@ -931,7 +900,7 @@
         </div>
       </div>
 
-      <div class="timer-ctrl-col">
+      <div class="timer-bottom-controls">
         <div class="timer-clock" id="timer-clock">04:00</div>
         <div class="timer-actions">
           <button class="btn-timer" id="btn-timer-toggle" onclick="toggleTimer()">Start</button>
@@ -942,7 +911,7 @@
 
     <!-- Weekly Protocol Schedule -->
     <div class="section-title-wrap">
-      <span class="section-title">Hafte Ka Routine (Mon – Sun)</span>
+      <span class="section-title">Hafte Ka Routine (Mon â€“ Sun)</span>
       <span class="section-tagline">Karne ke baad tap karo</span>
     </div>
 
@@ -959,7 +928,7 @@
               <span class="item-title">Rest Day (No Shampoo)</span>
               <span class="tag-pill tag-rest">Aaram</span>
             </div>
-            <p class="item-desc">Shampoo nahi lagana. Agar pasina ya dhool ho toh sirf normal paani se dho lo. Thoda sa serum ya Argan oil laga lo.</p>
+            <p class="item-desc">Shampoo nahi lagana. Normal paani se dho lo agar pasina ho. Thoda serum ya Argan oil lagao.</p>
           </div>
         </div>
       </div>
@@ -976,7 +945,7 @@
               <span class="item-title">Tel Lagao (Coconut + Rosemary)</span>
               <span class="tag-pill tag-oil">Tel Day</span>
             </div>
-            <p class="item-desc">Thoda sa Nariyal tel lo, usme 4 boond Rosemary oil dalo. Sir ki chamdi par 5 min lagao. Raat ko laga kar so jao ya nahane se 1 ghante pehle lagao.</p>
+            <p class="item-desc">Nariyal tel + 4 boond Rosemary oil dalo. Sir ki chamdi par 5 min massage karo.</p>
           </div>
         </div>
       </div>
@@ -993,7 +962,7 @@
               <span class="item-title">Wash Day 1 (Shampoo + Conditioner)</span>
               <span class="tag-pill tag-wash">Wash Day</span>
             </div>
-            <p class="item-desc"><strong>Rule:</strong> Shampoo sirf sir ki chamdi (scalp) par lagao. Conditioner sirf baalon par lagao (chamdi par nahi). 2 min baad dho lo.</p>
+            <p class="item-desc"><strong>Rule:</strong> Shampoo sirf chamdi par lagao. Conditioner sirf baalon par lagao (chamdi par nahi).</p>
           </div>
         </div>
       </div>
@@ -1010,7 +979,7 @@
               <span class="item-title">4-Minute Scalp Massage</span>
               <span class="tag-pill tag-massage">Massage</span>
             </div>
-            <p class="item-desc">Upar wala 4 minute ka timer chalao aur bina tel ke ungliyon ke poron se sir ki halki massage karo. Chaude daant wali lakdi ki kanghi use karo.</p>
+            <p class="item-desc">Upar wala 4 minute timer chala kar ungliyon se massage karo. Chaude daant wali lakdi ki kanghi use karo.</p>
           </div>
         </div>
       </div>
@@ -1027,7 +996,7 @@
               <span class="item-title">Dandruff & Scalp Check</span>
               <span class="tag-pill tag-rest">Check Day</span>
             </div>
-            <p class="item-desc">Agar sir mein khujli ya dandruff lage toh anti-dandruff shampoo (jaise Scalpe ya Nizoral) use karo. Agar sab theek hai toh normal aaram karo.</p>
+            <p class="item-desc">Khujli ya dandruff lage toh anti-dandruff shampoo use karo. Sab theek ho toh normal aaram karo.</p>
           </div>
         </div>
       </div>
@@ -1044,7 +1013,7 @@
               <span class="item-title">Halka Tel Lagao</span>
               <span class="tag-pill tag-oil">Tel Day</span>
             </div>
-            <p class="item-desc">Badam (Almond) tel ya Nariyal tel halka sa lagao. Raat ko pillow par soft kapda ya satin cover daal kar so jao.</p>
+            <p class="item-desc">Badam ya Nariyal tel lagao. Raat ko pillow par soft t-shirt ya satin cover daal kar so jao.</p>
           </div>
         </div>
       </div>
@@ -1061,7 +1030,7 @@
               <span class="item-title">Wash Day 2 (Full Clean)</span>
               <span class="tag-pill tag-wash">Wash Day</span>
             </div>
-            <p class="item-desc">Shampoo + Conditioner lagao. <strong>Important:</strong> Towel se ragdo mat! Sirf halka thap-thapa kar sukhao ya normal hawa mein sukhne do.</p>
+            <p class="item-desc">Shampoo + Conditioner lagao. <strong>Important:</strong> Towel se ragdo mat! Dab karke sukhao.</p>
           </div>
         </div>
       </div>
@@ -1080,23 +1049,23 @@
       <div class="tab-content active" id="tab-simple">
         <div class="simple-rules-list">
           <div class="rule-item">
-            <div class="rule-item-title">1. Nahane se pehle Nariyal Tel kyun zaroori hai?</div>
-            <p class="rule-item-text">Jab baal geele hote hain toh paani sokh kar phool jaate hain aur kamzor ho jaate hain. Nariyal tel baalon ke andar ghus jaata hai aur baalon ko tootte se bachata hai.</p>
+            <div class="rule-item-title">1. Nahane se pehle Nariyal Tel kyun lagana hai?</div>
+            <p class="rule-item-text">Baal geele hone par kamzor ho jaate hain. Nariyal tel baalon ke andar ghus kar unhe tootte se bachata hai.</p>
           </div>
 
           <div class="rule-item">
-            <div class="rule-item-title">2. Rosemary Oil kyun lagana hai?</div>
-            <p class="rule-item-text">Rosemary tel sir ki chamdi mein blood flow badhata hai. Isse baal tezi se aur ghane grow hote hain (bina kisi side-effect ke).</p>
+            <div class="rule-item-title">2. Rosemary Oil kyun?</div>
+            <p class="rule-item-text">Rosemary tel blood circulation badhata hai, jisse baal tezi se aur ghane grow hote hain.</p>
           </div>
 
           <div class="rule-item">
-            <div class="rule-item-title">3. Shampoo roz kyun nahi lagana?</div>
-            <p class="rule-item-text">Roz shampoo lagane se sir ka natural oil nikal jaata hai, aur baal jhadu jaise sukhe aur frizzy ban jaate hain. Hafte mein sirf 2 baar shampoo kaafi hai.</p>
+            <div class="rule-item-title">3. Roz shampoo kyun nahi lagana?</div>
+            <p class="rule-item-text">Roz shampoo lagane se sir ka natural tel chala jaata hai, aur baal sukhe aur frizzy ho jaate hain.</p>
           </div>
 
           <div class="rule-item">
-            <div class="rule-item-title">4. Shampoo aur Conditioner ka sahi tareeqa:</div>
-            <p class="rule-item-text">Shampoo sirf sir ki chamdi (scalp) saaf karne ke liye hota hai. Conditioner sirf baalon ko soft rakhne ke liye hota hai (isliye conditioner ko chamdi par mat lagao, sirf baalon par lagao).</p>
+            <div class="rule-item-title">4. Shampoo vs Conditioner ka sahi tareeqa:</div>
+            <p class="rule-item-text">Shampoo sirf sir ki chamdi (scalp) ke liye hai. Conditioner sirf baalon ko soft rakhne ke liye hai (isliye conditioner ko chamdi par mat lagao).</p>
           </div>
         </div>
       </div>
@@ -1112,7 +1081,7 @@
             <div class="step-content">
               <span class="step-meta">Month 1 se 3 (Start)</span>
               <div class="step-name">Baal badhna shuru honge</div>
-              <p class="step-text">Baal kaano tak aane lagenge aur thode bikhre lagenge. <strong>Karna kya hai:</strong> Upar ke baal bilkul mat kato. Sirf gardan ke pichhe se safai karwao.</p>
+              <p class="step-text">Baal kaano tak aane lagenge. Upar ke baal bilkul mat kato, sirf gardan ke pichhe se safai karwao.</p>
             </div>
           </div>
 
@@ -1123,8 +1092,8 @@
             </div>
             <div class="step-content">
               <span class="step-meta">Month 4 se 7 (Awkward Stage)</span>
-              <div class="step-name">Baal ajeeb lagenge (Sabse mushkil time)</div>
-              <p class="step-text">Baal na chote lagenge na poore lambe, phoolne lagenge. <strong>Karna kya hai:</strong> Haar mat maanna! Cap, hairband use karo ya baal pichhe set karo. Barber ke paas jakar gusse mein chota mat karwana.</p>
+              <div class="step-name">Baal thode ajeeb lagenge</div>
+              <p class="step-text">Baal na chote lagenge na poore lambe. Cap ya hairband use karo, gusse mein aakar cut mat karwana!</p>
             </div>
           </div>
 
@@ -1133,9 +1102,9 @@
               <div class="step-circle"></div>
             </div>
             <div class="step-content">
-              <span class="step-meta">Month 8 se 12 (Photo 2 Look)</span>
+              <span class="step-meta">Month 8 se 12 (Target Look)</span>
               <div class="step-name">Photo 2 jaisa final look!</div>
-              <p class="step-text">Baal hothon aur chin tak pahunch jayenge. Kisi achhe salon mein jao, photo 2 dikhao aur bolo: <em>"Sirf layers daal kar flow set kar do, length kam mat karna."</em></p>
+              <p class="step-text">Baal lips aur chin tak aane lagenge. Salon mein photo 2 dikhao aur bolo: <em>"Sirf layers daal kar flow do, length kam mat karna."</em></p>
             </div>
           </div>
         </div>
@@ -1143,9 +1112,9 @@
 
       <!-- Tab 3: Barber Script -->
       <div class="tab-content" id="tab-barber">
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">Jab bhi salon/barber ke paas jao, bas yeh dialogue bolna taaki wo aapki 6 mahine ki mehnat na kaat de:</p>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px;">Barber ko bas yeh line bolna:</p>
         <div class="dialogue-card">
-          <p class="dialogue-text">"Bhaiya, main baal lambe kar raha hoon (growing them out). Upar ki length ko haath bhi mat lagana. Sirf gardan (neckline) aur kaano ke paas se halka clean kar do aur kharab ends trim kar do."</p>
+          <p class="dialogue-text">"Bhaiya, main baal lambe kar raha hoon (growing them out). Upar ki length ko haath bhi mat lagana. Sirf gardan (neckline) aur kaano ke side se halka clean kar do aur kharab ends trim kar do."</p>
         </div>
       </div>
 
@@ -1153,24 +1122,24 @@
       <div class="tab-content" id="tab-rules">
         <div class="rules-dual">
           <div class="rule-col do">
-            <div class="rule-col-title">Yeh Karo (Do's)</div>
+            <div class="rule-col-title">Yeh Karo</div>
             <ul class="rule-list">
-              <li>✓ Nahane se pehle tel lagao</li>
-              <li>✓ Chaude daant wali lakdi ki kanghi use karo</li>
-              <li>✓ Conditioner baalon par zaroor lagao</li>
-              <li>✓ Roz 4 minute ungliyon se massage karo</li>
-              <li>✓ Roz 8 glass paani aur ande/paneer khao</li>
+              <li>âœ“ Nahane se pehle tel lagao</li>
+              <li>âœ“ Lakdi ki chaudi kanghi use karo</li>
+              <li>âœ“ Conditioner baalon par lagao</li>
+              <li>âœ“ Roz 4 minute massage karo</li>
+              <li>âœ“ 8 glass paani aur ande/paneer khao</li>
             </ul>
           </div>
 
           <div class="rule-col dont">
-            <div class="rule-col-title">Yeh Bilkul Mat Karo (Don'ts)</div>
+            <div class="rule-col-title">Yeh Mat Karo</div>
             <ul class="rule-list">
-              <li>✗ Roz-roz shampoo lagana</li>
-              <li>✗ Towel se baalon ko zor-zor se ragadna</li>
-              <li>✗ Bahut garam paani se sir dhona</li>
-              <li>✗ Geele baalon mein patli plastic kanghi chalana</li>
-              <li>✗ Month 4-5 mein gusse mein baal cut karwana</li>
+              <li>âœ— Roz-roz shampoo lagana</li>
+              <li>âœ— Towel se zor-zor se ragadna</li>
+              <li>âœ— Bahut garam paani use karna</li>
+              <li>âœ— Geele baalon mein patli kanghi chalana</li>
+              <li>âœ— Month 4-5 mein gusse mein baal katana</li>
             </ul>
           </div>
         </div>
@@ -1181,9 +1150,9 @@
 
   <script>
     // State Persistence Keys
-    const PROTOCOL_KEY = 'flow_protocol_days_v2';
-    const WATER_KEY = 'flow_water_val_v2';
-    const PROTEIN_KEY = 'flow_protein_val_v2';
+    const PROTOCOL_KEY = 'flow_protocol_days_v3';
+    const WATER_KEY = 'flow_water_val_v3';
+    const PROTEIN_KEY = 'flow_protein_val_v3';
 
     // Day Detection for Auto-Highlighting
     const dayIds = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
@@ -1276,7 +1245,7 @@
     const btnTimerToggle = document.getElementById('btn-timer-toggle');
     const timerDot = document.getElementById('timer-dot');
     const timerSvgBar = document.getElementById('timer-svg-bar');
-    const CIRCLE_CIRCUMFERENCE = 170; // 2 * PI * 27
+    const CIRCLE_CIRCUMFERENCE = 144; // 2 * PI * 23
 
     function updateTimerDisplay() {
       const m = Math.floor(secondsLeft / 60).toString().padStart(2, '0');
