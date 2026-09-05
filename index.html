@@ -137,34 +137,30 @@
       gap: 6px;
     }
 
-    .btn-icon-pill {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #cbd5e1;
-      height: 34px;
-      padding: 0 10px;
+    .btn-icon-sq {
+      width: 36px;
+      height: 36px;
       border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #cbd5e1;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.74rem;
-      font-weight: 700;
+      font-size: 1.05rem;
       cursor: pointer;
       box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
       transition: all 0.1s ease;
     }
 
-    .btn-icon-pill:active {
+    .btn-icon-sq:active {
       transform: translateY(2px);
       box-shadow: 0 0 0 transparent;
     }
 
-    .btn-icon-pill.active {
+    .btn-icon-sq.active {
       background: rgba(16, 185, 129, 0.18);
       border-color: rgba(16, 185, 129, 0.5);
-      color: #34d399;
     }
 
     /* ===================================================
@@ -182,22 +178,21 @@
     .hero-pills-row {
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 5px;
       margin-bottom: 12px;
-      flex-wrap: nowrap;
     }
 
     .status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
+      gap: 4px;
+      padding: 4px 8px;
       border-radius: 9999px;
       font-family: 'Outfit', sans-serif;
-      font-size: 0.74rem;
+      font-size: 0.69rem;
       font-weight: 800;
       white-space: nowrap;
-      flex-shrink: 0;
     }
 
     .pill-streak {
@@ -260,11 +255,11 @@
     }
 
     .progress-track-wrap {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 9999px;
-      height: 8px;
+      height: 9px;
       padding: 1.5px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       margin-bottom: 6px;
     }
 
@@ -1107,13 +1102,13 @@
       </div>
 
       <div class="header-actions">
-        <button class="btn-icon-pill" id="btn-sound-toggle" onclick="toggleSound()" title="Sound Toggle">
+        <button class="btn-icon-sq" id="btn-sound-toggle" onclick="toggleSound()" title="Mute / Unmute Sound">
           <span id="sound-icon">🔊</span>
         </button>
-        <button class="btn-icon-pill" onclick="resetWeek()" title="Reset Week">
-          <span>🔄 Reset</span>
+        <button class="btn-icon-sq" onclick="resetWeek()" title="Reset Week Tasks">
+          <span>🔄</span>
         </button>
-        <button class="btn-icon-pill" onclick="window.print()" title="Save PDF">
+        <button class="btn-icon-sq" onclick="window.print()" title="Export / Print PDF">
           <span>📄</span>
         </button>
       </div>
