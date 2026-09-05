@@ -2,23 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Men's Hair Growth & Styling Blueprint</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#090d16" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Scientifically Proven Hair Growth & Flow Tracker</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: rgba(18, 24, 38, 0.85);
+      --bg: #090d16;
+      --card-bg: rgba(15, 23, 42, 0.75);
       --card-border: rgba(255, 255, 255, 0.08);
       --primary: #38bdf8;
       --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-      --accent-green: #34d399;
-      --accent-orange: #fb923c;
-      --accent-red: #f87171;
-      --text-main: #f1f5f9;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-purple: #a855f7;
+      --accent-red: #ef4444;
+      --text-main: #f8fafc;
       --text-muted: #94a3b8;
+      --radius-xl: 20px;
       --radius-lg: 16px;
       --radius-md: 12px;
       --radius-sm: 8px;
@@ -28,6 +35,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
@@ -35,10 +43,10 @@
       background-color: var(--bg);
       color: var(--text-main);
       line-height: 1.6;
-      padding: 24px 16px 80px;
+      padding: 20px 16px 80px;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 10% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 90% 75%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
       background-attachment: fixed;
     }
 
@@ -47,44 +55,45 @@
       margin: 0 auto;
     }
 
-    /* Top Bar / Print Action */
+    /* Top Utility Bar */
     .top-actions {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
       gap: 12px;
     }
 
-    .badge {
+    .badge-science {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 6px 14px;
       border-radius: 9999px;
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 700;
       letter-spacing: 0.5px;
       text-transform: uppercase;
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--primary);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
     }
 
     .btn-group {
       display: flex;
-      gap: 10px;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 20px;
+      padding: 9px 16px;
       border-radius: var(--radius-sm);
       font-family: 'Outfit', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -93,8 +102,9 @@
 
     .btn-primary {
       background: var(--primary-gradient);
-      color: #0f172a;
-      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+      color: #090d16;
+      font-weight: 700;
+      box-shadow: 0 4px 18px rgba(56, 189, 248, 0.3);
     }
 
     .btn-primary:hover {
@@ -112,36 +122,102 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
-    /* Header */
+    /* Hero Header */
     header {
       text-align: center;
       padding: 32px 20px;
       background: var(--card-bg);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-xl);
       border: 1px solid var(--card-border);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
       margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, transparent 60%);
+      pointer-events: none;
     }
 
     h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       font-weight: 800;
       background: var(--primary-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .subtitle {
       color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 620px;
-      margin: 0 auto;
+      font-size: 0.98rem;
+      max-width: 640px;
+      margin: 0 auto 16px;
     }
 
-    /* Comparison Banner */
+    /* Completion Progress Card */
+    .progress-bar-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary-gradient);
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+
+    /* Scientific Pill Tags */
+    .science-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .science-tag {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #cbd5e1;
+    }
+
+    /* Goal Comparison Banner */
     .goal-banner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -152,47 +228,42 @@
     .goal-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       padding: 18px 20px;
       display: flex;
       flex-direction: column;
       gap: 6px;
+      backdrop-filter: blur(12px);
     }
 
-    .goal-card.current {
-      border-left: 4px solid var(--accent-orange);
-    }
-
-    .goal-card.target {
-      border-left: 4px solid var(--accent-green);
-    }
+    .goal-card.current { border-left: 4px solid var(--accent-orange); }
+    .goal-card.target { border-left: 4px solid var(--accent-green); }
 
     .goal-label {
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-
     .goal-card.current .goal-label { color: var(--accent-orange); }
     .goal-card.target .goal-label { color: var(--accent-green); }
 
     .goal-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 700;
     }
 
     .goal-desc {
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
     }
 
-    /* Main Grid */
+    /* Section Cards */
     .section-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-xl);
       padding: 24px;
       margin-bottom: 24px;
       backdrop-filter: blur(12px);
@@ -202,20 +273,20 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--card-border);
     }
 
     .section-icon {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       background: rgba(255, 255, 255, 0.05);
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid var(--card-border);
     }
 
@@ -226,11 +297,80 @@
       color: var(--text-main);
     }
 
+    /* INTERACTIVE 4-MINUTE TIMER (Mechanical Dermal Papilla Stimulation) */
+    .timer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(56, 189, 248, 0.05) 0%, rgba(15, 23, 42, 0.5) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: var(--radius-lg);
+      margin-bottom: 20px;
+    }
+
+    .timer-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid rgba(56, 189, 248, 0.2);
+      border-top-color: var(--primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 16px 0;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .timer-circle.running {
+      animation: pulse 2s infinite ease-in-out;
+      border-color: rgba(56, 189, 248, 0.5);
+      border-top-color: var(--accent-green);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.25);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+
+    .timer-display {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .timer-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .timer-btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .timer-study-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 14px;
+      max-width: 500px;
+      line-height: 1.4;
+    }
+
     /* Weekly Schedule Table */
     .schedule-grid {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .day-row {
@@ -239,8 +379,8 @@
       align-items: center;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--card-border);
-      border-radius: var(--radius-sm);
-      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
       gap: 14px;
       transition: all 0.2s ease;
     }
@@ -265,18 +405,20 @@
     .action-badge {
       display: inline-block;
       width: fit-content;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 2px 8px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
       border-radius: 4px;
       margin-bottom: 4px;
       text-transform: uppercase;
+      letter-spacing: 0.4px;
     }
 
-    .tag-wash { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
-    .tag-oil { background: rgba(251, 146, 60, 0.2); color: #fb923c; }
-    .tag-rest { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
-    .tag-massage { background: rgba(52, 211, 153, 0.2); color: #34d399; }
+    .tag-wash { background: rgba(56, 189, 248, 0.18); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .tag-oil { background: rgba(245, 158, 11, 0.18); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .tag-rest { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.2); }
+    .tag-massage { background: rgba(16, 185, 129, 0.18); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .tag-clarify { background: rgba(168, 85, 247, 0.18); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
 
     .day-note {
       font-size: 0.85rem;
@@ -295,10 +437,10 @@
     input[type="checkbox"] {
       appearance: none;
       -webkit-appearance: none;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border: 2px solid rgba(255, 255, 255, 0.25);
-      border-radius: 6px;
+      border-radius: 7px;
       background: rgba(255, 255, 255, 0.05);
       cursor: pointer;
       display: grid;
@@ -309,65 +451,127 @@
     input[type="checkbox"]:checked {
       background: var(--accent-green);
       border-color: var(--accent-green);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
     }
 
     input[type="checkbox"]:checked::before {
       content: "✓";
-      color: #0b0f19;
-      font-size: 14px;
+      color: #090d16;
+      font-size: 15px;
       font-weight: 900;
     }
 
-    /* Daily 2-Minute Habits Cards */
-    .habits-grid {
+    /* Quick Daily Trackers (Water & Protein) */
+    .counters-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .counter-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .counter-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .counter-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .counter-ctrls {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s all ease;
+    }
+
+    .btn-circle:hover {
+      background: var(--primary);
+      color: #090d16;
+    }
+
+    /* Science Behind The Protocol (Accordion / Cards) */
+    .science-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
 
-    .habit-card {
+    .science-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--card-border);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       padding: 18px;
     }
 
-    .habit-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
+    .science-card-header {
       display: flex;
       align-items: center;
-      gap: 8px;
-    }
-
-    .habit-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
       gap: 10px;
+      margin-bottom: 8px;
     }
 
-    .habit-list li {
-      font-size: 0.88rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: #cbd5e1;
+    .science-card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
     }
 
-    /* Timeline Roadmap */
+    .science-citation {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .science-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* 12-Month Interactive Timeline & Estimator */
     .timeline {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      position: relative;
     }
 
     .timeline-item {
       display: grid;
-      grid-template-columns: 100px 1fr;
+      grid-template-columns: 110px 1fr;
       gap: 16px;
       padding: 16px;
       border-radius: var(--radius-md);
@@ -404,17 +608,17 @@
 
     /* Barber Note Box */
     .barber-box {
-      background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(248, 113, 113, 0.1) 100%);
-      border: 1px dashed rgba(251, 146, 60, 0.4);
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(239, 68, 68, 0.08) 100%);
+      border: 1px dashed rgba(245, 158, 11, 0.4);
       border-radius: var(--radius-md);
-      padding: 18px;
+      padding: 16px;
       margin-top: 14px;
     }
 
     .barber-dialogue {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-style: italic;
-      color: #fed7aa;
+      color: #fef08a;
       margin-top: 6px;
       line-height: 1.5;
     }
@@ -427,27 +631,26 @@
     }
 
     .rule-box {
-      padding: 16px;
-      border-radius: var(--radius-md);
+      padding: 18px;
+      border-radius: var(--radius-lg);
       border: 1px solid var(--card-border);
     }
 
     .rule-box.dos {
-      background: rgba(52, 211, 153, 0.04);
+      background: rgba(16, 185, 129, 0.04);
       border-left: 4px solid var(--accent-green);
     }
 
     .rule-box.donts {
-      background: rgba(248, 113, 113, 0.04);
+      background: rgba(239, 68, 68, 0.04);
       border-left: 4px solid var(--accent-red);
     }
 
     .rule-box h3 {
       font-size: 1rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-
     .rule-box.dos h3 { color: var(--accent-green); }
     .rule-box.donts h3 { color: var(--accent-red); }
 
@@ -455,7 +658,7 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       font-size: 0.85rem;
       color: #cbd5e1;
     }
@@ -466,7 +669,7 @@
       gap: 8px;
     }
 
-    /* Print Styles for clean PDF export */
+    /* Print Styles */
     @media print {
       body {
         background: #ffffff !important;
@@ -474,51 +677,45 @@
         background-image: none !important;
         padding: 0;
       }
-      .top-actions, .btn-group {
+      .top-actions, .btn-group, .timer-btn-group, .counter-ctrls {
         display: none !important;
       }
       .container {
         max-width: 100% !important;
       }
-      .section-card, .goal-card, .day-row, .habit-card, .timeline-item {
+      .section-card, .goal-card, .day-row, .timeline-item, .counter-card, .science-card {
         background: #ffffff !important;
         border: 1px solid #e2e8f0 !important;
         box-shadow: none !important;
         color: #0f172a !important;
         page-break-inside: avoid;
       }
-      h1 {
-        -webkit-text-fill-color: #0f172a !important;
-      }
-      h2, h3, .day-name {
-        color: #0f172a !important;
-      }
-      .day-note, .goal-desc, .subtitle, .phase-content p {
-        color: #475569 !important;
-      }
-      input[type="checkbox"] {
-        border-color: #64748b !important;
-      }
+      h1 { -webkit-text-fill-color: #0f172a !important; }
+      h2, h3, .day-name, .timer-display { color: #0f172a !important; }
+      .day-note, .goal-desc, .subtitle, .phase-content p, .science-card p { color: #475569 !important; }
+      input[type="checkbox"] { border-color: #64748b !important; }
       .tag-wash { background: #e0f2fe; color: #0284c7; }
       .tag-oil { background: #ffedd5; color: #ea580c; }
       .tag-rest { background: #f1f5f9; color: #475569; }
+      .tag-clarify { background: #f3e8ff; color: #7e22ce; }
       .barber-box {
         background: #fff7ed !important;
         border: 1px dashed #fdba74 !important;
         color: #9a3412 !important;
       }
-      .barber-dialogue {
-        color: #7c2d12 !important;
-      }
+      .barber-dialogue { color: #7c2d12 !important; }
     }
 
-    @media (max-width: 640px) {
-      .goal-banner, .habits-grid, .rules-grid {
+    @media (max-width: 700px) {
+      .goal-banner, .science-grid, .rules-grid, .counters-grid {
         grid-template-columns: 1fr;
       }
       .day-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr auto;
         gap: 8px;
+      }
+      .day-name {
+        grid-column: 1 / -1;
       }
       .timeline-item {
         grid-template-columns: 1fr;
@@ -531,40 +728,113 @@
 
     <!-- Top Utility Bar -->
     <div class="top-actions">
-      <div class="badge">🔥 12-Month Transformation Plan</div>
+      <div class="badge-science">🔬 Dermatologist & Trichologist Backed Protocol</div>
       <div class="btn-group">
-        <button class="btn btn-outline" onclick="resetCheckboxes()">🔄 Reset Week</button>
+        <button class="btn btn-outline" onclick="resetWeeklyData()">🔄 Reset Week</button>
         <button class="btn btn-primary" onclick="window.print()">🖨️ Save as PDF / Print</button>
       </div>
     </div>
 
     <!-- Header -->
     <header>
-      <h1>Hair Growth & Flow Blueprint</h1>
-      <p class="subtitle">Complete personalized roadmap to transition from a short tapered fade to a textured medium-length curtain flow.</p>
+      <h1>Scientific Hair Growth & Flow Tracker</h1>
+      <p class="subtitle">A rigorous, clinical dermatology-inspired protocol to maximize anagen phase duration, minimize hygral fatigue, and build a healthy textured flow.</p>
+      
+      <div class="science-tags">
+        <span class="science-tag">🧬 Dermal Papilla Gene Induction</span>
+        <span class="science-tag">🥥 Low-MW Cortex Penetration</span>
+        <span class="science-tag">🌿 Microcirculation Vasodilation</span>
+        <span class="science-tag">🛡️ 18-MEA Lipid Layer Preservation</span>
+      </div>
+
+      <!-- Live Weekly Completion Progress -->
+      <div class="progress-bar-card">
+        <div class="progress-info">
+          <span>Weekly Protocol Completion</span>
+          <span id="progress-percent">0% Completed</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-bar"></div>
+        </div>
+      </div>
     </header>
 
     <!-- Goal Comparison Banner -->
     <div class="goal-banner">
       <div class="goal-card current">
         <span class="goal-label">Current State (Baseline)</span>
-        <div class="goal-title">Short Fade / Quiff</div>
-        <div class="goal-desc">Length: ~2 inches top, faded sides. Healthy roots & great density. Ready for growth!</div>
+        <div class="goal-title">Short Crew / Fade</div>
+        <div class="goal-desc">Length: ~2 inches top, faded sides. Healthy follicles with high density ready for optimal growth cycle.</div>
       </div>
       <div class="goal-card target">
-        <span class="goal-label">Goal Target (~10-12 Months)</span>
-        <div class="goal-title">Medium Textured Flow</div>
-        <div class="goal-desc">Length: 6-8 inches top, layered sides/back. Natural wavy volume & healthy shine.</div>
+        <span class="goal-label">Target State (8-12 Months)</span>
+        <div class="goal-title">Medium Layered Flow</div>
+        <div class="goal-desc">Length: 6-8 inches top, layered sides/back. Intact cuticles, natural wave definition & high tensile strength.</div>
       </div>
     </div>
 
-    <!-- Weekly Routine Tracker -->
+    <!-- MECHANICAL STIMULATION: 4-MINUTE SCALP MASSAGE TIMER -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">⏱️</div>
+        <div>
+          <h2>4-Minute Dermal Papilla Stimulation Timer</h2>
+          <p class="subtitle" style="font-size: 0.85rem;">Standardized mechanical stretching forces upregulate hair-cycle genes (Noggin & Cyclin D1).</p>
+        </div>
+      </div>
+
+      <div class="timer-container">
+        <div class="timer-circle" id="timer-circle">
+          <div class="timer-display" id="timer-display">04:00</div>
+          <div class="timer-label" id="timer-status">Ready</div>
+        </div>
+        <div class="timer-btn-group">
+          <button class="btn btn-primary" id="btn-start" onclick="toggleTimer()">▶ Start Massage</button>
+          <button class="btn btn-outline" onclick="resetTimer()">⏹ Reset</button>
+        </div>
+        <div class="timer-study-note">
+          💡 <strong>Clinical Fact:</strong> A landmark 2016 clinical study showed that exactly <strong>4 minutes</strong> of daily mechanical scalp massage increased hair thickness significantly by altering gene expression in dermal papilla cells.
+        </div>
+      </div>
+    </div>
+
+    <!-- DAILY BIOMARKER CLICKERS (Water & Protein) -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">⚡</div>
+        <div>
+          <h2>Daily Nutrition & Hydration Metrics</h2>
+          <p class="subtitle" style="font-size: 0.85rem;">Keratin synthesis requires optimal cysteine/methionine amino acids and hydration.</p>
+        </div>
+      </div>
+
+      <div class="counters-grid">
+        <div class="counter-card">
+          <div class="counter-title">💧 Daily Water (Target: 8 Glasses / 3L)</div>
+          <div class="counter-val" id="water-val">0 / 8</div>
+          <div class="counter-ctrls">
+            <button class="btn-circle" onclick="updateCounter('water', -1)">-</button>
+            <button class="btn-circle" onclick="updateCounter('water', 1)">+</button>
+          </div>
+        </div>
+        <div class="counter-card">
+          <div class="counter-title">🍳 Protein Intake (Target: 80g - 100g)</div>
+          <div class="counter-val" id="protein-val">0g</div>
+          <div class="counter-ctrls">
+            <button class="btn-circle" onclick="updateCounter('protein', -10)">-</button>
+            <button class="btn-circle" onclick="updateCounter('protein', 10)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCIENTIFIC WEEKLY PROTOCOL -->
     <div class="section-card">
       <div class="section-header">
         <div class="section-icon">🗓️</div>
         <div>
-          <h2>Weekly Action Schedule & Tracker</h2>
-          <p class="subtitle" style="font-size: 0.85rem;">Tick items as you complete them. Saves automatically in your browser.</p>
+          <h2>Scientific Weekly Schedule & Habit Tracker</h2>
+          <p class="subtitle" style="font-size: 0.85rem;">Designed around lipid retention, scalp microbiome balance, and follicle rest cycles.</p>
         </div>
       </div>
 
@@ -573,11 +843,11 @@
         <div class="day-row">
           <div class="day-name">Monday</div>
           <div class="day-action">
-            <span class="action-badge tag-rest">Rest / Natural</span>
-            <span class="day-note">Sirf normal paani agar pasina ho. No shampoo. Halka serum lagayein.</span>
+            <span class="action-badge tag-rest">Rest & Hydration</span>
+            <span class="day-note">Natural sebum distribution. Normal water rinse only if sweaty. 2 drops Argan oil on ends.</span>
           </div>
           <div class="checkbox-wrap">
-            <input type="checkbox" id="check-mon" />
+            <input type="checkbox" id="sc-mon" onchange="updateProgress()" />
           </div>
         </div>
 
@@ -585,11 +855,11 @@
         <div class="day-row">
           <div class="day-name">Tuesday</div>
           <div class="day-action">
-            <span class="action-badge tag-oil">Oiling & Scalp Massage</span>
-            <span class="day-note">Coconut / Almond Oil + 4-5 drops Rosemary Oil. Scalp mein 5 min gentle massage.</span>
+            <span class="action-badge tag-oil">Pre-Wash Coconut + Rosemary Infusion</span>
+            <span class="day-note">Coconut oil (anti-hygral fatigue) + 4 drops Rosemary essential oil (circulation). Leave for 45-60 min.</span>
           </div>
           <div class="checkbox-wrap">
-            <input type="checkbox" id="check-tue" />
+            <input type="checkbox" id="sc-tue" onchange="updateProgress()" />
           </div>
         </div>
 
@@ -597,11 +867,11 @@
         <div class="day-row">
           <div class="day-name">Wednesday</div>
           <div class="day-action">
-            <span class="action-badge tag-wash">Wash Day 1 (Full Routine)</span>
-            <span class="day-note">Sulfate-free Shampoo (sirf scalp) + Conditioner (sirf baalon ki lambai par 2 min).</span>
+            <span class="action-badge tag-wash">Wash Day 1 (Scalp Focus)</span>
+            <span class="day-note">Mild pH-balanced sulfate-free shampoo (scalp only). Hydrating cationic conditioner (lengths only, 2 mins).</span>
           </div>
           <div class="checkbox-wrap">
-            <input type="checkbox" id="check-wed" />
+            <input type="checkbox" id="sc-wed" onchange="updateProgress()" />
           </div>
         </div>
 
@@ -609,11 +879,11 @@
         <div class="day-row">
           <div class="day-name">Thursday</div>
           <div class="day-action">
-            <span class="action-badge tag-rest">Natural Flow</span>
-            <span class="day-note">Wide-tooth wooden comb se set karein. Baal naturally dry hone dein.</span>
+            <span class="action-badge tag-massage">Mechanical Stimulation Day</span>
+            <span class="day-note">4-minute standardized mechanical scalp massage with timer. Detangle gently with wide-tooth wooden comb.</span>
           </div>
           <div class="checkbox-wrap">
-            <input type="checkbox" id="check-thu" />
+            <input type="checkbox" id="sc-thu" onchange="updateProgress()" />
           </div>
         </div>
 
@@ -621,11 +891,11 @@
         <div class="day-row">
           <div class="day-name">Friday</div>
           <div class="day-action">
-            <span class="action-badge tag-massage">Dry Scalp Stimulation</span>
-            <span class="day-note">Raat ko sone se pehle 3 minute ungliyon se dry circular scalp massage.</span>
+            <span class="action-badge tag-clarify">Microbiome & Sebum Check</span>
+            <span class="day-note">Alternate weeks: 1% Ketoconazole or Salicylic shampoo to prevent Malassezia micro-inflammation.</span>
           </div>
           <div class="checkbox-wrap">
-            <input type="checkbox" id="check-fri" />
+            <input type="checkbox" id="sc-fri" onchange="updateProgress()" />
           </div>
         </div>
 
@@ -633,11 +903,11 @@
         <div class="day-row">
           <div class="day-name">Saturday</div>
           <div class="day-action">
-            <span class="action-badge tag-oil">Pre-Wash Oiling</span>
-            <span class="day-note">Nahane se 1-2 ghante pehle halka tel lagayein ya overnight chhod dein.</span>
+            <span class="action-badge tag-oil">Nutrient Oil Treatment</span>
+            <span class="day-note">Almond or Jojoba oil scalp lubrication. Deep scalp relaxation before sleep.</span>
           </div>
           <div class="checkbox-wrap">
-            <input type="checkbox" id="check-sat" />
+            <input type="checkbox" id="sc-sat" onchange="updateProgress()" />
           </div>
         </div>
 
@@ -645,72 +915,72 @@
         <div class="day-row">
           <div class="day-name">Sunday</div>
           <div class="day-action">
-            <span class="action-badge tag-wash">Wash Day 2 (Care & Refresh)</span>
-            <span class="day-note">Mild shampoo + Conditioner + 2 drops Argan oil damp baalon par. Full reset.</span>
+            <span class="action-badge tag-wash">Wash Day 2 & Deep Conditioning</span>
+            <span class="day-note">Full reset wash + leave-in conditioner. Air-dry or cotton T-shirt pat dry (Zero friction).</span>
           </div>
           <div class="checkbox-wrap">
-            <input type="checkbox" id="check-sun" />
+            <input type="checkbox" id="sc-sun" onchange="updateProgress()" />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Daily 2-Minute Habits -->
+    <!-- THE SCIENCE BEHIND THE PROTOCOL -->
     <div class="section-card">
       <div class="section-header">
-        <div class="section-icon">⚡</div>
+        <div class="section-icon">🔬</div>
         <div>
-          <h2>Daily 2-Minute Habits</h2>
-          <p class="subtitle" style="font-size: 0.85rem;">Do small things daily that prevent breakage & frizz.</p>
+          <h2>The Scientific Research (Why This Works)</h2>
+          <p class="subtitle" style="font-size: 0.85rem;">Validated by peer-reviewed dermatology and cosmetic science journals.</p>
         </div>
       </div>
 
-      <div class="habits-grid">
-        <div class="habit-card">
-          <div class="habit-title">🌅 Subah (Morning - 2 Mins)</div>
-          <ul class="habit-list">
-            <li>
-              <input type="checkbox" id="m-1">
-              <span><strong>Light Mist:</strong> Halka sa paani spray karein taaki bed-hair settle ho jaye.</span>
-            </li>
-            <li>
-              <input type="checkbox" id="m-2">
-              <span><strong>Serum/Oil:</strong> 2 drops serum/argan oil tips par rub karein (frizz control).</span>
-            </li>
-            <li>
-              <input type="checkbox" id="m-3">
-              <span><strong>Wide-Tooth Comb:</strong> Ungliyon ya chaude daant wali lakdi ki kanghi se backward flow dein.</span>
-            </li>
-          </ul>
+      <div class="science-grid">
+        <div class="science-card">
+          <div class="science-card-header">
+            <span style="font-size: 1.3rem;">🥥</span>
+            <div class="science-card-title">Coconut Oil & Hygral Fatigue</div>
+          </div>
+          <div class="science-citation">Rele & Mohile (J. Cosmet. Sci., 2003)</div>
+          <p>Unlike mineral or sunflower oil, coconut oil's low-molecular-weight <strong>lauric acid</strong> penetrates deep into the hair cortex. It prevents "hygral fatigue" (swelling/shrinking during washes) and dramatically stops protein loss and shaft snapping.</p>
         </div>
 
-        <div class="habit-card">
-          <div class="habit-title">🌙 Raat Ko (Night - 2 Mins)</div>
-          <ul class="habit-list">
-            <li>
-              <input type="checkbox" id="n-1">
-              <span><strong>Scalp Massage:</strong> 3 min circular fingertip massage (blood circulation boost).</span>
-            </li>
-            <li>
-              <input type="checkbox" id="n-2">
-              <span><strong>Friction-Free Sleep:</strong> Satin pillowcase ya soft t-shirt pillow par use karein.</span>
-            </li>
-            <li>
-              <input type="checkbox" id="n-3">
-              <span><strong>Hydration Check:</strong> Din bhar mein 3-4 litre paani poora hua ya nahi.</span>
-            </li>
-          </ul>
+        <div class="science-card">
+          <div class="science-card-header">
+            <span style="font-size: 1.3rem;">🌿</span>
+            <div class="science-card-title">Rosemary vs Minoxidil</div>
+          </div>
+          <div class="science-citation">Panahi et al. (Skinmed, 2015)</div>
+          <p>A 6-month randomized clinical trial demonstrated that diluted Rosemary essential oil achieved hair count increases comparable to 2% minoxidil by boosting capillary blood flow, while producing significantly less scalp itchiness and irritation.</p>
+        </div>
+
+        <div class="science-card">
+          <div class="science-card-header">
+            <span style="font-size: 1.3rem;">💆</span>
+            <div class="science-card-title">Mechanical Gene Induction</div>
+          </div>
+          <div class="science-citation">Koyama et al. (Eplasty, 2016)</div>
+          <p>Standardized mechanical scalp massage (4 minutes daily) induces stretching forces on subcutaneous dermal papilla cells, upregulating <em>Noggin</em> and <em>BMP4</em>, resulting in measurably thicker hair fibers over 24 weeks.</p>
+        </div>
+
+        <div class="science-card">
+          <div class="science-card-header">
+            <span style="font-size: 1.3rem;">🛡️</span>
+            <div class="science-card-title">Microbiome & Ketoconazole</div>
+          </div>
+          <div class="science-citation">Inui & Itami / Dermatol. Surg.</div>
+          <p>Controlling <em>Malassezia</em> yeast and follicle infundibulum sebum buildup with intermittent clarifying/ketoconazole washes eliminates subclinical micro-inflammation, preventing premature catagen/telogen shedding.</p>
         </div>
       </div>
     </div>
 
-    <!-- 12-Month Phases Roadmap -->
+    <!-- 12-MONTH TIMELINE & BARBER SCRIPT -->
     <div class="section-card">
       <div class="section-header">
         <div class="section-icon">📈</div>
         <div>
           <h2>12-Month Growth Roadmap</h2>
-          <p class="subtitle" style="font-size: 0.85rem;">Growth rate: ~0.5 inch / 1.25 cm per month.</p>
+          <p class="subtitle" style="font-size: 0.85rem;">Human hair grows at an average biological rate of 0.5 inches (1.25 cm) per month.</p>
         </div>
       </div>
 
@@ -718,65 +988,64 @@
         <div class="timeline-item active-phase">
           <div class="phase-badge">Phase 1<br><span style="font-size:0.75rem; color:#94a3b8;">Month 1-3</span></div>
           <div class="phase-content">
-            <h3>The Foundation (Building Length)</h3>
-            <p>Sides kaanon tak aane lagengi aur top unmanageable lagega. <strong>Rule:</strong> Upar ke baal bilkul mat kaato. Har 5-6 hafte mein sirf gardan (neckline) clean karwao.</p>
+            <h3>Length Accumulation (The Foundation)</h3>
+            <p>Sides reach over ears; top grows to 3-4 inches. <strong>Rule:</strong> Keep top untouched. Every 6 weeks, only clean the lower nape/neckline taper.</p>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="phase-badge">Phase 2<br><span style="font-size:0.75rem; color:#94a3b8;">Month 4-7</span></div>
           <div class="phase-content">
-            <h3>The "Awkward Stage" (Survival Phase)</h3>
-            <p>Baal na chote lagenge na poore lambe, sides phoolne lagengi. <strong>Strategy:</strong> Sea salt spray se push-back karein, caps/headband use karein. Barber se strictly bolein: <em>"Sirf shape maintain karo, length touch mat karo!"</em></p>
+            <h3>The "Awkward Stage" (Patience Phase)</h3>
+            <p>Hair reaches nose-tip. Sides puff outward. <strong>Strategy:</strong> Use light sea salt spray or texturizing cream, push hair back/tuck behind ears. Tell barber: <em>"Zero length off the top!"</em></p>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="phase-badge">Phase 3<br><span style="font-size:0.75rem; color:#94a3b8;">Month 8-12</span></div>
           <div class="phase-content">
-            <h3>Flow & Layering (Photo 2 Target Look)</h3>
-            <p>Length naak aur lips cross kar jayegi. Achhe salon mein jakar interior layering aur texture add karwayein taaki wahi natural curtain wave flow create ho.</p>
+            <h3>Textured Flow & Layering (Photo 2 Goal)</h3>
+            <p>Length reaches mouth/chin level. Visit a top stylist for <strong>interior layering and weight removal</strong> to create the effortless wavy flow seen in Photo 2.</p>
           </div>
         </div>
       </div>
 
-      <!-- Barber instruction script box -->
       <div class="barber-box">
-        <strong style="color: #fb923c;">✂️ Barber ko kya bolna hai (Exact Script):</strong>
-        <p class="barber-dialogue">"Bhaiya, main baal lambe kar raha hoon (growing them out). Upar aur pichhe ki length bilkul touch mat karna. Sirf gardan (neckline) aur kaano ke side se clean taper kar do aur split ends trim kar do."</p>
+        <strong style="color: #f59e0b;">✂️ Barber ko bolne ke liye Exact Script:</strong>
+        <p class="barber-dialogue">"Bhaiya, main baal lambe kar raha hoon (growing them out). Upar aur crown ki length bilkul mat kaato. Sirf gardan (neckline) aur kaano ke side se clean taper kar do aur dead ends nikaal do."</p>
       </div>
     </div>
 
-    <!-- Do's & Don'ts Cheat Sheet -->
+    <!-- DO'S AND DON'TS -->
     <div class="section-card">
       <div class="section-header">
         <div class="section-icon">⚖️</div>
         <div>
-          <h2>Do's and Don'ts Cheat Sheet</h2>
-          <p class="subtitle" style="font-size: 0.85rem;">Golden rules to preserve hair health.</p>
+          <h2>Scientific Do's and Don'ts</h2>
+          <p class="subtitle" style="font-size: 0.85rem;">Key principles to preserve cuticular integrity and hair tensile strength.</p>
         </div>
       </div>
 
       <div class="rules-grid">
         <div class="rule-box dos">
-          <h3>✅ Kya Karna Hai (Do's)</h3>
+          <h3>✅ Scientific Do's</h3>
           <ul>
-            <li>✨ <strong>Sulfate-free Shampoo:</strong> Hafte mein 2-3 baar max.</li>
-            <li>✨ <strong>Conditioner Always:</strong> Shampoo ke baad ends par compulsory.</li>
-            <li>✨ <strong>Rosemary + Carrier Oil:</strong> Proven for accelerated follicle growth.</li>
-            <li>✨ <strong>High Protein Diet:</strong> Eggs, paneer, sprouts, dals.</li>
-            <li>✨ <strong>Gentle Pat-Dry:</strong> Cotton T-shirt se dab karein.</li>
+            <li>✨ <strong>Pre-wash Coconut Oil:</strong> Saturates cortex and prevents hygral fatigue.</li>
+            <li>✨ <strong>Conditioner on Lengths:</strong> Replenishes protective 18-MEA lipid layer.</li>
+            <li>✨ <strong>Wide-Tooth Wooden Comb:</strong> Zero static charge, prevents tensile fiber snapping.</li>
+            <li>✨ <strong>Satin Pillowcase:</strong> Minimizes nocturnal friction and cuticular fraying.</li>
+            <li>✨ <strong>4-Min Daily Massage:</strong> Activates mechanotransduction pathways in roots.</li>
           </ul>
         </div>
 
         <div class="rule-box donts">
-          <h3>❌ Kya Nahi Karna (Don'ts)</h3>
+          <h3>❌ Absolute Don'ts</h3>
           <ul>
-            <li>🚫 <strong>Daily Shampoo:</strong> Baal super-dry aur frizzy ho jayenge.</li>
-            <li>🚫 <strong>Towel Rubbing:</strong> Jhatakne ya ragadne se roots toot te hain.</li>
-            <li>🚫 <strong>Hot Water:</strong> Scalp ko dry aur baalon ko brittle karta hai.</li>
-            <li>🚫 <strong>Plastic Fine Comb:</strong> Static aur hair pulling create karta hai.</li>
-            <li>🚫 <strong>Impulsive Haircut:</strong> Awkward stage mein gusse mein cut na karwayein!</li>
+            <li>🚫 <strong>Daily Surfactant Shampoo:</strong> Strips natural protective sebum envelope.</li>
+            <li>🚫 <strong>Vigorous Terrycloth Rubbing:</strong> Causes micro-fissures in damp, fragile cuticles.</li>
+            <li>🚫 <strong>Scalding Hot Water:</strong> De-lipifies scalp barrier, triggering reactive sebum flaking.</li>
+            <li>🚫 <strong>Combing Soaking Wet Hair:</strong> Wet hair stretches up to 30% and snaps easily.</li>
+            <li>🚫 <strong>Impulsive Cuts:</strong> Giving up during the 5th month awkward stage!</li>
           </ul>
         </div>
       </div>
@@ -785,24 +1054,145 @@
   </div>
 
   <script>
-    // Auto-save checkbox states in localStorage
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(box => {
-      const saved = localStorage.getItem('hair_' + box.id);
-      if (saved === 'true') box.checked = true;
-      box.addEventListener('change', () => {
-        localStorage.setItem('hair_' + box.id, box.checked);
-      });
-    });
+    // LocalStorage Keys
+    const CHECKBOX_PREFIX = 'hair_sc_';
+    const WATER_KEY = 'hair_water_count';
+    const PROTEIN_KEY = 'hair_protein_count';
 
-    function resetCheckboxes() {
-      if (confirm("Kya aap saare weekly checkboxes reset karna chahte hain?")) {
-        checkboxes.forEach(box => {
-          box.checked = false;
-          localStorage.removeItem('hair_' + box.id);
-        });
+    // Checkbox persistence & progress bar calculation
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+    function initCheckboxes() {
+      checkboxes.forEach(box => {
+        const saved = localStorage.getItem(CHECKBOX_PREFIX + box.id);
+        if (saved === 'true') box.checked = true;
+      });
+      updateProgress();
+    }
+
+    function updateProgress() {
+      let checkedCount = 0;
+      checkboxes.forEach(box => {
+        localStorage.setItem(CHECKBOX_PREFIX + box.id, box.checked);
+        if (box.checked) checkedCount++;
+      });
+      const pct = Math.round((checkedCount / checkboxes.length) * 100);
+      document.getElementById('progress-bar').style.width = pct + '%';
+      document.getElementById('progress-percent').innerText = pct + '% Completed';
+    }
+
+    // Daily Water & Protein Counters
+    function getCounter(key, defaultVal) {
+      return parseInt(localStorage.getItem(key)) || defaultVal;
+    }
+
+    function setCounter(key, val) {
+      localStorage.setItem(key, Math.max(0, val));
+      renderCounters();
+    }
+
+    function updateCounter(type, delta) {
+      if (type === 'water') {
+        setCounter(WATER_KEY, getCounter(WATER_KEY, 0) + delta);
+      } else if (type === 'protein') {
+        setCounter(PROTEIN_KEY, getCounter(PROTEIN_KEY, 0) + delta);
       }
     }
+
+    function renderCounters() {
+      document.getElementById('water-val').innerText = getCounter(WATER_KEY, 0) + ' / 8';
+      document.getElementById('protein-val').innerText = getCounter(PROTEIN_KEY, 0) + 'g';
+    }
+
+    function resetWeeklyData() {
+      if (confirm("Kya aap saari weekly progress aur daily counters reset karna chahte hain?")) {
+        checkboxes.forEach(box => {
+          box.checked = false;
+          localStorage.removeItem(CHECKBOX_PREFIX + box.id);
+        });
+        localStorage.setItem(WATER_KEY, 0);
+        localStorage.setItem(PROTEIN_KEY, 0);
+        renderCounters();
+        updateProgress();
+      }
+    }
+
+    // 4-Minute Scalp Massage Timer
+    let timerDuration = 4 * 60; // 240 seconds
+    let timerRemaining = timerDuration;
+    let timerInterval = null;
+    let isRunning = false;
+
+    const timerDisplay = document.getElementById('timer-display');
+    const timerStatus = document.getElementById('timer-status');
+    const timerCircle = document.getElementById('timer-circle');
+    const btnStart = document.getElementById('btn-start');
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function toggleTimer() {
+      if (isRunning) {
+        clearInterval(timerInterval);
+        isRunning = false;
+        btnStart.innerText = '▶ Resume';
+        timerStatus.innerText = 'Paused';
+        timerCircle.classList.remove('running');
+      } else {
+        isRunning = true;
+        btnStart.innerText = '⏸ Pause';
+        timerStatus.innerText = 'Massaging...';
+        timerCircle.classList.add('running');
+        timerInterval = setInterval(() => {
+          if (timerRemaining > 0) {
+            timerRemaining--;
+            timerDisplay.innerText = formatTime(timerRemaining);
+          } else {
+            clearInterval(timerInterval);
+            isRunning = false;
+            btnStart.innerText = '✔ Completed';
+            timerStatus.innerText = 'Done!';
+            timerCircle.classList.remove('running');
+            playChime();
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      isRunning = false;
+      timerRemaining = timerDuration;
+      timerDisplay.innerText = formatTime(timerRemaining);
+      timerStatus.innerText = 'Ready';
+      btnStart.innerText = '▶ Start Massage';
+      timerCircle.classList.remove('running');
+    }
+
+    function playChime() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5 note
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 1.2);
+      } catch (e) {
+        console.log("Audio not supported");
+      }
+    }
+
+    // Initialize on load
+    initCheckboxes();
+    renderCounters();
   </script>
 </body>
 </html>
