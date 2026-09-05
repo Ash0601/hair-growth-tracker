@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#09090b" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>Flow Protocol — Hair Growth Architecture</title>
+  <title>Mera Hair Routine — Simple Daily Tracker</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,9 +26,6 @@
       --text-muted: #5e606e;
       --accent: #10b981;
       --accent-glow: rgba(16, 185, 129, 0.15);
-      --accent-secondary: #38bdf8;
-      --warning: #f59e0b;
-      --danger: #ef4444;
       --font-mono: 'JetBrains Mono', monospace;
       --radius-sm: 8px;
       --radius-md: 12px;
@@ -54,7 +51,7 @@
     }
 
     .app-shell {
-      max-width: 780px;
+      max-width: 760px;
       margin: 0 auto;
     }
 
@@ -65,7 +62,7 @@
       align-items: center;
       padding-bottom: 24px;
       border-bottom: 1px solid var(--border-subtle);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .brand {
@@ -94,7 +91,6 @@
     .brand-title {
       font-size: 0.95rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
       color: var(--text-main);
     }
 
@@ -142,12 +138,12 @@
       stroke: currentColor;
     }
 
-    /* Minimalist Bento Overview Strip */
+    /* Bento Overview Strip */
     .overview-grid {
       display: grid;
       grid-template-columns: 1.4fr 1fr;
       gap: 14px;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .bento-card {
@@ -155,14 +151,12 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 20px;
-      position: relative;
-      overflow: hidden;
     }
 
     .bento-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       margin-bottom: 12px;
     }
 
@@ -196,17 +190,16 @@
     }
 
     .phase-headline {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       color: var(--text-main);
     }
 
     .phase-subtext {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--text-secondary);
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .progress-bar-container {
@@ -242,8 +235,7 @@
     .metric-rows {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 6px;
+      gap: 10px;
     }
 
     .metric-row {
@@ -251,7 +243,7 @@
       justify-content: space-between;
       align-items: center;
       background: var(--surface-elevated);
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
     }
@@ -298,13 +290,13 @@
       border-color: var(--border-hover);
     }
 
-    /* Minimalist Timer Section (Apple / Linear style) */
+    /* 4-Minute Scalp Massage Stopwatch */
     .timer-strip {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 20px 24px;
-      margin-bottom: 32px;
+      padding: 18px 22px;
+      margin-bottom: 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -320,16 +312,16 @@
 
     .timer-dial {
       position: relative;
-      width: 68px;
-      height: 68px;
+      width: 62px;
+      height: 62px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .timer-dial svg {
-      width: 68px;
-      height: 68px;
+      width: 62px;
+      height: 62px;
       transform: rotate(-90deg);
     }
 
@@ -364,7 +356,7 @@
     }
 
     .timer-heading {
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       font-weight: 700;
       color: var(--text-main);
       margin-bottom: 2px;
@@ -383,7 +375,7 @@
 
     .timer-clock {
       font-family: var(--font-mono);
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: 600;
       letter-spacing: -0.03em;
       color: var(--text-main);
@@ -434,12 +426,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       padding: 0 2px;
     }
 
     .section-title {
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -452,12 +444,12 @@
       color: var(--text-muted);
     }
 
-    /* Protocol List (Linear / Notion Clean Style) */
+    /* Protocol List */
     .protocol-list {
       display: flex;
       flex-direction: column;
       gap: 6px;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .protocol-item {
@@ -484,7 +476,7 @@
     }
 
     .protocol-item.completed {
-      opacity: 0.65;
+      opacity: 0.6;
     }
 
     .protocol-item.completed .item-title {
@@ -495,11 +487,11 @@
     .item-left {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       flex: 1;
     }
 
-    /* Minimal Custom Checkbox */
+    /* Custom Checkbox */
     .custom-check {
       width: 20px;
       height: 20px;
@@ -562,7 +554,6 @@
       font-size: 0.92rem;
       font-weight: 600;
       color: var(--text-main);
-      transition: color 0.15s ease;
     }
 
     .tag-pill {
@@ -578,7 +569,6 @@
     .tag-oil { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
     .tag-rest { background: rgba(255, 255, 255, 0.05); color: #a1a1aa; }
     .tag-massage { background: rgba(16, 185, 129, 0.12); color: #10b981; }
-    .tag-clarify { background: rgba(168, 85, 247, 0.12); color: #c084fc; }
 
     .item-desc {
       font-size: 0.8rem;
@@ -587,9 +577,9 @@
       margin-top: 2px;
     }
 
-    /* Tabs for Deep Knowledge (Science, Roadmap, Salon Guide) */
+    /* Tabs */
     .tab-container {
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
 
     .tab-bar {
@@ -599,21 +589,22 @@
       padding: 4px;
       border-radius: var(--radius-md);
       border: 1px solid var(--border);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .tab-btn {
       flex: 1;
-      padding: 8px 12px;
+      padding: 8px 10px;
       background: transparent;
       border: none;
       color: var(--text-muted);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       border-radius: var(--radius-sm);
       cursor: pointer;
       transition: all 0.15s ease;
       font-family: inherit;
+      white-space: nowrap;
     }
 
     .tab-btn:hover {
@@ -631,48 +622,41 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 22px;
+      padding: 20px;
     }
 
     .tab-content.active {
       display: block;
     }
 
-    /* Science Cards within Tab */
-    .science-list {
+    /* Simple Explanations List */
+    .simple-rules-list {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .science-entry {
-      padding-bottom: 16px;
+    .rule-item {
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border-subtle);
     }
 
-    .science-entry:last-child {
-      padding-bottom: 0;
+    .rule-item:last-child {
       border-bottom: none;
+      padding-bottom: 0;
     }
 
-    .science-title {
-      font-size: 0.9rem;
+    .rule-item-title {
+      font-size: 0.88rem;
       font-weight: 700;
       color: var(--text-main);
       margin-bottom: 2px;
     }
 
-    .science-ref {
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-
-    .science-body {
+    .rule-item-text {
       font-size: 0.82rem;
       color: var(--text-secondary);
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     /* Roadmap Timeline */
@@ -684,15 +668,14 @@
 
     .roadmap-step {
       display: flex;
-      gap: 16px;
-      position: relative;
+      gap: 14px;
     }
 
     .step-indicator {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 24px;
+      width: 20px;
       flex-shrink: 0;
     }
 
@@ -701,7 +684,7 @@
       height: 10px;
       border-radius: 50%;
       background: var(--border-hover);
-      margin-top: 6px;
+      margin-top: 5px;
     }
 
     .step-circle.current {
@@ -718,7 +701,7 @@
 
     .step-content {
       flex: 1;
-      padding-bottom: 12px;
+      padding-bottom: 8px;
     }
 
     .step-meta {
@@ -730,7 +713,7 @@
     }
 
     .step-name {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--text-main);
       margin-bottom: 4px;
@@ -748,7 +731,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 16px;
-      margin-top: 14px;
+      margin-top: 10px;
     }
 
     .dialogue-text {
@@ -782,7 +765,7 @@
     }
 
     .rule-col.do .rule-col-title { color: var(--accent); }
-    .rule-col.dont .rule-col-title { color: var(--danger); }
+    .rule-col.dont .rule-col-title { color: #ef4444; }
 
     .rule-list {
       list-style: none;
@@ -837,6 +820,9 @@
       .rules-dual {
         grid-template-columns: 1fr;
       }
+      .tab-bar {
+        overflow-x: auto;
+      }
     }
   </style>
 </head>
@@ -852,41 +838,41 @@
           </svg>
         </div>
         <div>
-          <span class="brand-title">Flow Protocol</span>
+          <span class="brand-title">Mera Hair Routine</span>
         </div>
-        <span class="brand-version">v2.1</span>
+        <span class="brand-version">v2.2</span>
       </div>
 
       <div class="nav-actions">
         <button class="btn-action" onclick="resetWeek()">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg>
-          Reset
+          Reset Week
         </button>
         <button class="btn-action" onclick="window.print()">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-          Export
+          PDF
         </button>
       </div>
     </nav>
 
     <!-- Bento Overview Strip -->
     <div class="overview-grid">
-      <!-- Left Bento: Growth Phase & Weekly Progress -->
+      <!-- Left Bento: Growth Status -->
       <div class="bento-card">
         <div class="bento-header">
-          <span class="meta-eyebrow">Transformation Status</span>
+          <span class="meta-eyebrow">Mera Mission</span>
           <div class="status-badge">
             <div class="status-dot"></div>
-            <span>Phase 1 • Active</span>
+            <span>Month 1 of 12</span>
           </div>
         </div>
 
-        <h1 class="phase-headline">Short Fade ➔ Textured Flow</h1>
-        <p class="phase-subtext">Current target: Accumulating vertical canopy length while maintaining tapered sideburns & clean neck perimeter.</p>
+        <h1 class="phase-headline">Chote Baal ➔ Lambe Wavy Baal</h1>
+        <p class="phase-subtext">Golden Rule: Upar ke baal bilkul mat kato. Sirf gardan saaf rakho aur hafte mein 2 baar shampoo karo.</p>
 
         <div class="progress-bar-container">
           <div class="progress-meta">
-            <span>Weekly Protocol Adherence</span>
+            <span>Iss Hafte Ka Progress</span>
             <span id="progress-text">0 of 7 Done</span>
           </div>
           <div class="progress-track">
@@ -895,16 +881,16 @@
         </div>
       </div>
 
-      <!-- Right Bento: Daily Biomarkers -->
+      <!-- Right Bento: Daily Target -->
       <div class="bento-card">
         <div class="bento-header">
-          <span class="meta-eyebrow">Daily Biomarkers</span>
-          <span class="meta-eyebrow" id="today-date">Today</span>
+          <span class="meta-eyebrow">Daily Target</span>
+          <span class="meta-eyebrow" id="today-date">Roz Ka Dhyan</span>
         </div>
 
         <div class="metric-rows">
           <div class="metric-row">
-            <span class="metric-label">Hydration (Glasses)</span>
+            <span class="metric-label">Paani (Glasses)</span>
             <div class="metric-ctrl">
               <button class="btn-step" onclick="adjustMetric('water', -1)">-</button>
               <span class="metric-val" id="water-display">0 / 8</span>
@@ -913,7 +899,7 @@
           </div>
 
           <div class="metric-row">
-            <span class="metric-label">Protein (Grams)</span>
+            <span class="metric-label">Protein (Eggs/Paneer)</span>
             <div class="metric-ctrl">
               <button class="btn-step" onclick="adjustMetric('protein', -10)">-</button>
               <span class="metric-val" id="protein-display">0g</span>
@@ -929,14 +915,14 @@
       <div class="timer-info-col">
         <div class="timer-dial">
           <svg>
-            <circle class="bg" cx="34" cy="34" r="30"></circle>
-            <circle class="bar" id="timer-svg-bar" cx="34" cy="34" r="30"></circle>
+            <circle class="bg" cx="31" cy="31" r="27"></circle>
+            <circle class="bar" id="timer-svg-bar" cx="31" cy="31" r="27"></circle>
           </svg>
           <div class="timer-center-dot" id="timer-dot"></div>
         </div>
         <div>
-          <div class="timer-heading">4-Min Mechanotransduction</div>
-          <div class="timer-subline">Standardized mechanical stretch upregulates dermal papilla genes.</div>
+          <div class="timer-heading">4-Minute Scalp Massage</div>
+          <div class="timer-subline">Ungliyon se sir par gol-gol massage karo taaki khoon daude aur baal mote hon.</div>
         </div>
       </div>
 
@@ -949,10 +935,10 @@
       </div>
     </div>
 
-    <!-- Protocol Schedule Section -->
+    <!-- Weekly Protocol Schedule -->
     <div class="section-title-wrap">
-      <span class="section-title">Weekly Protocol Architecture</span>
-      <span class="section-tagline">Click row to mark complete</span>
+      <span class="section-title">Hafte Ka Routine (Mon – Sun)</span>
+      <span class="section-tagline">Karne ke baad tap karo</span>
     </div>
 
     <div class="protocol-list">
@@ -964,11 +950,11 @@
           </div>
           <div class="item-text">
             <div class="item-header-line">
-              <span class="day-badge" id="badge-mon">Mon</span>
-              <span class="item-title">Rest & Natural Sebum Flow</span>
-              <span class="tag-pill tag-rest">Rest</span>
+              <span class="day-badge" id="badge-mon">Somwar</span>
+              <span class="item-title">Rest Day (No Shampoo)</span>
+              <span class="tag-pill tag-rest">Aaram</span>
             </div>
-            <p class="item-desc">Water rinse only if sweating. 2 drops Argan oil on ends. Avoid synthetic styling wax.</p>
+            <p class="item-desc">Shampoo nahi lagana. Agar pasina ya dhool ho toh sirf normal paani se dho lo. Thoda sa serum ya Argan oil laga lo.</p>
           </div>
         </div>
       </div>
@@ -981,11 +967,11 @@
           </div>
           <div class="item-text">
             <div class="item-header-line">
-              <span class="day-badge" id="badge-tue">Tue</span>
-              <span class="item-title">Pre-Wash Lipid Saturation</span>
-              <span class="tag-pill tag-oil">Pre-Wash Oil</span>
+              <span class="day-badge" id="badge-tue">Mangalwar</span>
+              <span class="item-title">Tel Lagao (Coconut + Rosemary)</span>
+              <span class="tag-pill tag-oil">Tel Day</span>
             </div>
-            <p class="item-desc">Warm Coconut Oil + 4 drops Rosemary Essential Oil. Saturate scalp & cortex 45 min before bed.</p>
+            <p class="item-desc">Thoda sa Nariyal tel lo, usme 4 boond Rosemary oil dalo. Sir ki chamdi par 5 min lagao. Raat ko laga kar so jao ya nahane se 1 ghante pehle lagao.</p>
           </div>
         </div>
       </div>
@@ -998,11 +984,11 @@
           </div>
           <div class="item-text">
             <div class="item-header-line">
-              <span class="day-badge" id="badge-wed">Wed</span>
-              <span class="item-title">Clarifying Wash & Cuticle Hydration</span>
-              <span class="tag-pill tag-wash">Wash 1</span>
+              <span class="day-badge" id="badge-wed">Budhwar</span>
+              <span class="item-title">Wash Day 1 (Shampoo + Conditioner)</span>
+              <span class="tag-pill tag-wash">Wash Day</span>
             </div>
-            <p class="item-desc">pH 5.5 sulfate-free shampoo on roots only. Rich cationic conditioner on mid-lengths (2 mins).</p>
+            <p class="item-desc"><strong>Rule:</strong> Shampoo sirf sir ki chamdi (scalp) par lagao. Conditioner sirf baalon par lagao (chamdi par nahi). 2 min baad dho lo.</p>
           </div>
         </div>
       </div>
@@ -1015,11 +1001,11 @@
           </div>
           <div class="item-text">
             <div class="item-header-line">
-              <span class="day-badge" id="badge-thu">Thu</span>
-              <span class="item-title">Mechanical Gene Induction</span>
+              <span class="day-badge" id="badge-thu">Guruwar</span>
+              <span class="item-title">4-Minute Scalp Massage</span>
               <span class="tag-pill tag-massage">Massage</span>
             </div>
-            <p class="item-desc">Execute 4-minute timer massage with dry fingertips. Distribute natural oils with wide-tooth wooden comb.</p>
+            <p class="item-desc">Upar wala 4 minute ka timer chalao aur bina tel ke ungliyon ke poron se sir ki halki massage karo. Chaude daant wali lakdi ki kanghi use karo.</p>
           </div>
         </div>
       </div>
@@ -1032,11 +1018,11 @@
           </div>
           <div class="item-text">
             <div class="item-header-line">
-              <span class="day-badge" id="badge-fri">Fri</span>
-              <span class="item-title">Follicle Infundibulum Check</span>
-              <span class="tag-pill tag-clarify">Microbiome</span>
+              <span class="day-badge" id="badge-fri">Shukrawar</span>
+              <span class="item-title">Dandruff & Scalp Check</span>
+              <span class="tag-pill tag-rest">Check Day</span>
             </div>
-            <p class="item-desc">Evaluate flaking/itch. (Alternate weeks: 1% Ketoconazole rinse to clear Malassezia biofilm).</p>
+            <p class="item-desc">Agar sir mein khujli ya dandruff lage toh anti-dandruff shampoo (jaise Scalpe ya Nizoral) use karo. Agar sab theek hai toh normal aaram karo.</p>
           </div>
         </div>
       </div>
@@ -1049,11 +1035,11 @@
           </div>
           <div class="item-text">
             <div class="item-header-line">
-              <span class="day-badge" id="badge-sat">Sat</span>
-              <span class="item-title">Overnight Follicle Nourishment</span>
-              <span class="tag-pill tag-oil">Nutrient Oil</span>
+              <span class="day-badge" id="badge-sat">Shaniwar</span>
+              <span class="item-title">Halka Tel Lagao</span>
+              <span class="tag-pill tag-oil">Tel Day</span>
             </div>
-            <p class="item-desc">Almond / Jojoba light oiling. Frictionless sleep on satin pillowcase.</p>
+            <p class="item-desc">Badam (Almond) tel ya Nariyal tel halka sa lagao. Raat ko pillow par soft kapda ya satin cover daal kar so jao.</p>
           </div>
         </div>
       </div>
@@ -1066,49 +1052,51 @@
           </div>
           <div class="item-text">
             <div class="item-header-line">
-              <span class="day-badge" id="badge-sun">Sun</span>
-              <span class="item-title">Weekly Reset & Natural Air-Dry</span>
-              <span class="tag-pill tag-wash">Wash 2</span>
+              <span class="day-badge" id="badge-sun">Raviwar</span>
+              <span class="item-title">Wash Day 2 (Full Clean)</span>
+              <span class="tag-pill tag-wash">Wash Day</span>
             </div>
-            <p class="item-desc">Gentle cleanse + leave-in serum. Pat dry with cotton T-shirt (zero friction/rubbing).</p>
+            <p class="item-desc">Shampoo + Conditioner lagao. <strong>Important:</strong> Towel se ragdo mat! Sirf halka thap-thapa kar sukhao ya normal hawa mein sukhne do.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Interactive Knowledge Tabs (Minimalist Tab System) -->
+    <!-- Simple Knowledge Tabs -->
     <div class="tab-container">
       <div class="tab-bar">
-        <button class="tab-btn active" onclick="switchTab('tab-science')">Clinical Evidence</button>
-        <button class="tab-btn" onclick="switchTab('tab-roadmap')">12-Mo Timeline</button>
+        <button class="tab-btn active" onclick="switchTab('tab-simple')">Simple Rules</button>
+        <button class="tab-btn" onclick="switchTab('tab-roadmap')">12 Mahine Ka Safar</button>
         <button class="tab-btn" onclick="switchTab('tab-barber')">Barber Script</button>
-        <button class="tab-btn" onclick="switchTab('tab-rules')">Do's & Don'ts</button>
+        <button class="tab-btn" onclick="switchTab('tab-rules')">Kya Karein / Na Karein</button>
       </div>
 
-      <!-- Tab 1: Clinical Evidence -->
-      <div class="tab-content active" id="tab-science">
-        <div class="science-list">
-          <div class="science-entry">
-            <div class="science-title">Coconut Oil Prevents Hygral Fatigue & Cortex Protein Depletion</div>
-            <div class="science-ref">Rele & Mohile • J. Cosmet. Sci.</div>
-            <p class="science-body">Unlike mineral or sunflower oil, coconut oil's low-MW linear lauric acid penetrates into the hair cortex. Pre-wash application restricts water absorption, preventing cuticle fracture during swelling/shrinking cycles.</p>
+      <!-- Tab 1: Simple Rules -->
+      <div class="tab-content active" id="tab-simple">
+        <div class="simple-rules-list">
+          <div class="rule-item">
+            <div class="rule-item-title">1. Nahane se pehle Nariyal Tel kyun zaroori hai?</div>
+            <p class="rule-item-text">Jab baal geele hote hain toh paani sokh kar phool jaate hain aur kamzor ho jaate hain. Nariyal tel baalon ke andar ghus jaata hai aur baalon ko tootte se bachata hai.</p>
           </div>
 
-          <div class="science-entry">
-            <div class="science-title">Rosemary Oil Equivalent to 2% Minoxidil at 6 Months</div>
-            <div class="science-ref">Panahi et al. • Skinmed Clinical Journal</div>
-            <p class="science-body">Active 1,8-cineole and rosmarinic acid promote microvascular dilation around miniaturizing follicles, delivering equivalent hair count gains to 2% minoxidil without the scalp pruritus (itching) common with pharmaceutical formulations.</p>
+          <div class="rule-item">
+            <div class="rule-item-title">2. Rosemary Oil kyun lagana hai?</div>
+            <p class="rule-item-text">Rosemary tel sir ki chamdi mein blood flow badhata hai. Isse baal tezi se aur ghane grow hote hain (bina kisi side-effect ke).</p>
           </div>
 
-          <div class="science-entry">
-            <div class="science-title">4-Minute Mechanical Stretching Upregulates Hair Cycle Genes</div>
-            <div class="science-ref">Koyama et al. • Eplasty Dermatologic Research</div>
-            <p class="science-body">Daily standardized stretching forces activate mechanosensitive ion channels in dermal papilla cells, upregulating <em>Noggin</em> and <em>Cyclin D1</em> to prolong the active anagen growth phase and measurably increase hair shaft diameter.</p>
+          <div class="rule-item">
+            <div class="rule-item-title">3. Shampoo roz kyun nahi lagana?</div>
+            <p class="rule-item-text">Roz shampoo lagane se sir ka natural oil nikal jaata hai, aur baal jhadu jaise sukhe aur frizzy ban jaate hain. Hafte mein sirf 2 baar shampoo kaafi hai.</p>
+          </div>
+
+          <div class="rule-item">
+            <div class="rule-item-title">4. Shampoo aur Conditioner ka sahi tareeqa:</div>
+            <p class="rule-item-text">Shampoo sirf sir ki chamdi (scalp) saaf karne ke liye hota hai. Conditioner sirf baalon ko soft rakhne ke liye hota hai (isliye conditioner ko chamdi par mat lagao, sirf baalon par lagao).</p>
           </div>
         </div>
       </div>
 
-      <!-- Tab 2: 12-Month Timeline -->
+      <!-- Tab 2: 12-Month Roadmap -->
       <div class="tab-content" id="tab-roadmap">
         <div class="roadmap-timeline">
           <div class="roadmap-step">
@@ -1117,9 +1105,9 @@
               <div class="step-line"></div>
             </div>
             <div class="step-content">
-              <span class="step-meta">Phase 1 • Month 1 – 3</span>
-              <div class="step-name">The Foundation (Accumulating Canopy)</div>
-              <p class="step-text">Canopy reaches 3-4 inches. Sides reach top of ear. Strictly keep top length untouched. Clean lower neck and sideburn taper every 6 weeks.</p>
+              <span class="step-meta">Month 1 se 3 (Start)</span>
+              <div class="step-name">Baal badhna shuru honge</div>
+              <p class="step-text">Baal kaano tak aane lagenge aur thode bikhre lagenge. <strong>Karna kya hai:</strong> Upar ke baal bilkul mat kato. Sirf gardan ke pichhe se safai karwao.</p>
             </div>
           </div>
 
@@ -1129,9 +1117,9 @@
               <div class="step-line"></div>
             </div>
             <div class="step-content">
-              <span class="step-meta">Phase 2 • Month 4 – 7</span>
-              <div class="step-name">The Awkward Stage (Survival)</div>
-              <p class="step-text">Bangs reach nose tip; hair puffs laterally. Use sea salt spray or light matte paste to push backward/tuck behind ears. Tell barber: <em>"Clean perimeter only, zero off the top."</em></p>
+              <span class="step-meta">Month 4 se 7 (Awkward Stage)</span>
+              <div class="step-name">Baal ajeeb lagenge (Sabse mushkil time)</div>
+              <p class="step-text">Baal na chote lagenge na poore lambe, phoolne lagenge. <strong>Karna kya hai:</strong> Haar mat maanna! Cap, hairband use karo ya baal pichhe set karo. Barber ke paas jakar gusse mein chota mat karwana.</p>
             </div>
           </div>
 
@@ -1140,9 +1128,9 @@
               <div class="step-circle"></div>
             </div>
             <div class="step-content">
-              <span class="step-meta">Phase 3 • Month 8 – 12</span>
-              <div class="step-name">Textured Flow & Weight Relief (Target Look)</div>
-              <p class="step-text">Length reaches lips/chin. Visit an elite stylist for internal layering and point-cutting to relieve bulk and unlock natural curtain wave movement.</p>
+              <span class="step-meta">Month 8 se 12 (Photo 2 Look)</span>
+              <div class="step-name">Photo 2 jaisa final look!</div>
+              <p class="step-text">Baal hothon aur chin tak pahunch jayenge. Kisi achhe salon mein jao, photo 2 dikhao aur bolo: <em>"Sirf layers daal kar flow set kar do, length kam mat karna."</em></p>
             </div>
           </div>
         </div>
@@ -1150,9 +1138,9 @@
 
       <!-- Tab 3: Barber Script -->
       <div class="tab-content" id="tab-barber">
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">Say these exact words to your barber so they don't accidentally reset 6 months of growth:</p>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px;">Jab bhi salon/barber ke paas jao, bas yeh dialogue bolna taaki wo aapki 6 mahine ki mehnat na kaat de:</p>
         <div class="dialogue-card">
-          <p class="dialogue-text">"Bhaiya, main baal lambe kar raha hoon (growing my hair out). Upar aur crown ki length bilkul touch mat karna. Sirf gardan (neckline) aur kaano ke side se clean taper kar do aur dead ends trim kar do."</p>
+          <p class="dialogue-text">"Bhaiya, main baal lambe kar raha hoon (growing them out). Upar ki length ko haath bhi mat lagana. Sirf gardan (neckline) aur kaano ke paas se halka clean kar do aur kharab ends trim kar do."</p>
         </div>
       </div>
 
@@ -1160,24 +1148,24 @@
       <div class="tab-content" id="tab-rules">
         <div class="rules-dual">
           <div class="rule-col do">
-            <div class="rule-col-title">Mandatory Do's</div>
+            <div class="rule-col-title">Yeh Karo (Do's)</div>
             <ul class="rule-list">
-              <li>✓ Pre-wash coconut oil (stops hygral fatigue)</li>
-              <li>✓ Wide-tooth wooden comb (zero static snapping)</li>
-              <li>✓ Conditioner on mid-lengths (replaces 18-MEA)</li>
-              <li>✓ Satin pillowcase (minimizes night friction)</li>
-              <li>✓ 4-min daily mechanical scalp stimulation</li>
+              <li>✓ Nahane se pehle tel lagao</li>
+              <li>✓ Chaude daant wali lakdi ki kanghi use karo</li>
+              <li>✓ Conditioner baalon par zaroor lagao</li>
+              <li>✓ Roz 4 minute ungliyon se massage karo</li>
+              <li>✓ Roz 8 glass paani aur ande/paneer khao</li>
             </ul>
           </div>
 
           <div class="rule-col dont">
-            <div class="rule-col-title">Strict Don'ts</div>
+            <div class="rule-col-title">Yeh Bilkul Mat Karo (Don'ts)</div>
             <ul class="rule-list">
-              <li>✗ Daily surfactant shampoo (strips lipid layer)</li>
-              <li>✗ Terrycloth towel rubbing (chips fragile cuticles)</li>
-              <li>✗ Boiling hot water (de-lipifies roots)</li>
-              <li>✗ Fine-tooth plastic combs (pulls wet roots)</li>
-              <li>✗ Cutting hair out of impatience at Month 5</li>
+              <li>✗ Roz-roz shampoo lagana</li>
+              <li>✗ Towel se baalon ko zor-zor se ragadna</li>
+              <li>✗ Bahut garam paani se sir dhona</li>
+              <li>✗ Geele baalon mein patli plastic kanghi chalana</li>
+              <li>✗ Month 4-5 mein gusse mein baal cut karwana</li>
             </ul>
           </div>
         </div>
@@ -1188,12 +1176,22 @@
 
   <script>
     // State Persistence Keys
-    const PROTOCOL_KEY = 'flow_protocol_days';
-    const WATER_KEY = 'flow_water_val';
-    const PROTEIN_KEY = 'flow_protein_val';
+    const PROTOCOL_KEY = 'flow_protocol_days_v2';
+    const WATER_KEY = 'flow_water_val_v2';
+    const PROTEIN_KEY = 'flow_protein_val_v2';
 
     // Day Detection for Auto-Highlighting
     const dayIds = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const dayNamesHinglish = {
+      'sun': 'Raviwar',
+      'mon': 'Somwar',
+      'tue': 'Mangalwar',
+      'wed': 'Budhwar',
+      'thu': 'Guruwar',
+      'fri': 'Shukrawar',
+      'sat': 'Shaniwar'
+    };
+
     const currentDayIdx = new Date().getDay();
     const currentDayId = dayIds[currentDayIdx];
 
@@ -1203,7 +1201,7 @@
     const activeBadge = document.getElementById('badge-' + currentDayId);
     if (activeBadge) {
       activeBadge.classList.add('current-day');
-      activeBadge.innerText += ' • Today';
+      activeBadge.innerText = dayNamesHinglish[currentDayId] + ' (Aaj)';
     }
 
     // Initialize Protocol State
@@ -1236,7 +1234,7 @@
     }
 
     function resetWeek() {
-      if (confirm('Reset all weekly protocol checkboxes?')) {
+      if (confirm('Kya aap iss hafte ke saare checks reset karna chahte hain?')) {
         localStorage.removeItem(PROTOCOL_KEY);
         loadProtocolState();
       }
@@ -1263,7 +1261,7 @@
       renderMetrics();
     }
 
-    // Minimalist 4-Minute Timer Logic
+    // 4-Minute Timer Logic
     const TOTAL_SECONDS = 240;
     let secondsLeft = TOTAL_SECONDS;
     let timerId = null;
@@ -1273,7 +1271,7 @@
     const btnTimerToggle = document.getElementById('btn-timer-toggle');
     const timerDot = document.getElementById('timer-dot');
     const timerSvgBar = document.getElementById('timer-svg-bar');
-    const CIRCLE_CIRCUMFERENCE = 188; // 2 * PI * 30
+    const CIRCLE_CIRCUMFERENCE = 170; // 2 * PI * 27
 
     function updateTimerDisplay() {
       const m = Math.floor(secondsLeft / 60).toString().padStart(2, '0');
@@ -1303,7 +1301,7 @@
           } else {
             clearInterval(timerId);
             isTimerActive = false;
-            btnTimerToggle.innerText = 'Done';
+            btnTimerToggle.innerText = 'Done!';
             timerDot.classList.remove('active');
             playChime();
           }
