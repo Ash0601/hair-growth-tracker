@@ -19,13 +19,12 @@
 
   <style>
     :root {
-      /* Quiet Luxury Grooming Palette (Obsidian & Champagne Gold) */
+      /* Dark Theme (Obsidian & Champagne Gold) - Default */
       --bg-main: #090a0f;
       --card-bg: #12141c;
       --card-sub: #171a24;
       --card-border: rgba(255, 255, 255, 0.07);
       
-      /* Refined Metallic Gold & Bronze */
       --gold: #d4af37;
       --gold-light: #f5e2a3;
       --gold-dark: #a6841c;
@@ -33,20 +32,71 @@
       --gold-border: rgba(212, 175, 55, 0.3);
       --gold-glow: rgba(212, 175, 55, 0.2);
 
-      /* Botanical & Functional Micro-Accents */
       --botanical-green: #10b981;
       --water-cyan: #38bdf8;
       
-      /* High-Contrast Luxury Typography */
       --text-white: #ffffff;
       --text-primary: #f8fafc;
       --text-secondary: #94a3b8;
       --text-muted: #64748b;
       
+      --card-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      --btn-sq-bg: rgba(255, 255, 255, 0.06);
+      --btn-sq-border: rgba(255, 255, 255, 0.14);
+      --inner-panel-bg: rgba(0, 0, 0, 0.35);
+      --inner-panel-border: rgba(255, 255, 255, 0.06);
+      --slot-bg: #090e1a;
+      --cup-bg: rgba(255, 255, 255, 0.04);
+      --cup-border: rgba(255, 255, 255, 0.12);
+      --step-bg: #1e293b;
+      --step-border: rgba(255, 255, 255, 0.15);
+      --today-card-bg: #141722;
+      --completed-card-bg: rgba(255, 255, 255, 0.02);
+      --routine-hover-shadow: 0 3px 0 rgba(0, 0, 0, 0.3);
+      --bg-ambient: rgba(212, 175, 55, 0.08);
+
       --radius-sm: 10px;
       --radius-md: 14px;
       --radius-lg: 18px;
       --radius-xl: 22px;
+    }
+
+    [data-theme="light"] {
+      /* Warm Alabaster Ivory & Burnished Gold Light Theme */
+      --bg-main: #f8f6f0;
+      --card-bg: #ffffff;
+      --card-sub: #f3efe6;
+      --card-border: rgba(0, 0, 0, 0.08);
+      
+      --gold: #b8860b;
+      --gold-light: #785404;
+      --gold-dark: #573c02;
+      --gold-dim: rgba(184, 134, 11, 0.1);
+      --gold-border: rgba(184, 134, 11, 0.3);
+      --gold-glow: rgba(184, 134, 11, 0.15);
+
+      --botanical-green: #059669;
+      --water-cyan: #0284c7;
+      
+      --text-white: #111827;
+      --text-primary: #1f2937;
+      --text-secondary: #4b5563;
+      --text-muted: #6b7280;
+      
+      --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      --btn-sq-bg: rgba(0, 0, 0, 0.05);
+      --btn-sq-border: rgba(0, 0, 0, 0.12);
+      --inner-panel-bg: #f4efe4;
+      --inner-panel-border: rgba(0, 0, 0, 0.06);
+      --slot-bg: #faf7f0;
+      --cup-bg: rgba(0, 0, 0, 0.04);
+      --cup-border: rgba(0, 0, 0, 0.12);
+      --step-bg: #e8e2d4;
+      --step-border: rgba(0, 0, 0, 0.12);
+      --today-card-bg: #fffcf4;
+      --completed-card-bg: rgba(0, 0, 0, 0.02);
+      --routine-hover-shadow: 0 3px 0 rgba(0, 0, 0, 0.06);
+      --bg-ambient: rgba(184, 134, 11, 0.06);
     }
 
     * {
@@ -63,8 +113,9 @@
       line-height: 1.45;
       padding: 12px 14px 90px;
       background-image: 
-        radial-gradient(circle at 50% -10%, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+        radial-gradient(circle at 50% -10%, var(--bg-ambient) 0%, transparent 60%);
       background-attachment: fixed;
+      transition: background-color 0.25s ease, color 0.25s ease;
       overflow-x: hidden;
       user-select: none;
       -webkit-user-select: none;
@@ -144,19 +195,19 @@
     }
 
     .btn-icon-sq {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: #cbd5e1;
+      background: var(--btn-sq-bg);
+      border: 1px solid var(--btn-sq-border);
+      color: var(--text-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       cursor: pointer;
-      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
-      transition: all 0.1s ease;
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+      transition: all 0.15s ease;
     }
 
     .btn-icon-sq:active {
@@ -493,8 +544,8 @@
     .cup-chip {
       aspect-ratio: 1;
       border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--cup-border);
+      background: var(--cup-bg);
       color: #475569;
       font-size: 1.1rem;
       cursor: pointer;
@@ -559,9 +610,9 @@
       width: 32px;
       height: 32px;
       border-radius: 8px;
-      background: #1e293b;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #fff;
+      background: var(--step-bg);
+      border: 1px solid var(--step-border);
+      color: var(--text-primary);
       font-family: 'Outfit', sans-serif;
       font-size: 1.1rem;
       font-weight: 800;
@@ -653,10 +704,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(0, 0, 0, 0.35);
+      background: var(--inner-panel-bg);
       padding: 10px 14px;
       border-radius: var(--radius-md);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--inner-panel-border);
       margin-bottom: 8px;
     }
 
@@ -694,9 +745,9 @@
     }
 
     .btn-timer-sec {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #cbd5e1;
+      background: var(--btn-sq-bg);
+      border: 1px solid var(--btn-sq-border);
+      color: var(--text-primary);
       font-family: 'Outfit', sans-serif;
       font-size: 0.78rem;
       font-weight: 700;
@@ -1011,8 +1062,8 @@
     .edu-sheet.active { display: block; }
 
     .faq-item {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: var(--inner-panel-bg);
+      border: 1px solid var(--inner-panel-border);
       border-radius: var(--radius-sm);
       padding: 10px 12px;
       margin-bottom: 8px;
@@ -1049,7 +1100,7 @@
     }
 
     .permit-speech {
-      background: rgba(0, 0, 0, 0.4);
+      background: var(--inner-panel-bg);
       border-left: 3px solid var(--gold);
       padding: 10px;
       border-radius: 6px;
@@ -1171,6 +1222,9 @@
       </div>
 
       <div class="header-actions">
+        <button class="btn-icon-sq" id="btn-theme-toggle" onclick="toggleTheme()" title="Switch Light / Dark Mode">
+          <span id="theme-icon">☀️</span>
+        </button>
         <button class="btn-icon-sq" id="btn-sound-toggle" onclick="toggleSound()" title="Mute / Unmute Sound">
           <span id="sound-icon">🔊</span>
         </button>
@@ -1536,6 +1590,33 @@
   </div>
 
   <script>
+    // THEME MANAGEMENT ENGINE (Obsidian Dark / Alabaster Light)
+    const THEME_KEY = 'hair_flow_theme_v2';
+    let currentTheme = localStorage.getItem(THEME_KEY) || 'dark';
+
+    function applyTheme(theme) {
+      currentTheme = theme;
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem(THEME_KEY, theme);
+      
+      const icon = document.getElementById('theme-icon');
+      if (icon) icon.innerText = (theme === 'light') ? '🌙' : '☀️';
+      
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute('content', (theme === 'light') ? '#f8f6f0' : '#090a0f');
+      }
+    }
+
+    function toggleTheme() {
+      Haptics.tick();
+      const nextTheme = (currentTheme === 'light') ? 'dark' : 'light';
+      applyTheme(nextTheme);
+    }
+
+    // Initialize Theme
+    applyTheme(currentTheme);
+
     // Storage Keys
     const CARDS_KEY = 'hair_flow_cards_v7';
     const CUPS_KEY = 'hair_flow_cups_v7';
