@@ -1155,6 +1155,7 @@
 </head>
 <body>
   <canvas id="confetti-canvas"></canvas>
+  <input type="checkbox" id="haptic-trigger" switch style="position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; z-index: -1;" />
   <input type="file" id="photo-file-input" accept="image/*" />
 
   <div class="app-container">
@@ -1581,11 +1582,23 @@
         chevron.innerText = '▾';
         btnText.innerText = '📅 Baki Dino Ka Plan Dekhein (6 Days)';
       }
-      triggerHaptic('light');
+      Haptics.tick();
     }
 
-    // 1. SOUND & HAPTIC SYSTEM
+    // 1. IMMERSIVE MULTI-SENSORY HAPTIC & PSYCHOACOUSTIC ENGINE
     let soundEnabled = localStorage.getItem(SOUND_KEY) !== 'false';
+    const iosSwitch = document.getElementById('haptic-trigger');
+    let sharedAudioCtx = null;
+
+    function getAudioCtx() {
+      if (!sharedAudioCtx) {
+        sharedAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (sharedAudioCtx.state === 'suspended') {
+        sharedAudioCtx.resume();
+      }
+      return sharedAudioCtx;
+    }
 
     function updateSoundBtnUI() {
       const btn = document.getElementById('btn-sound-toggle');
@@ -1603,58 +1616,228 @@
       soundEnabled = !soundEnabled;
       localStorage.setItem(SOUND_KEY, soundEnabled);
       updateSoundBtnUI();
-      if (soundEnabled) playWebSound('pop');
+      if (soundEnabled) Haptics.success();
     }
 
-    function triggerHaptic(type) {
-      if (!soundEnabled) return;
-      if (navigator.vibrate) {
-        if (type === 'light') navigator.vibrate(35);
-        else if (type === 'medium') navigator.vibrate(60);
-        else if (type === 'heavy') navigator.vibrate([40, 60, 100]);
-        else if (type === 'celebrate') navigator.vibrate([50, 50, 50, 50, 120]);
-      }
-      playWebSound(type);
-    }
+    // Advanced Cross-Platform Haptic Driver (iOS 18+ Taptic + Android LRA + Psychoacoustics)
+    const Haptics = {
+      // Hardware vibration pulse
+      vibrate(pattern) {
+        if (!soundEnabled) return;
 
-    function playWebSound(type) {
-      if (!soundEnabled) return;
-      try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
+        // iOS 18+ Taptic Engine Trigger
+        if (iosSwitch) {
+          try {
+            if (Array.isArray(pattern)) {
+              let delay = 0;
+              for (let i = 0; i < pattern.length; i += 2) {
+                setTimeout(() => {
+                  try { iosSwitch.click(); } catch (e) {}
+                }, delay);
+                delay += (pattern[i] || 0) + (pattern[i + 1] || 0);
+              }
+            } else {
+              iosSwitch.click();
+            }
+          } catch (e) {}
+        }
 
-        const t = ctx.currentTime;
-        if (type === 'light' || type === 'pop') {
+        // Android / Standard Vibration API
+        if (navigator.vibrate) {
+          try {
+            navigator.vibrate(pattern);
+          } catch (e) {}
+        }
+      },
+
+      // 1. Selection / Light Tick (For tabs, toggles, accordions)
+      // Feel: Crisp Apple Watch crown tick / Leica aperture detent
+      tick() {
+        this.vibrate(18);
+        if (!soundEnabled) return;
+        try {
+          const ctx = getAudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const t = ctx.currentTime;
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(480, t);
-          osc.frequency.exponentialRampToValueAtTime(800, t + 0.08);
+          osc.frequency.setValueAtTime(1200, t);
+          osc.frequency.exponentialRampToValueAtTime(300, t + 0.04);
+          gain.gain.setValueAtTime(0.08, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(t);
+          osc.stop(t + 0.04);
+        } catch (e) {}
+      },
+
+      // 2. Liquid Droplet Tap (For 8 water cups - ascending musical pitch)
+      droplet(cupIdx) {
+        this.vibrate(24);
+        if (!soundEnabled) return;
+        try {
+          const ctx = getAudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const t = ctx.currentTime;
+          const baseFreq = 400 + (cupIdx * 55); // Pitch ascends from 400Hz to 840Hz!
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(baseFreq, t);
+          osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.5, t + 0.08);
           gain.gain.setValueAtTime(0.12, t);
           gain.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
           osc.start(t);
           osc.stop(t + 0.08);
-        } else if (type === 'success' || type === 'medium') {
+        } catch (e) {}
+      },
+
+      // 3. Ratchet Step (For Protein +/-)
+      // Feel: Mechanical Dyson dial notch
+      ratchet(isAdd) {
+        this.vibrate(22);
+        if (!soundEnabled) return;
+        try {
+          const ctx = getAudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const t = ctx.currentTime;
           osc.type = 'triangle';
-          osc.frequency.setValueAtTime(523.25, t);
-          osc.frequency.setValueAtTime(659.25, t + 0.07);
-          gain.gain.setValueAtTime(0.15, t);
-          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+          const freq = isAdd ? 780 : 540;
+          osc.frequency.setValueAtTime(freq, t);
+          osc.frequency.exponentialRampToValueAtTime(freq * 0.7, t + 0.05);
+          gain.gain.setValueAtTime(0.1, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
           osc.start(t);
-          osc.stop(t + 0.18);
-        } else if (type === 'celebrate') {
+          osc.stop(t + 0.05);
+        } catch (e) {}
+      },
+
+      // 4. Mission Accomplished (For checking today's mission card)
+      // Feel: Deep satisfying double-thump + warm champagne chime chord
+      success() {
+        this.vibrate([40, 50, 85]);
+        if (!soundEnabled) return;
+        try {
+          const ctx = getAudioCtx();
+          const notes = [523.25, 659.25, 783.99]; // C5, E5, G5 triad
+          notes.forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            const t = ctx.currentTime + (i * 0.06);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t);
+            gain.gain.setValueAtTime(0.14, t);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(t);
+            osc.stop(t + 0.35);
+          });
+        } catch (e) {}
+      },
+
+      // 5. Celebration / Fanfare (When finishing all 8 glasses or 4-min massage)
+      celebrate() {
+        this.vibrate([45, 40, 60, 40, 120]);
+        if (!soundEnabled) return;
+        try {
+          const ctx = getAudioCtx();
+          const notes = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
+          notes.forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            const t = ctx.currentTime + (i * 0.08);
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, t);
+            gain.gain.setValueAtTime(0.16, t);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(t);
+            osc.stop(t + 0.4);
+          });
+        } catch (e) {}
+      },
+
+      // 6. Camera Shutter (For Photo Vault upload)
+      shutter() {
+        this.vibrate([28, 40, 45]);
+        if (!soundEnabled) return;
+        try {
+          const ctx = getAudioCtx();
+          const t = ctx.currentTime;
+          [0, 0.06].forEach((offset) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(1400, t + offset);
+            osc.frequency.exponentialRampToValueAtTime(300, t + offset + 0.03);
+            gain.gain.setValueAtTime(0.08, t + offset);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + offset + 0.03);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(t + offset);
+            osc.stop(t + offset + 0.03);
+          });
+        } catch (e) {}
+      },
+
+      // 7. Massage Zone Shift (Every 60s during 4-min massage)
+      // Feel: Two soothing gentle hums so user knows to switch zones with eyes closed!
+      zoneShift() {
+        this.vibrate([75, 110, 75]);
+        if (!soundEnabled) return;
+        try {
+          const ctx = getAudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const t = ctx.currentTime;
           osc.type = 'sine';
-          osc.frequency.setValueAtTime(523.25, t);
-          osc.frequency.setValueAtTime(659.25, t + 0.1);
-          osc.frequency.setValueAtTime(783.99, t + 0.2);
-          osc.frequency.setValueAtTime(1046.5, t + 0.3);
-          gain.gain.setValueAtTime(0.18, t);
-          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+          osc.frequency.setValueAtTime(432, t);
+          gain.gain.setValueAtTime(0.01, t);
+          gain.gain.linearRampToValueAtTime(0.1, t + 0.2);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
           osc.start(t);
-          osc.stop(t + 0.45);
-        }
-      } catch (e) {}
+          osc.stop(t + 1.2);
+        } catch (e) {}
+      },
+
+      // 8. Warning / Rigid Alert (For reset week)
+      warning() {
+        this.vibrate([60, 40, 60]);
+        if (!soundEnabled) return;
+        try {
+          const ctx = getAudioCtx();
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const t = ctx.currentTime;
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, t);
+          gain.gain.setValueAtTime(0.1, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(t);
+          osc.stop(t + 0.15);
+        } catch (e) {}
+      }
+    };
+
+    // Backward compatibility helper
+    function triggerHaptic(type) {
+      if (type === 'light') Haptics.tick();
+      else if (type === 'medium') Haptics.ratchet(true);
+      else if (type === 'heavy') Haptics.warning();
+      else if (type === 'success') Haptics.success();
+      else if (type === 'celebrate') Haptics.celebrate();
+      else Haptics.tick();
     }
 
     // 2. SPA AMBIENT AUDIO (432Hz)
@@ -1829,7 +2012,7 @@
               localStorage.setItem(PHOTO_CURR_KEY, compressedBase64);
             }
             renderVault();
-            triggerHaptic('celebrate');
+            Haptics.shutter();
             launchConfetti();
           } catch(err) {
             alert('Phone storage full hai! Thoda cache clear karein.');
@@ -1902,7 +2085,7 @@
     }
 
     function resetWeek() {
-      triggerHaptic('medium');
+      Haptics.warning();
       if (confirm('Kya aap iss hafte ke saare tasks aur paani count reset karna chahte hain?')) {
         localStorage.removeItem(CARDS_KEY);
         localStorage.removeItem(CUPS_KEY);
@@ -1934,15 +2117,17 @@
     }
 
     function toggleCup(idx) {
-      triggerHaptic('light');
       let cups = getCups();
       if (cups.includes(idx)) {
         cups = cups.filter(i => i !== idx);
+        Haptics.tick();
       } else {
         cups.push(idx);
         if (cups.length === 8) {
-          triggerHaptic('celebrate');
+          Haptics.celebrate();
           launchConfetti();
+        } else {
+          Haptics.droplet(cups.length);
         }
       }
       localStorage.setItem(CUPS_KEY, JSON.stringify(cups));
@@ -1958,7 +2143,7 @@
     }
 
     function adjustProtein(delta) {
-      triggerHaptic('medium');
+      Haptics.ratchet(delta > 0);
       const next = Math.max(0, getProtein() + delta);
       localStorage.setItem(PROTEIN_KEY, next);
       renderProtein();
@@ -2007,13 +2192,17 @@
           if (secLeft > 0) {
             secLeft--;
             updateTimer();
+            // Tactile Scalp Zone Reminder at each minute mark (3:00, 2:00, 1:00)
+            if (secLeft === 180 || secLeft === 120 || secLeft === 60) {
+              Haptics.zoneShift();
+            }
           } else {
             clearInterval(timerId);
             timerRunning = false;
             btnPlay.innerText = 'DONE 🏆';
             arcadeMsg.innerText = 'Shabash! 4-minute scalp massage complete! Roots fully charged ⚡';
             stopSpaSound();
-            triggerHaptic('celebrate');
+            Haptics.shutter();
             launchConfetti();
           }
         }, 1000);
