@@ -744,7 +744,7 @@
 
     .vault-privacy-chip {
       font-size: 0.7rem;
-      color: #fb7185;
+      color: var(--gold-light);
       font-weight: 700;
     }
 
@@ -757,7 +757,7 @@
 
     .polaroid-slot {
       background: #090e1a;
-      border: 1.5px dashed rgba(255, 255, 255, 0.18);
+      border: 1.5px dashed rgba(212, 175, 55, 0.25);
       border-radius: var(--radius-md);
       aspect-ratio: 1;
       display: flex;
@@ -771,7 +771,7 @@
     }
 
     .polaroid-slot:hover {
-      border-color: #fb7185;
+      border-color: var(--gold);
     }
 
     .polaroid-slot img {
@@ -793,19 +793,25 @@
 
     .btn-snap-photo {
       width: 100%;
-      background: rgba(244, 63, 94, 0.15);
-      border: 1px solid rgba(244, 63, 94, 0.35);
-      color: #fb7185;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
       font-family: 'Outfit', sans-serif;
       font-size: 0.8rem;
       font-weight: 800;
-      padding: 8px;
+      padding: 9px;
       border-radius: var(--radius-sm);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
+      transition: all 0.1s ease;
+    }
+
+    .btn-snap-photo:active {
+      transform: scale(0.98);
+      background: var(--gold-border);
     }
 
     .btn-snap-photo:active {
@@ -1016,7 +1022,7 @@
       font-family: 'Outfit', sans-serif;
       font-size: 0.85rem;
       font-weight: 800;
-      color: #38bdf8;
+      color: var(--gold-light);
       margin-bottom: 4px;
     }
 
@@ -1099,6 +1105,52 @@
       body { background: #fff !important; color: #000 !important; }
       .app-header, .btn-icon-pill, .cups-flex-row, .protein-stepper-ctrl, .arcade-action-btns, .edu-shelf, .vault-box { display: none !important; }
     }
+  
+    .header-action-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      padding: 3px 9px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+
+    .today-focus-slot {
+      margin-bottom: 8px;
+    }
+
+    .other-days-wrapper {
+      margin-bottom: 14px;
+    }
+
+    .btn-toggle-week {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 9px 14px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.12s ease;
+    }
+
+    .btn-toggle-week:active {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .other-days-tray {
+      margin-top: 8px;
+    }
+
   </style>
 </head>
 <body>
@@ -1162,100 +1214,113 @@
     </div>
 
     <!-- 3. WEEKLY PROTOCOL (TODAY'S FOCUS) -->
-    <div class="section-header-bar">
+        <div class="section-header-bar">
       <h2>🎯 Aaj Ka Mission</h2>
-      <span>Tap to Complete 🎉</span>
+      <span class="header-action-badge">Tap to Tick ✓</span>
     </div>
 
-    <div class="routine-stack">
-      <!-- Monday -->
-      <div class="protocol-card" id="card-mon" onclick="toggleCard('mon')">
-        <div class="btn-card-checkbox" id="check-mon">✓</div>
-        <div class="routine-details">
-          <div class="routine-meta-row">
-            <span class="day-chip" id="tag-mon">Somwar</span>
-            <span class="routine-type-tag tag-rest">Aaram</span>
-          </div>
-          <div class="routine-name">Rest Day (No Shampoo) 😴</div>
-          <div class="routine-hint">Shampoo nahi lagana. Pasina ho toh normal paani se dho lo. Thoda Argan oil lagao.</div>
-        </div>
-      </div>
+    <div class="today-focus-slot" id="today-focus-slot">
+      <!-- Today's active card will be mounted here automatically -->
+    </div>
 
-      <!-- Tuesday -->
-      <div class="protocol-card" id="card-tue" onclick="toggleCard('tue')">
-        <div class="btn-card-checkbox" id="check-tue">✓</div>
-        <div class="routine-details">
-          <div class="routine-meta-row">
-            <span class="day-chip" id="tag-tue">Mangalwar</span>
-            <span class="routine-type-tag tag-oil">Tel Day</span>
-          </div>
-          <div class="routine-name">Nariyal + Rosemary Power Oil 🌿</div>
-          <div class="routine-hint">Nariyal tel mein 4 boond Rosemary mix karo. 5 min massage karke so jao.</div>
-        </div>
-      </div>
+    <div class="other-days-wrapper">
+      <button class="btn-toggle-week" id="btn-toggle-week" onclick="toggleFullWeek()">
+        <span id="btn-toggle-week-text">📅 Baki Dino Ka Plan Dekhein (6 Days)</span>
+        <span id="week-chevron-icon">▾</span>
+      </button>
 
-      <!-- Wednesday -->
-      <div class="protocol-card" id="card-wed" onclick="toggleCard('wed')">
-        <div class="btn-card-checkbox" id="check-wed">✓</div>
-        <div class="routine-details">
-          <div class="routine-meta-row">
-            <span class="day-chip" id="tag-wed">Budhwar</span>
-            <span class="routine-type-tag tag-wash">Wash Day</span>
+      <div class="other-days-tray" id="other-days-tray" style="display: none;">
+        <div class="routine-stack" id="other-days-stack">
+          <!-- Monday -->
+          <div class="protocol-card" id="card-mon" onclick="toggleCard('mon')">
+            <div class="btn-card-checkbox" id="check-mon">✓</div>
+            <div class="routine-details">
+              <div class="routine-meta-row">
+                <span class="day-chip" id="tag-mon">Somwar</span>
+                <span class="routine-type-tag tag-rest">Aaram</span>
+              </div>
+              <div class="routine-name">Rest Day (No Shampoo) 😴</div>
+              <div class="routine-hint">Shampoo nahi lagana. Pasina ho toh normal paani se dho lo. Thoda Argan oil lagao.</div>
+            </div>
           </div>
-          <div class="routine-name">Shampoo + Conditioner Routine 🚿</div>
-          <div class="routine-hint"><strong>Rule:</strong> Shampoo sirf chamdi par. Conditioner sirf baalon par (scalp par nahi!).</div>
-        </div>
-      </div>
 
-      <!-- Thursday -->
-      <div class="protocol-card" id="card-thu" onclick="toggleCard('thu')">
-        <div class="btn-card-checkbox" id="check-thu">✓</div>
-        <div class="routine-details">
-          <div class="routine-meta-row">
-            <span class="day-chip" id="tag-thu">Guruwar</span>
-            <span class="routine-type-tag tag-massage">Massage</span>
+          <!-- Tuesday -->
+          <div class="protocol-card" id="card-tue" onclick="toggleCard('tue')">
+            <div class="btn-card-checkbox" id="check-tue">✓</div>
+            <div class="routine-details">
+              <div class="routine-meta-row">
+                <span class="day-chip" id="tag-tue">Mangalwar</span>
+                <span class="routine-type-tag tag-oil">Tel Day</span>
+              </div>
+              <div class="routine-name">Nariyal + Rosemary Power Oil 🌿</div>
+              <div class="routine-hint">Nariyal tel mein 4 boond Rosemary mix karo. 5 min massage karke so jao.</div>
+            </div>
           </div>
-          <div class="routine-name">4-Minute Dry Scalp Massage ⚡</div>
-          <div class="routine-hint">Timer chalao aur ungliyon se sir ki massage karo. Lakdi ki chaudi kanghi use karo.</div>
-        </div>
-      </div>
 
-      <!-- Friday -->
-      <div class="protocol-card" id="card-fri" onclick="toggleCard('fri')">
-        <div class="btn-card-checkbox" id="check-fri">✓</div>
-        <div class="routine-details">
-          <div class="routine-meta-row">
-            <span class="day-chip" id="tag-fri">Shukrawar</span>
-            <span class="routine-type-tag tag-rest">Check Day</span>
+          <!-- Wednesday -->
+          <div class="protocol-card" id="card-wed" onclick="toggleCard('wed')">
+            <div class="btn-card-checkbox" id="check-wed">✓</div>
+            <div class="routine-details">
+              <div class="routine-meta-row">
+                <span class="day-chip" id="tag-wed">Budhwar</span>
+                <span class="routine-type-tag tag-wash">Wash Day</span>
+              </div>
+              <div class="routine-name">Shampoo + Conditioner Routine 🚿</div>
+              <div class="routine-hint"><strong>Rule:</strong> Shampoo sirf chamdi par. Conditioner sirf baalon par (scalp par nahi!).</div>
+            </div>
           </div>
-          <div class="routine-name">Dandruff & Scalp Health Check 🔍</div>
-          <div class="routine-hint">Khujli lage toh anti-dandruff shampoo. Sab smooth ho toh mast aaram karo.</div>
-        </div>
-      </div>
 
-      <!-- Saturday -->
-      <div class="protocol-card" id="card-sat" onclick="toggleCard('sat')">
-        <div class="btn-card-checkbox" id="check-sat">✓</div>
-        <div class="routine-details">
-          <div class="routine-meta-row">
-            <span class="day-chip" id="tag-sat">Shaniwar</span>
-            <span class="routine-type-tag tag-oil">Tel Day</span>
+          <!-- Thursday -->
+          <div class="protocol-card" id="card-thu" onclick="toggleCard('thu')">
+            <div class="btn-card-checkbox" id="check-thu">✓</div>
+            <div class="routine-details">
+              <div class="routine-meta-row">
+                <span class="day-chip" id="tag-thu">Guruwar</span>
+                <span class="routine-type-tag tag-massage">Massage</span>
+              </div>
+              <div class="routine-name">4-Minute Dry Scalp Massage ⚡</div>
+              <div class="routine-hint">Timer chalao aur ungliyon se sir ki massage karo. Lakdi ki chaudi kanghi use karo.</div>
+            </div>
           </div>
-          <div class="routine-name">Badam Tel Nourishment 🌰</div>
-          <div class="routine-hint">Halka Badam tel lagao. Raat ko takiye par soft cover daal kar so jao.</div>
-        </div>
-      </div>
 
-      <!-- Sunday -->
-      <div class="protocol-card" id="card-sun" onclick="toggleCard('sun')">
-        <div class="btn-card-checkbox" id="check-sun">✓</div>
-        <div class="routine-details">
-          <div class="routine-meta-row">
-            <span class="day-chip" id="tag-sun">Raviwar</span>
-            <span class="routine-type-tag tag-wash">Wash Day</span>
+          <!-- Friday -->
+          <div class="protocol-card" id="card-fri" onclick="toggleCard('fri')">
+            <div class="btn-card-checkbox" id="check-fri">✓</div>
+            <div class="routine-details">
+              <div class="routine-meta-row">
+                <span class="day-chip" id="tag-fri">Shukrawar</span>
+                <span class="routine-type-tag tag-rest">Check Day</span>
+              </div>
+              <div class="routine-name">Dandruff & Scalp Health Check 🔍</div>
+              <div class="routine-hint">Khujli lage toh anti-dandruff shampoo. Sab smooth ho toh mast aaram karo.</div>
+            </div>
           </div>
-          <div class="routine-name">Sunday Deep Wash & Soft Dry 🧖‍♂️</div>
-          <div class="routine-hint">Shampoo + Conditioner lagao. <strong>Towel se ragdo mat!</strong> Halka dab karo.</div>
+
+          <!-- Saturday -->
+          <div class="protocol-card" id="card-sat" onclick="toggleCard('sat')">
+            <div class="btn-card-checkbox" id="check-sat">✓</div>
+            <div class="routine-details">
+              <div class="routine-meta-row">
+                <span class="day-chip" id="tag-sat">Shaniwar</span>
+                <span class="routine-type-tag tag-oil">Tel Day</span>
+              </div>
+              <div class="routine-name">Badam Tel Nourishment 🌰</div>
+              <div class="routine-hint">Halka Badam tel lagao. Raat ko takiye par soft cover daal kar so jao.</div>
+            </div>
+          </div>
+
+          <!-- Sunday -->
+          <div class="protocol-card" id="card-sun" onclick="toggleCard('sun')">
+            <div class="btn-card-checkbox" id="check-sun">✓</div>
+            <div class="routine-details">
+              <div class="routine-meta-row">
+                <span class="day-chip" id="tag-sun">Raviwar</span>
+                <span class="routine-type-tag tag-wash">Wash Day</span>
+              </div>
+              <div class="routine-name">Sunday Deep Wash & Soft Dry 🧖‍♂️</div>
+              <div class="routine-hint">Shampoo + Conditioner lagao. <strong>Towel se ragdo mat!</strong> Halka dab karo.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1492,15 +1557,31 @@
 
     const currentDay = days[new Date().getDay()];
     const todayCard = document.getElementById('card-' + currentDay);
-    const routineStack = document.querySelector('.routine-stack');
-    if (todayCard) {
+    const todaySlot = document.getElementById('today-focus-slot');
+    if (todayCard && todaySlot) {
       todayCard.classList.add('today');
-      if (routineStack) routineStack.prepend(todayCard);
+      todaySlot.appendChild(todayCard);
     }
     const todayTag = document.getElementById('tag-' + currentDay);
     if (todayTag) {
       todayTag.classList.add('today-badge');
       todayTag.innerText = dayNames[currentDay] + ' (Aaj)';
+    }
+
+    function toggleFullWeek() {
+      const tray = document.getElementById('other-days-tray');
+      const chevron = document.getElementById('week-chevron-icon');
+      const btnText = document.getElementById('btn-toggle-week-text');
+      if (tray.style.display === 'none') {
+        tray.style.display = 'block';
+        chevron.innerText = '▴';
+        btnText.innerText = '📅 Baki Din Chhupayein (6 Days)';
+      } else {
+        tray.style.display = 'none';
+        chevron.innerText = '▾';
+        btnText.innerText = '📅 Baki Dino Ka Plan Dekhein (6 Days)';
+      }
+      triggerHaptic('light');
     }
 
     // 1. SOUND & HAPTIC SYSTEM
