@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Men's Hair Growth & Styling Blueprint</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(18, 24, 38, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #38bdf8;
+      --primary-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      --accent-green: #34d399;
+      --accent-orange: #fb923c;
+      --accent-red: #f87171;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 24px 16px 80px;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(192, 132, 252, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Top Bar / Print Action */
+    .top-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: #0f172a;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(56, 189, 248, 0.45);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 32px 20px;
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Comparison Banner */
+    .goal-banner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .goal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .goal-card.current {
+      border-left: 4px solid var(--accent-orange);
+    }
+
+    .goal-card.target {
+      border-left: 4px solid var(--accent-green);
+    }
+
+    .goal-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .goal-card.current .goal-label { color: var(--accent-orange); }
+    .goal-card.target .goal-label { color: var(--accent-green); }
+
+    .goal-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .goal-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Main Grid */
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(12px);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .section-icon {
+      font-size: 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Weekly Schedule Table */
+    .schedule-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .day-row {
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .day-row:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .day-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .day-action {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .action-badge {
+      display: inline-block;
+      width: fit-content;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .tag-wash { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+    .tag-oil { background: rgba(251, 146, 60, 0.2); color: #fb923c; }
+    .tag-rest { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+    .tag-massage { background: rgba(52, 211, 153, 0.2); color: #34d399; }
+
+    .day-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Checkboxes */
+    .checkbox-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      transition: 0.2s all ease;
+    }
+
+    input[type="checkbox"]:checked {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+    }
+
+    input[type="checkbox"]:checked::before {
+      content: "✓";
+      color: #0b0f19;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    /* Daily 2-Minute Habits Cards */
+    .habits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .habit-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .habit-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .habit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .habit-list li {
+      font-size: 0.88rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #cbd5e1;
+    }
+
+    /* Timeline Roadmap */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+    }
+
+    .timeline-item.active-phase {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: rgba(56, 189, 248, 0.04);
+    }
+
+    .phase-badge {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .phase-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .phase-content p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Barber Note Box */
+    .barber-box {
+      background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(248, 113, 113, 0.1) 100%);
+      border: 1px dashed rgba(251, 146, 60, 0.4);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .barber-dialogue {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #fed7aa;
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* Do's and Don'ts */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .rule-box {
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--card-border);
+    }
+
+    .rule-box.dos {
+      background: rgba(52, 211, 153, 0.04);
+      border-left: 4px solid var(--accent-green);
+    }
+
+    .rule-box.donts {
+      background: rgba(248, 113, 113, 0.04);
+      border-left: 4px solid var(--accent-red);
+    }
+
+    .rule-box h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .rule-box.dos h3 { color: var(--accent-green); }
+    .rule-box.donts h3 { color: var(--accent-red); }
+
+    .rule-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .rule-box ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    /* Print Styles for clean PDF export */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        background-image: none !important;
+        padding: 0;
+      }
+      .top-actions, .btn-group {
+        display: none !important;
+      }
+      .container {
+        max-width: 100% !important;
+      }
+      .section-card, .goal-card, .day-row, .habit-card, .timeline-item {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+        color: #0f172a !important;
+        page-break-inside: avoid;
+      }
+      h1 {
+        -webkit-text-fill-color: #0f172a !important;
+      }
+      h2, h3, .day-name {
+        color: #0f172a !important;
+      }
+      .day-note, .goal-desc, .subtitle, .phase-content p {
+        color: #475569 !important;
+      }
+      input[type="checkbox"] {
+        border-color: #64748b !important;
+      }
+      .tag-wash { background: #e0f2fe; color: #0284c7; }
+      .tag-oil { background: #ffedd5; color: #ea580c; }
+      .tag-rest { background: #f1f5f9; color: #475569; }
+      .barber-box {
+        background: #fff7ed !important;
+        border: 1px dashed #fdba74 !important;
+        color: #9a3412 !important;
+      }
+      .barber-dialogue {
+        color: #7c2d12 !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .goal-banner, .habits-grid, .rules-grid {
+        grid-template-columns: 1fr;
+      }
+      .day-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Top Utility Bar -->
+    <div class="top-actions">
+      <div class="badge">🔥 12-Month Transformation Plan</div>
+      <div class="btn-group">
+        <button class="btn btn-outline" onclick="resetCheckboxes()">🔄 Reset Week</button>
+        <button class="btn btn-primary" onclick="window.print()">🖨️ Save as PDF / Print</button>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <h1>Hair Growth & Flow Blueprint</h1>
+      <p class="subtitle">Complete personalized roadmap to transition from a short tapered fade to a textured medium-length curtain flow.</p>
+    </header>
+
+    <!-- Goal Comparison Banner -->
+    <div class="goal-banner">
+      <div class="goal-card current">
+        <span class="goal-label">Current State (Baseline)</span>
+        <div class="goal-title">Short Fade / Quiff</div>
+        <div class="goal-desc">Length: ~2 inches top, faded sides. Healthy roots & great density. Ready for growth!</div>
+      </div>
+      <div class="goal-card target">
+        <span class="goal-label">Goal Target (~10-12 Months)</span>
+        <div class="goal-title">Medium Textured Flow</div>
+        <div class="goal-desc">Length: 6-8 inches top, layered sides/back. Natural wavy volume & healthy shine.</div>
+      </div>
+    </div>
+
+    <!-- Weekly Routine Tracker -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">🗓️</div>
+        <div>
+          <h2>Weekly Action Schedule & Tracker</h2>
+          <p class="subtitle" style="font-size: 0.85rem;">Tick items as you complete them. Saves automatically in your browser.</p>
+        </div>
+      </div>
+
+      <div class="schedule-grid">
+        <!-- Monday -->
+        <div class="day-row">
+          <div class="day-name">Monday</div>
+          <div class="day-action">
+            <span class="action-badge tag-rest">Rest / Natural</span>
+            <span class="day-note">Sirf normal paani agar pasina ho. No shampoo. Halka serum lagayein.</span>
+          </div>
+          <div class="checkbox-wrap">
+            <input type="checkbox" id="check-mon" />
+          </div>
+        </div>
+
+        <!-- Tuesday -->
+        <div class="day-row">
+          <div class="day-name">Tuesday</div>
+          <div class="day-action">
+            <span class="action-badge tag-oil">Oiling & Scalp Massage</span>
+            <span class="day-note">Coconut / Almond Oil + 4-5 drops Rosemary Oil. Scalp mein 5 min gentle massage.</span>
+          </div>
+          <div class="checkbox-wrap">
+            <input type="checkbox" id="check-tue" />
+          </div>
+        </div>
+
+        <!-- Wednesday -->
+        <div class="day-row">
+          <div class="day-name">Wednesday</div>
+          <div class="day-action">
+            <span class="action-badge tag-wash">Wash Day 1 (Full Routine)</span>
+            <span class="day-note">Sulfate-free Shampoo (sirf scalp) + Conditioner (sirf baalon ki lambai par 2 min).</span>
+          </div>
+          <div class="checkbox-wrap">
+            <input type="checkbox" id="check-wed" />
+          </div>
+        </div>
+
+        <!-- Thursday -->
+        <div class="day-row">
+          <div class="day-name">Thursday</div>
+          <div class="day-action">
+            <span class="action-badge tag-rest">Natural Flow</span>
+            <span class="day-note">Wide-tooth wooden comb se set karein. Baal naturally dry hone dein.</span>
+          </div>
+          <div class="checkbox-wrap">
+            <input type="checkbox" id="check-thu" />
+          </div>
+        </div>
+
+        <!-- Friday -->
+        <div class="day-row">
+          <div class="day-name">Friday</div>
+          <div class="day-action">
+            <span class="action-badge tag-massage">Dry Scalp Stimulation</span>
+            <span class="day-note">Raat ko sone se pehle 3 minute ungliyon se dry circular scalp massage.</span>
+          </div>
+          <div class="checkbox-wrap">
+            <input type="checkbox" id="check-fri" />
+          </div>
+        </div>
+
+        <!-- Saturday -->
+        <div class="day-row">
+          <div class="day-name">Saturday</div>
+          <div class="day-action">
+            <span class="action-badge tag-oil">Pre-Wash Oiling</span>
+            <span class="day-note">Nahane se 1-2 ghante pehle halka tel lagayein ya overnight chhod dein.</span>
+          </div>
+          <div class="checkbox-wrap">
+            <input type="checkbox" id="check-sat" />
+          </div>
+        </div>
+
+        <!-- Sunday -->
+        <div class="day-row">
+          <div class="day-name">Sunday</div>
+          <div class="day-action">
+            <span class="action-badge tag-wash">Wash Day 2 (Care & Refresh)</span>
+            <span class="day-note">Mild shampoo + Conditioner + 2 drops Argan oil damp baalon par. Full reset.</span>
+          </div>
+          <div class="checkbox-wrap">
+            <input type="checkbox" id="check-sun" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daily 2-Minute Habits -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">⚡</div>
+        <div>
+          <h2>Daily 2-Minute Habits</h2>
+          <p class="subtitle" style="font-size: 0.85rem;">Do small things daily that prevent breakage & frizz.</p>
+        </div>
+      </div>
+
+      <div class="habits-grid">
+        <div class="habit-card">
+          <div class="habit-title">🌅 Subah (Morning - 2 Mins)</div>
+          <ul class="habit-list">
+            <li>
+              <input type="checkbox" id="m-1">
+              <span><strong>Light Mist:</strong> Halka sa paani spray karein taaki bed-hair settle ho jaye.</span>
+            </li>
+            <li>
+              <input type="checkbox" id="m-2">
+              <span><strong>Serum/Oil:</strong> 2 drops serum/argan oil tips par rub karein (frizz control).</span>
+            </li>
+            <li>
+              <input type="checkbox" id="m-3">
+              <span><strong>Wide-Tooth Comb:</strong> Ungliyon ya chaude daant wali lakdi ki kanghi se backward flow dein.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="habit-card">
+          <div class="habit-title">🌙 Raat Ko (Night - 2 Mins)</div>
+          <ul class="habit-list">
+            <li>
+              <input type="checkbox" id="n-1">
+              <span><strong>Scalp Massage:</strong> 3 min circular fingertip massage (blood circulation boost).</span>
+            </li>
+            <li>
+              <input type="checkbox" id="n-2">
+              <span><strong>Friction-Free Sleep:</strong> Satin pillowcase ya soft t-shirt pillow par use karein.</span>
+            </li>
+            <li>
+              <input type="checkbox" id="n-3">
+              <span><strong>Hydration Check:</strong> Din bhar mein 3-4 litre paani poora hua ya nahi.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12-Month Phases Roadmap -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">📈</div>
+        <div>
+          <h2>12-Month Growth Roadmap</h2>
+          <p class="subtitle" style="font-size: 0.85rem;">Growth rate: ~0.5 inch / 1.25 cm per month.</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item active-phase">
+          <div class="phase-badge">Phase 1<br><span style="font-size:0.75rem; color:#94a3b8;">Month 1-3</span></div>
+          <div class="phase-content">
+            <h3>The Foundation (Building Length)</h3>
+            <p>Sides kaanon tak aane lagengi aur top unmanageable lagega. <strong>Rule:</strong> Upar ke baal bilkul mat kaato. Har 5-6 hafte mein sirf gardan (neckline) clean karwao.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="phase-badge">Phase 2<br><span style="font-size:0.75rem; color:#94a3b8;">Month 4-7</span></div>
+          <div class="phase-content">
+            <h3>The "Awkward Stage" (Survival Phase)</h3>
+            <p>Baal na chote lagenge na poore lambe, sides phoolne lagengi. <strong>Strategy:</strong> Sea salt spray se push-back karein, caps/headband use karein. Barber se strictly bolein: <em>"Sirf shape maintain karo, length touch mat karo!"</em></p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="phase-badge">Phase 3<br><span style="font-size:0.75rem; color:#94a3b8;">Month 8-12</span></div>
+          <div class="phase-content">
+            <h3>Flow & Layering (Photo 2 Target Look)</h3>
+            <p>Length naak aur lips cross kar jayegi. Achhe salon mein jakar interior layering aur texture add karwayein taaki wahi natural curtain wave flow create ho.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barber instruction script box -->
+      <div class="barber-box">
+        <strong style="color: #fb923c;">✂️ Barber ko kya bolna hai (Exact Script):</strong>
+        <p class="barber-dialogue">"Bhaiya, main baal lambe kar raha hoon (growing them out). Upar aur pichhe ki length bilkul touch mat karna. Sirf gardan (neckline) aur kaano ke side se clean taper kar do aur split ends trim kar do."</p>
+      </div>
+    </div>
+
+    <!-- Do's & Don'ts Cheat Sheet -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">⚖️</div>
+        <div>
+          <h2>Do's and Don'ts Cheat Sheet</h2>
+          <p class="subtitle" style="font-size: 0.85rem;">Golden rules to preserve hair health.</p>
+        </div>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-box dos">
+          <h3>✅ Kya Karna Hai (Do's)</h3>
+          <ul>
+            <li>✨ <strong>Sulfate-free Shampoo:</strong> Hafte mein 2-3 baar max.</li>
+            <li>✨ <strong>Conditioner Always:</strong> Shampoo ke baad ends par compulsory.</li>
+            <li>✨ <strong>Rosemary + Carrier Oil:</strong> Proven for accelerated follicle growth.</li>
+            <li>✨ <strong>High Protein Diet:</strong> Eggs, paneer, sprouts, dals.</li>
+            <li>✨ <strong>Gentle Pat-Dry:</strong> Cotton T-shirt se dab karein.</li>
+          </ul>
+        </div>
+
+        <div class="rule-box donts">
+          <h3>❌ Kya Nahi Karna (Don'ts)</h3>
+          <ul>
+            <li>🚫 <strong>Daily Shampoo:</strong> Baal super-dry aur frizzy ho jayenge.</li>
+            <li>🚫 <strong>Towel Rubbing:</strong> Jhatakne ya ragadne se roots toot te hain.</li>
+            <li>🚫 <strong>Hot Water:</strong> Scalp ko dry aur baalon ko brittle karta hai.</li>
+            <li>🚫 <strong>Plastic Fine Comb:</strong> Static aur hair pulling create karta hai.</li>
+            <li>🚫 <strong>Impulsive Haircut:</strong> Awkward stage mein gusse mein cut na karwayein!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Auto-save checkbox states in localStorage
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(box => {
+      const saved = localStorage.getItem('hair_' + box.id);
+      if (saved === 'true') box.checked = true;
+      box.addEventListener('change', () => {
+        localStorage.setItem('hair_' + box.id, box.checked);
+      });
+    });
+
+    function resetCheckboxes() {
+      if (confirm("Kya aap saare weekly checkboxes reset karna chahte hain?")) {
+        checkboxes.forEach(box => {
+          box.checked = false;
+          localStorage.removeItem('hair_' + box.id);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
