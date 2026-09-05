@@ -1145,141 +1145,9 @@
       </div>
     </div>
 
-    <!-- 3. GROWTH ROADMAP (4-STAGE VISUAL STEPPER) -->
-    <div class="section-card">
-      <div class="card-head">
-        <div class="card-title-group">
-          <span style="font-size: 1.1rem;">📏</span>
-          <div class="card-title-text">Growth Roadmap</div>
-        </div>
-        <div class="chip-target-stat" id="ruler-curr-stat">
-          2.0" → 7.5" Target
-        </div>
-      </div>
-
-      <div class="roadmap-track">
-        <div class="roadmap-line-bg">
-          <div class="roadmap-line-fill" id="ruler-fill"></div>
-        </div>
-        <div class="roadmap-nodes">
-          <div class="roadmap-node active" id="node-0">
-            <div class="node-bubble">🌱</div>
-            <div class="node-inch">2.0"</div>
-            <div class="node-name">Start</div>
-          </div>
-          <div class="roadmap-node" id="node-1">
-            <div class="node-bubble">👂</div>
-            <div class="node-inch">3.5"</div>
-            <div class="node-name">Ears</div>
-          </div>
-          <div class="roadmap-node" id="node-2">
-            <div class="node-bubble">🦁</div>
-            <div class="node-inch">5.0"</div>
-            <div class="node-name">Awkward</div>
-          </div>
-          <div class="roadmap-node" id="node-3">
-            <div class="node-bubble">👑</div>
-            <div class="node-inch">7.5"</div>
-            <div class="node-name">Flow King</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="roadmap-forecast">
-        <div class="forecast-icon">⏳</div>
-        <div class="forecast-text" id="ruler-next-forecast">
-          <strong>Next: 3.5" (Kaan cover honge) in ~60 Days</strong><br/>
-          Bas haircut mat lena, sirf pichhe gardan se clean karwana!
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. DAILY ESSENTIALS (WATER & PROTEIN) -->
-    <div class="daily-grid">
-      <div class="water-box">
-        <div class="water-head">
-          <div class="water-title">💧 Paani Target (8 Glasses)</div>
-          <span class="water-badge" id="water-badge">0 / 8 Glasses</span>
-        </div>
-
-        <div class="cups-flex-row">
-          <button class="cup-chip" onclick="toggleCup(0)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(1)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(2)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(3)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(4)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(5)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(6)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(7)">💧</button>
-        </div>
-        <div class="water-caption">Tap glasses as you drink to hydrate your hair roots!</div>
-      </div>
-
-      <div class="protein-bar-box">
-        <div class="protein-info">
-          <h4>🍳 Protein Power</h4>
-          <span>Ande, Paneer, Dal, Chicken</span>
-        </div>
-
-        <div class="protein-stepper-ctrl">
-          <button class="btn-step" onclick="adjustProtein(-10)">-</button>
-          <span class="protein-count" id="protein-score">0g</span>
-          <button class="btn-step add" onclick="adjustProtein(10)">+</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. 4-MINUTE SCALP MASSAGE -->
-    <div class="arcade-box">
-      <div class="arcade-header">
-        <div class="arcade-title-group">
-          <div class="arcade-icon-tile">💆‍♂️</div>
-          <div class="arcade-h3">4-Minute Scalp Massage</div>
-        </div>
-        <button class="btn-spa-pill" id="btn-spa-toggle" onclick="toggleSpaAudio()">🎵 Spa Sound: ON</button>
-      </div>
-
-      <div class="arcade-controls-row">
-        <div class="timer-digits-text" id="timer-digits">04:00</div>
-        <div class="arcade-action-btns">
-          <button class="btn-timer-primary" id="btn-play" onclick="toggleTimer()">▶ START</button>
-          <button class="btn-timer-sec" onclick="resetTimer()">Reset</button>
-        </div>
-      </div>
-
-      <div class="arcade-coach-note" id="arcade-msg">
-        Ungliyon se circular massage do taaki roots tak blood pahuche! 💆‍♂️
-      </div>
-    </div>
-
-    <!-- 6. MONTHLY PHOTO VAULT -->
-    <div class="vault-box">
-      <div class="vault-top">
-        <div class="vault-heading">📸 Monthly Photo Vault</div>
-        <span class="vault-privacy-chip">🔒 Private on Phone</span>
-      </div>
-
-      <div class="vault-grid">
-        <div class="polaroid-slot" onclick="promptPhotoUpload('start')">
-          <img id="img-start" src="" style="display:none;" />
-          <span id="txt-start" style="font-size: 1.8rem;">🪒</span>
-          <span class="slot-tag">Day 1 Baseline</span>
-        </div>
-        <div class="polaroid-slot" onclick="promptPhotoUpload('curr')">
-          <img id="img-curr" src="" style="display:none;" />
-          <span id="txt-curr" style="font-size: 1.8rem;">📷</span>
-          <span class="slot-tag">Current Month</span>
-        </div>
-      </div>
-
-      <button class="btn-snap-photo" onclick="promptPhotoUpload('curr')">
-        📸 Snap / Upload This Month's Photo
-      </button>
-    </div>
-
-    <!-- 7. WEEKLY PROTOCOL -->
+    <!-- 3. WEEKLY PROTOCOL (TODAY'S FOCUS) -->
     <div class="section-header-bar">
-      <h2>📅 Hafte Ka Game Plan</h2>
+      <h2>🎯 Aaj Ka Mission & Hafte Ka Plan</h2>
       <span>Tap to Complete 🎉</span>
     </div>
 
@@ -1374,6 +1242,138 @@
           <div class="routine-hint">Shampoo + Conditioner lagao. <strong>Towel se ragdo mat!</strong> Halka dab karo.</div>
         </div>
       </div>
+    </div>
+
+    <!-- 4. DAILY ESSENTIALS (WATER & PROTEIN) -->
+    <div class="daily-grid">
+      <div class="water-box">
+        <div class="water-head">
+          <div class="water-title">💧 Paani Target (8 Glasses)</div>
+          <span class="water-badge" id="water-badge">0 / 8 Glasses</span>
+        </div>
+
+        <div class="cups-flex-row">
+          <button class="cup-chip" onclick="toggleCup(0)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(1)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(2)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(3)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(4)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(5)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(6)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(7)">💧</button>
+        </div>
+        <div class="water-caption">Tap glasses as you drink to hydrate your hair roots!</div>
+      </div>
+
+      <div class="protein-bar-box">
+        <div class="protein-info">
+          <h4>🍳 Protein Power</h4>
+          <span>Ande, Paneer, Dal, Chicken</span>
+        </div>
+
+        <div class="protein-stepper-ctrl">
+          <button class="btn-step" onclick="adjustProtein(-10)">-</button>
+          <span class="protein-count" id="protein-score">0g</span>
+          <button class="btn-step add" onclick="adjustProtein(10)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 4-MINUTE SCALP MASSAGE -->
+    <div class="arcade-box">
+      <div class="arcade-header">
+        <div class="arcade-title-group">
+          <div class="arcade-icon-tile">💆‍♂️</div>
+          <div class="arcade-h3">4-Minute Scalp Massage</div>
+        </div>
+        <button class="btn-spa-pill" id="btn-spa-toggle" onclick="toggleSpaAudio()">🎵 Spa Sound: ON</button>
+      </div>
+
+      <div class="arcade-controls-row">
+        <div class="timer-digits-text" id="timer-digits">04:00</div>
+        <div class="arcade-action-btns">
+          <button class="btn-timer-primary" id="btn-play" onclick="toggleTimer()">▶ START</button>
+          <button class="btn-timer-sec" onclick="resetTimer()">Reset</button>
+        </div>
+      </div>
+
+      <div class="arcade-coach-note" id="arcade-msg">
+        Ungliyon se circular massage do taaki roots tak blood pahuche! 💆‍♂️
+      </div>
+    </div>
+
+    <!-- 3. GROWTH ROADMAP (4-STAGE VISUAL STEPPER) -->
+    <div class="section-card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <span style="font-size: 1.1rem;">📏</span>
+          <div class="card-title-text">Growth Roadmap</div>
+        </div>
+        <div class="chip-target-stat" id="ruler-curr-stat">
+          2.0" → 7.5" Target
+        </div>
+      </div>
+
+      <div class="roadmap-track">
+        <div class="roadmap-line-bg">
+          <div class="roadmap-line-fill" id="ruler-fill"></div>
+        </div>
+        <div class="roadmap-nodes">
+          <div class="roadmap-node active" id="node-0">
+            <div class="node-bubble">🌱</div>
+            <div class="node-inch">2.0"</div>
+            <div class="node-name">Start</div>
+          </div>
+          <div class="roadmap-node" id="node-1">
+            <div class="node-bubble">👂</div>
+            <div class="node-inch">3.5"</div>
+            <div class="node-name">Ears</div>
+          </div>
+          <div class="roadmap-node" id="node-2">
+            <div class="node-bubble">🦁</div>
+            <div class="node-inch">5.0"</div>
+            <div class="node-name">Awkward</div>
+          </div>
+          <div class="roadmap-node" id="node-3">
+            <div class="node-bubble">👑</div>
+            <div class="node-inch">7.5"</div>
+            <div class="node-name">Flow King</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadmap-forecast">
+        <div class="forecast-icon">⏳</div>
+        <div class="forecast-text" id="ruler-next-forecast">
+          <strong>Next: 3.5" (Kaan cover honge) in ~60 Days</strong><br/>
+          Bas haircut mat lena, sirf pichhe gardan se clean karwana!
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. MONTHLY PHOTO VAULT -->
+    <div class="vault-box">
+      <div class="vault-top">
+        <div class="vault-heading">📸 Monthly Photo Vault</div>
+        <span class="vault-privacy-chip">🔒 Private on Phone</span>
+      </div>
+
+      <div class="vault-grid">
+        <div class="polaroid-slot" onclick="promptPhotoUpload('start')">
+          <img id="img-start" src="" style="display:none;" />
+          <span id="txt-start" style="font-size: 1.8rem;">🪒</span>
+          <span class="slot-tag">Day 1 Baseline</span>
+        </div>
+        <div class="polaroid-slot" onclick="promptPhotoUpload('curr')">
+          <img id="img-curr" src="" style="display:none;" />
+          <span id="txt-curr" style="font-size: 1.8rem;">📷</span>
+          <span class="slot-tag">Current Month</span>
+        </div>
+      </div>
+
+      <button class="btn-snap-photo" onclick="promptPhotoUpload('curr')">
+        📸 Snap / Upload This Month's Photo
+      </button>
     </div>
 
     <!-- 8. EDUCATIONAL GUIDES TABS -->
@@ -1476,7 +1476,11 @@
 
     const currentDay = days[new Date().getDay()];
     const todayCard = document.getElementById('card-' + currentDay);
-    if (todayCard) todayCard.classList.add('today');
+    const routineStack = document.querySelector('.routine-stack');
+    if (todayCard) {
+      todayCard.classList.add('today');
+      if (routineStack) routineStack.prepend(todayCard);
+    }
     const todayTag = document.getElementById('tag-' + currentDay);
     if (todayTag) {
       todayTag.classList.add('today-badge');
