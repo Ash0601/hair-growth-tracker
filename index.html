@@ -114,8 +114,6 @@
       padding: 12px 14px 90px;
       background-image: 
         radial-gradient(circle at 50% -10%, var(--bg-ambient) 0%, transparent 60%);
-      background-attachment: fixed;
-      transition: background-color 0.25s ease, color 0.25s ease;
       overflow-x: hidden;
       user-select: none;
       -webkit-user-select: none;
@@ -1271,8 +1269,7 @@
 
   
     /* ===================================================
-       IMMERSIVE THEME TRANSITION SYSTEM
-       (Circular Reveal Ripple + Golden Shockwave + Spring)
+       ULTRA-SMOOTH THEME TRANSITION (120FPS ZERO-LAG)
        =================================================== */
     ::view-transition-old(root),
     ::view-transition-new(root) {
@@ -1288,77 +1285,21 @@
       z-index: 9999;
     }
 
-    /* Icon Spring Spin Animation */
+    /* Fast GPU-Accelerated Icon Spring Flip */
     .theme-icon-spring {
       display: inline-block;
-      animation: theme-icon-spring 0.58s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation: theme-icon-spring 0.36s cubic-bezier(0.2, 0, 0, 1) forwards;
     }
 
     @keyframes theme-icon-spring {
-      0% {
-        transform: rotate(0deg) scale(1);
-      }
-      40% {
-        transform: rotate(180deg) scale(1.4);
-      }
-      75% {
-        transform: rotate(340deg) scale(0.9);
-      }
-      100% {
-        transform: rotate(360deg) scale(1);
-      }
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.25); }
+      100% { transform: rotate(360deg) scale(1); }
     }
 
-    /* Button Pulse on Tap */
     .btn-theme-active {
-      animation: btn-theme-pulse 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    @keyframes btn-theme-pulse {
-      0% { transform: scale(1); }
-      40% { transform: scale(0.86); box-shadow: 0 0 20px rgba(212, 175, 55, 0.7); }
-      75% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-
-    /* Luminous Golden Shockwave Ring Wavefront */
-    .theme-shockwave-ring {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 999998;
-      border: 2px solid rgba(212, 175, 55, 0.75);
-      box-shadow: 0 0 35px rgba(212, 175, 55, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.3);
-      transform: translate(-50%, -50%) scale(0);
-      animation: shockwave-expand 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes shockwave-expand {
-      0% {
-        width: 10px;
-        height: 10px;
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0);
-      }
-      60% {
-        opacity: 0.85;
-      }
-      100% {
-        width: 260vmax;
-        height: 260vmax;
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
-
-    /* Universal Fallback Ripple Overlay (For browsers without View Transitions API) */
-    .theme-fallback-overlay {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 999990;
-      transform: translate(-50%, -50%) scale(0);
-      transition: transform 0.48s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease 0.4s;
+      transform: scale(0.9);
+      transition: transform 0.12s ease;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1366,10 +1307,6 @@
       ::view-transition-old(*),
       ::view-transition-new(*) {
         animation: none !important;
-      }
-      .theme-shockwave-ring,
-      .theme-fallback-overlay {
-        display: none !important;
       }
     }
 
@@ -1781,9 +1718,10 @@
 
     function toggleTheme(event) {
       const btn = document.getElementById('btn-theme-toggle');
-      const rect = btn ? btn.getBoundingClientRect() : { left: window.innerWidth - 60, top: 40, width: 34, height: 34 };
-      const x = (event && event.clientX) ? event.clientX : (rect.left + rect.width / 2);
-      const y = (event && event.clientY) ? event.clientY : (rect.top + rect.height / 2);
+      const rect = btn ? btn.getBoundingClientRect() : null;
+      const x = rect ? (rect.left + rect.width / 2) : (window.innerWidth - 45);
+      const y = rect ? (rect.top + rect.height / 2) : 35;
+      
       const endRadius = Math.hypot(
         Math.max(x, window.innerWidth - x),
         Math.max(y, window.innerHeight - y)
@@ -1792,15 +1730,10 @@
       const nextTheme = (currentTheme === 'light') ? 'dark' : 'light';
       const isToLight = (nextTheme === 'light');
 
-      // 1. Audio & Haptic Symphony
+      // 1. Instant feedback
       Haptics.themeWave(isToLight);
 
-      // 2. Icon Spring & Button Pulse
-      if (btn) {
-        btn.classList.remove('btn-theme-active');
-        void btn.offsetWidth;
-        btn.classList.add('btn-theme-active');
-      }
+      // 2. Icon spin
       const icon = document.getElementById('theme-icon');
       if (icon) {
         icon.classList.remove('theme-icon-spring');
@@ -1808,17 +1741,7 @@
         icon.classList.add('theme-icon-spring');
       }
 
-      // 3. Luminous Golden Shockwave Ring
-      try {
-        const ring = document.createElement('div');
-        ring.className = 'theme-shockwave-ring';
-        ring.style.left = x + 'px';
-        ring.style.top = y + 'px';
-        document.body.appendChild(ring);
-        ring.addEventListener('animationend', () => ring.remove(), { once: true });
-      } catch (e) {}
-
-      // 4. Circular Reveal via Native View Transitions API
+      // 3. Native View Transitions API (Fast 320ms GPU-accelerated circular reveal)
       if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         const transition = document.startViewTransition(() => {
           applyTheme(nextTheme);
@@ -1833,8 +1756,8 @@
               ]
             },
             {
-              duration: 520,
-              easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              duration: 320,
+              easing: 'cubic-bezier(0.2, 0, 0, 1)',
               pseudoElement: '::view-transition-new(root)'
             }
           );
@@ -1842,33 +1765,7 @@
         return;
       }
 
-      // 5. Universal Fallback (For browsers without View Transitions API)
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        try {
-          const overlay = document.createElement('div');
-          overlay.className = 'theme-fallback-overlay';
-          overlay.style.left = x + 'px';
-          overlay.style.top = y + 'px';
-          overlay.style.width = (endRadius * 2.2) + 'px';
-          overlay.style.height = (endRadius * 2.2) + 'px';
-          overlay.style.backgroundColor = isToLight ? '#f8f6f0' : '#090a0f';
-          document.body.appendChild(overlay);
-
-          // Force reflow and scale up
-          requestAnimationFrame(() => {
-            overlay.style.transform = 'translate(-50%, -50%) scale(1)';
-          });
-
-          setTimeout(() => {
-            applyTheme(nextTheme);
-            overlay.style.opacity = '0';
-            setTimeout(() => overlay.remove(), 250);
-          }, 380);
-          return;
-        } catch (e) {}
-      }
-
-      // Reduced motion or fallback failure
+      // Fallback for browsers without View Transitions
       applyTheme(nextTheme);
     }
 
@@ -2168,63 +2065,24 @@
         } catch (e) {}
       },
 
-      // 9. Ethereal Theme Symphony (Sunrise / Nightfall Harmonic Wave)
+      // 9. Lightweight Zero-Latency Theme Feedback
       themeWave(isLight) {
-        if (isLight) {
-          this.vibrate([18, 25, 20]);
-        } else {
-          this.vibrate([35, 20, 40]);
-        }
-
+        this.vibrate(isLight ? 20 : 25);
         if (!soundEnabled) return;
         try {
           const ctx = getAudioCtx();
           const t = ctx.currentTime;
-
-          if (isLight) {
-            // Sunrise Ascending Crystal Arpeggio (C5 -> E5 -> G5 -> C6)
-            const freqs = [523.25, 659.25, 783.99, 1046.50];
-            freqs.forEach((f, idx) => {
-              const osc = ctx.createOscillator();
-              const gain = ctx.createGain();
-              osc.type = 'sine';
-              osc.frequency.setValueAtTime(f, t + idx * 0.05);
-              gain.gain.setValueAtTime(0.001, t + idx * 0.05);
-              gain.gain.linearRampToValueAtTime(0.08 / (idx + 1), t + idx * 0.05 + 0.02);
-              gain.gain.exponentialRampToValueAtTime(0.0001, t + idx * 0.05 + 0.28);
-              osc.connect(gain);
-              gain.connect(ctx.destination);
-              osc.start(t + idx * 0.05);
-              osc.stop(t + idx * 0.05 + 0.3);
-            });
-          } else {
-            // Nightfall Descending Velvet Gong (D4 -> A3 -> D3 with warm overtone)
-            const osc = ctx.createOscillator();
-            const overtone = ctx.createOscillator();
-            const gain = ctx.createGain();
-
-            osc.type = 'sine';
-            overtone.type = 'triangle';
-            
-            osc.frequency.setValueAtTime(293.66, t);
-            osc.frequency.exponentialRampToValueAtTime(146.83, t + 0.35);
-
-            overtone.frequency.setValueAtTime(440.0, t);
-            overtone.frequency.exponentialRampToValueAtTime(220.0, t + 0.35);
-
-            gain.gain.setValueAtTime(0.01, t);
-            gain.gain.linearRampToValueAtTime(0.09, t + 0.04);
-            gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.4);
-
-            osc.connect(gain);
-            overtone.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.start(t);
-            overtone.start(t);
-            osc.stop(t + 0.4);
-            overtone.stop(t + 0.4);
-          }
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(isLight ? 740 : 420, t);
+          osc.frequency.exponentialRampToValueAtTime(isLight ? 980 : 280, t + 0.09);
+          gain.gain.setValueAtTime(0.06, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(t);
+          osc.stop(t + 0.09);
         } catch (e) {}
       }
     };
