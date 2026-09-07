@@ -1,5 +1,5 @@
 // Hair Flow Quest - Service Worker (Network-First Auto-Sync Engine)
-const CACHE_NAME = 'hair-flow-v3-live';
+const CACHE_NAME = 'hair-flow-v4-modern';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
