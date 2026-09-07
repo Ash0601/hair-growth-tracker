@@ -3369,10 +3369,31 @@
     // 11. DAILY ENGAGEMENT, MASCOT & NOTIFICATION ENGINES
     // ===================================================
 
-    // A. SERVICE WORKER & PWA INSTALL ENGINE
+    // A. SERVICE WORKER & PWA INSTALL ENGINE (AUTO-SYNC & NETWORK-FIRST)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(() => {});
+        navigator.serviceWorker.register('/sw.js').then((reg) => {
+          // Instantly poll Vercel for sw updates
+          reg.update().catch(() => {});
+        }).catch(() => {});
+      });
+
+      // When newly updated Service Worker activates and claims clients, reload view automatically
+      let swRefreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!swRefreshing) {
+          swRefreshing = true;
+          window.location.reload();
+        }
+      });
+
+      // When user brings app to foreground on mobile, check for latest deployment
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          navigator.serviceWorker.getRegistration().then((reg) => {
+            if (reg) reg.update();
+          }).catch(() => {});
+        }
       });
     }
 
