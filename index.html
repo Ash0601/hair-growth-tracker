@@ -1815,6 +1815,166 @@
       color: #64748b;
     }
 
+  
+    /* ===================================================
+       ZEN 4-TAB BOTTOM NAVIGATION & PROGRESSIVE DISCLOSURE
+       =================================================== */
+    body {
+      padding-bottom: 84px !important;
+    }
+
+    .main-tab-view {
+      display: none;
+    }
+
+    .main-tab-view.active {
+      display: block;
+      animation: tab-fade-in 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes tab-fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Fixed Bottom Navigation Bar */
+    .bottom-nav-bar {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: 64px;
+      background: rgba(14, 16, 23, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 0 8px;
+      z-index: 99998;
+      box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    .nav-item {
+      background: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      color: #94a3b8;
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    .nav-item:active {
+      transform: scale(0.9);
+    }
+
+    .nav-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .nav-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.69rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      transition: color 0.15s ease;
+    }
+
+    .nav-item.active {
+      color: var(--gold-light);
+    }
+
+    .nav-item.active .nav-icon {
+      transform: scale(1.15) translateY(-1px);
+    }
+
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      width: 16px;
+      height: 2.5px;
+      background: var(--gold);
+      border-radius: 9999px;
+      box-shadow: 0 0 6px var(--gold-glow);
+    }
+
+    /* Vault Tools Card */
+    .vault-tools-deck {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .btn-vault-tool {
+      background: var(--inner-panel-bg);
+      border: 1px solid var(--inner-panel-border);
+      border-radius: var(--radius-md);
+      padding: 12px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      color: var(--text-primary);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      transition: all 0.12s ease;
+    }
+
+    .btn-vault-tool:hover {
+      border-color: var(--gold);
+    }
+
+    .btn-vault-tool:active {
+      transform: scale(0.95);
+    }
+
+    .btn-vault-tool span:first-child {
+      font-size: 1.2rem;
+    }
+
+    /* Light Theme Styling for Bottom Nav */
+    [data-theme="light"] .bottom-nav-bar {
+      background: rgba(255, 253, 248, 0.94);
+      border-top: 1px solid rgba(184, 134, 11, 0.25);
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    [data-theme="light"] .nav-item {
+      color: #64748b;
+    }
+
+    [data-theme="light"] .nav-item.active {
+      color: #785404;
+    }
+
+    [data-theme="light"] .btn-vault-tool {
+      background: #faf7f0;
+      border-color: #e7dfce;
+    }
+
   </style>
 </head>
 <body>
@@ -1841,18 +2001,13 @@
         <button class="btn-icon-sq" id="btn-theme-toggle" onclick="toggleTheme(event)" title="Switch Light / Dark Mode">
           <span id="theme-icon">☀️</span>
         </button>
-        <button class="btn-icon-sq" id="btn-sound-toggle" onclick="toggleSound()" title="Mute / Unmute Sound">
-          <span id="sound-icon">🔊</span>
-        </button>
-        <button class="btn-icon-sq" onclick="resetWeek()" title="Reset Week Tasks">
-          <span>🔄</span>
-        </button>
-        <button class="btn-icon-sq" onclick="window.print()" title="Export / Print PDF">
-          <span>📄</span>
-        </button>
       </div>
     </header>
 
+      <!-- ==============================================
+       TAB 1: AAJ (TODAY / ZERO-CLUTTER HOME)
+       ============================================== -->
+  <section class="main-tab-view active" id="tab-today">
     <!-- 2. HERO STATUS CARD -->
     <div class="hero-card">
       <div class="hero-pills-row">
@@ -1923,24 +2078,86 @@
       </div>
     </div>
 
-    <!-- 3. WEEKLY PROTOCOL (TODAY'S FOCUS) -->
-        <div class="section-header-bar">
+        <!-- 3. AAJ KA MISSION -->
+    <div class="section-header-bar">
       <h2>🎯 Aaj Ka Mission</h2>
       <span class="header-action-badge">Tap to Tick ✓</span>
     </div>
 
     <div class="today-focus-slot" id="today-focus-slot">
-      <!-- Today's active card will be mounted here automatically -->
+      <!-- Today's active day card mounted here automatically -->
     </div>
 
-    <div class="other-days-wrapper">
-      <button class="btn-toggle-week" id="btn-toggle-week" onclick="toggleFullWeek()">
-        <span id="btn-toggle-week-text">📅 Baki Dino Ka Plan Dekhein (6 Days)</span>
-        <span id="week-chevron-icon">▾</span>
-      </button>
+    <!-- 4. DAILY ESSENTIALS (WATER & PROTEIN) -->
+    <div class="daily-grid">
+      <div class="water-box">
+        <div class="water-head">
+          <div class="water-title">💧 Paani Target (8 Glasses)</div>
+          <span class="water-badge" id="water-badge">0 / 8 Glasses</span>
+        </div>
 
-      <div class="other-days-tray" id="other-days-tray" style="display: none;">
-        <div class="routine-stack" id="other-days-stack">
+        <div class="cups-flex-row">
+          <button class="cup-chip" onclick="toggleCup(0)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(1)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(2)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(3)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(4)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(5)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(6)">💧</button>
+          <button class="cup-chip" onclick="toggleCup(7)">💧</button>
+        </div>
+        <div class="water-caption">Tap glasses as you drink to hydrate your hair roots!</div>
+      </div>
+
+      <div class="protein-bar-box">
+        <div class="protein-info">
+          <h4>🍳 Protein Power</h4>
+          <span>Uble Ande, Bhuna Chana, Moong Dal, Dahi</span>
+        </div>
+
+        <div class="protein-stepper-ctrl">
+          <button class="btn-step" onclick="adjustProtein(-10)">-</button>
+          <span class="protein-count" id="protein-score">0g</span>
+          <button class="btn-step add" onclick="adjustProtein(10)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 4-MINUTE SCALP MASSAGE -->
+    <div class="arcade-box">
+      <div class="arcade-header">
+        <div class="arcade-title-group">
+          <div class="arcade-icon-tile">💆‍♂️</div>
+          <div class="arcade-h3">4-Minute Scalp Massage</div>
+        </div>
+        <button class="btn-spa-pill" id="btn-spa-toggle" onclick="toggleSpaAudio()">🎵 Spa Sound: ON</button>
+      </div>
+
+      <div class="arcade-controls-row">
+        <div class="timer-digits-text" id="timer-digits">04:00</div>
+        <div class="arcade-action-btns">
+          <button class="btn-timer-primary" id="btn-play" onclick="toggleTimer()">▶ START</button>
+          <button class="btn-timer-sec" onclick="resetTimer()">Reset</button>
+        </div>
+      </div>
+
+      <div class="arcade-coach-note" id="arcade-msg">
+        Ungliyon se circular massage do taaki roots tak blood pahuche! 💆‍♂️
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       TAB 2: HAFTA (FULL 7-DAY SCHEDULE & ROADMAP)
+       ============================================== -->
+  <section class="main-tab-view" id="tab-week" style="display: none;">
+    <div class="section-header-bar">
+      <h2>📅 Poora 7 Dino Ka Plan</h2>
+      <span class="header-action-badge">Somwar — Raviwar</span>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <div class="routine-stack" id="week-schedule-stack">
           <!-- Monday -->
           <div class="protocol-card" id="card-mon" onclick="toggleCard('mon')">
             <div class="btn-card-checkbox" id="check-mon">✓</div>
@@ -2032,65 +2249,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- 4. DAILY ESSENTIALS (WATER & PROTEIN) -->
-    <div class="daily-grid">
-      <div class="water-box">
-        <div class="water-head">
-          <div class="water-title">💧 Paani Target (8 Glasses)</div>
-          <span class="water-badge" id="water-badge">0 / 8 Glasses</span>
-        </div>
-
-        <div class="cups-flex-row">
-          <button class="cup-chip" onclick="toggleCup(0)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(1)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(2)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(3)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(4)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(5)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(6)">💧</button>
-          <button class="cup-chip" onclick="toggleCup(7)">💧</button>
-        </div>
-        <div class="water-caption">Tap glasses as you drink to hydrate your hair roots!</div>
-      </div>
-
-      <div class="protein-bar-box">
-        <div class="protein-info">
-          <h4>🍳 Protein Power</h4>
-          <span>Uble Ande, Bhuna Chana, Moong Dal, Dahi</span>
-        </div>
-
-        <div class="protein-stepper-ctrl">
-          <button class="btn-step" onclick="adjustProtein(-10)">-</button>
-          <span class="protein-count" id="protein-score">0g</span>
-          <button class="btn-step add" onclick="adjustProtein(10)">+</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. 4-MINUTE SCALP MASSAGE -->
-    <div class="arcade-box">
-      <div class="arcade-header">
-        <div class="arcade-title-group">
-          <div class="arcade-icon-tile">💆‍♂️</div>
-          <div class="arcade-h3">4-Minute Scalp Massage</div>
-        </div>
-        <button class="btn-spa-pill" id="btn-spa-toggle" onclick="toggleSpaAudio()">🎵 Spa Sound: ON</button>
-      </div>
-
-      <div class="arcade-controls-row">
-        <div class="timer-digits-text" id="timer-digits">04:00</div>
-        <div class="arcade-action-btns">
-          <button class="btn-timer-primary" id="btn-play" onclick="toggleTimer()">▶ START</button>
-          <button class="btn-timer-sec" onclick="resetTimer()">Reset</button>
-        </div>
-      </div>
-
-      <div class="arcade-coach-note" id="arcade-msg">
-        Ungliyon se circular massage do taaki roots tak blood pahuche! 💆‍♂️
-      </div>
     </div>
 
     <!-- 3. GROWTH ROADMAP (4-STAGE VISUAL STEPPER) -->
@@ -2141,30 +2299,15 @@
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- 6. MONTHLY PHOTO VAULT -->
-    <div class="vault-box">
-      <div class="vault-top">
-        <div class="vault-heading">📸 Monthly Photo Vault</div>
-        <span class="vault-privacy-chip">🔒 Private on Phone</span>
-      </div>
-
-      <div class="vault-grid">
-        <div class="polaroid-slot" onclick="promptPhotoUpload('start')">
-          <img id="img-start" src="" style="display:none;" />
-          <span id="txt-start" style="font-size: 1.8rem;">🪒</span>
-          <span class="slot-tag">Day 1 Baseline</span>
-        </div>
-        <div class="polaroid-slot" onclick="promptPhotoUpload('curr')">
-          <img id="img-curr" src="" style="display:none;" />
-          <span id="txt-curr" style="font-size: 1.8rem;">📷</span>
-          <span class="slot-tag">Current Month</span>
-        </div>
-      </div>
-
-      <button class="btn-snap-photo" onclick="promptPhotoUpload('curr')">
-        📸 Snap / Upload This Month's Photo
-      </button>
+  <!-- ==============================================
+       TAB 3: NUSKHE (GHAR KE DESI NUSKHE & GUIDE)
+       ============================================== -->
+  <section class="main-tab-view" id="tab-remedies" style="display: none;">
+    <div class="section-header-bar">
+      <h2>🌿 Ghar Ke Nuskhe & Complete Hair Guide</h2>
+      <span class="header-action-badge">100% Zero-Cost</span>
     </div>
 
     <!-- 8. EDUCATIONAL GUIDES TABS -->
@@ -2315,6 +2458,84 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ==============================================
+       TAB 4: VAULT (PHOTOS, MILESTONES & TOOLS)
+       ============================================== -->
+  <section class="main-tab-view" id="tab-vault" style="display: none;">
+    <div class="section-header-bar">
+      <h2>📸 Hair Progress Vault</h2>
+      <span class="header-action-badge">Photos & Tools</span>
+    </div>
+
+    <!-- 6. MONTHLY PHOTO VAULT -->
+    <div class="vault-box">
+      <div class="vault-top">
+        <div class="vault-heading">📸 Monthly Photo Vault</div>
+        <span class="vault-privacy-chip">🔒 Private on Phone</span>
+      </div>
+
+      <div class="vault-grid">
+        <div class="polaroid-slot" onclick="promptPhotoUpload('start')">
+          <img id="img-start" src="" style="display:none;" />
+          <span id="txt-start" style="font-size: 1.8rem;">🪒</span>
+          <span class="slot-tag">Day 1 Baseline</span>
+        </div>
+        <div class="polaroid-slot" onclick="promptPhotoUpload('curr')">
+          <img id="img-curr" src="" style="display:none;" />
+          <span id="txt-curr" style="font-size: 1.8rem;">📷</span>
+          <span class="slot-tag">Current Month</span>
+        </div>
+      </div>
+
+      <button class="btn-snap-photo" onclick="promptPhotoUpload('curr')">
+        📸 Snap / Upload This Month's Photo
+      </button>
+    
+    <!-- QUICK ACTIONS & TOOLS -->
+    <div class="section-header-bar" style="margin-top: 18px;">
+      <h2>⚙️ App Settings & Actions</h2>
+    </div>
+
+    <div class="vault-tools-deck">
+      <button class="btn-vault-tool" onclick="toggleSound()">
+        <span id="vault-sound-icon">🔊</span>
+        <span>Sound FX</span>
+      </button>
+      <button class="btn-vault-tool" onclick="resetWeek()">
+        <span>🔄</span>
+        <span>Reset Week</span>
+      </button>
+      <button class="btn-vault-tool" onclick="window.print()">
+        <span>📄</span>
+        <span>Export PDF</span>
+      </button>
+    </div>
+
+    </div>
+  </section>
+
+
+    <!-- FIXED BOTTOM NAVIGATION BAR -->
+    <nav class="bottom-nav-bar" id="bottom-nav-bar">
+      <button class="nav-item active" data-tab="tab-today" onclick="switchMainTab('tab-today')">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Aaj</span>
+      </button>
+      <button class="nav-item" data-tab="tab-week" onclick="switchMainTab('tab-week')">
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">Hafta</span>
+      </button>
+      <button class="nav-item" data-tab="tab-remedies" onclick="switchMainTab('tab-remedies')">
+        <span class="nav-icon">🌿</span>
+        <span class="nav-label">Nuskhe</span>
+      </button>
+      <button class="nav-item" data-tab="tab-vault" onclick="switchMainTab('tab-vault')">
+        <span class="nav-icon">📸</span>
+        <span class="nav-label">Vault</span>
+      </button>
+    </nav>
 
     <!-- FLOATING PWA INSTALL BANNER -->
     <div class="pwa-install-banner" id="pwa-install-banner" style="display: none;">
@@ -2475,12 +2696,15 @@
     function updateSoundBtnUI() {
       const btn = document.getElementById('btn-sound-toggle');
       const icon = document.getElementById('sound-icon');
+      const vaultIcon = document.getElementById('vault-sound-icon');
       if (soundEnabled) {
-        btn.classList.add('active');
-        icon.innerText = '🔊';
+        if (btn) btn.classList.add('active');
+        if (icon) icon.innerText = '🔊';
+        if (vaultIcon) vaultIcon.innerText = '🔊';
       } else {
-        btn.classList.remove('active');
-        icon.innerText = '🔇';
+        if (btn) btn.classList.remove('active');
+        if (icon) icon.innerText = '🔇';
+        if (vaultIcon) vaultIcon.innerText = '🔇';
       }
     }
 
@@ -3088,6 +3312,59 @@
             secLeft--;
             updateTimer();
 
+    // 12. ZEN 4-TAB MAIN CONTROLLER
+    function switchMainTab(tabId) {
+      Haptics.tick();
+      document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.main-tab-view').forEach(view => {
+        view.style.display = 'none';
+        view.classList.remove('active');
+      });
+
+      const activeBtn = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const activeView = document.getElementById(tabId);
+      if (activeView) {
+        activeView.style.display = 'block';
+        activeView.classList.add('active');
+      }
+
+      // Manage Today's Card Placement dynamically between Tab 1 (Aaj) and Tab 2 (Hafta)
+      const todayCard = document.getElementById('card-' + currentDay);
+      if (todayCard) {
+        if (tabId === 'tab-today') {
+          const todaySlot = document.getElementById('today-focus-slot');
+          if (todaySlot && todayCard.parentElement !== todaySlot) {
+            todaySlot.appendChild(todayCard);
+          }
+        } else if (tabId === 'tab-week') {
+          const weekStack = document.getElementById('week-schedule-stack');
+          if (weekStack && todayCard.parentElement !== weekStack) {
+            const dayOrder = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            const currentIndex = dayOrder.indexOf(currentDay);
+            const remainingDays = dayOrder.slice(currentIndex + 1);
+            let nextSibling = null;
+            for (const d of remainingDays) {
+              const el = document.getElementById('card-' + d);
+              if (el && el.parentElement === weekStack) {
+                nextSibling = el;
+                break;
+              }
+            }
+            if (nextSibling) {
+              weekStack.insertBefore(todayCard, nextSibling);
+            } else {
+              weekStack.appendChild(todayCard);
+            }
+          }
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+
     // ===================================================
     // 11. DAILY ENGAGEMENT, MASCOT & NOTIFICATION ENGINES
     // ===================================================
@@ -3391,6 +3668,59 @@
       arcadeMsg.innerText = 'Ungliyon se circular massage do taaki roots tak blood pahuche! 💆‍♂️';
       stopSpaSound();
       updateTimer();
+
+    // 12. ZEN 4-TAB MAIN CONTROLLER
+    function switchMainTab(tabId) {
+      Haptics.tick();
+      document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.main-tab-view').forEach(view => {
+        view.style.display = 'none';
+        view.classList.remove('active');
+      });
+
+      const activeBtn = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const activeView = document.getElementById(tabId);
+      if (activeView) {
+        activeView.style.display = 'block';
+        activeView.classList.add('active');
+      }
+
+      // Manage Today's Card Placement dynamically between Tab 1 (Aaj) and Tab 2 (Hafta)
+      const todayCard = document.getElementById('card-' + currentDay);
+      if (todayCard) {
+        if (tabId === 'tab-today') {
+          const todaySlot = document.getElementById('today-focus-slot');
+          if (todaySlot && todayCard.parentElement !== todaySlot) {
+            todaySlot.appendChild(todayCard);
+          }
+        } else if (tabId === 'tab-week') {
+          const weekStack = document.getElementById('week-schedule-stack');
+          if (weekStack && todayCard.parentElement !== weekStack) {
+            const dayOrder = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            const currentIndex = dayOrder.indexOf(currentDay);
+            const remainingDays = dayOrder.slice(currentIndex + 1);
+            let nextSibling = null;
+            for (const d of remainingDays) {
+              const el = document.getElementById('card-' + d);
+              if (el && el.parentElement === weekStack) {
+                nextSibling = el;
+                break;
+              }
+            }
+            if (nextSibling) {
+              weekStack.insertBefore(todayCard, nextSibling);
+            } else {
+              weekStack.appendChild(todayCard);
+            }
+          }
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
 
     // ===================================================
     // 11. DAILY ENGAGEMENT, MASCOT & NOTIFICATION ENGINES
@@ -3740,6 +4070,59 @@
     renderCups();
     renderProtein();
     updateTimer();
+
+    // 12. ZEN 4-TAB MAIN CONTROLLER
+    function switchMainTab(tabId) {
+      Haptics.tick();
+      document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.main-tab-view').forEach(view => {
+        view.style.display = 'none';
+        view.classList.remove('active');
+      });
+
+      const activeBtn = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const activeView = document.getElementById(tabId);
+      if (activeView) {
+        activeView.style.display = 'block';
+        activeView.classList.add('active');
+      }
+
+      // Manage Today's Card Placement dynamically between Tab 1 (Aaj) and Tab 2 (Hafta)
+      const todayCard = document.getElementById('card-' + currentDay);
+      if (todayCard) {
+        if (tabId === 'tab-today') {
+          const todaySlot = document.getElementById('today-focus-slot');
+          if (todaySlot && todayCard.parentElement !== todaySlot) {
+            todaySlot.appendChild(todayCard);
+          }
+        } else if (tabId === 'tab-week') {
+          const weekStack = document.getElementById('week-schedule-stack');
+          if (weekStack && todayCard.parentElement !== weekStack) {
+            const dayOrder = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            const currentIndex = dayOrder.indexOf(currentDay);
+            const remainingDays = dayOrder.slice(currentIndex + 1);
+            let nextSibling = null;
+            for (const d of remainingDays) {
+              const el = document.getElementById('card-' + d);
+              if (el && el.parentElement === weekStack) {
+                nextSibling = el;
+                break;
+              }
+            }
+            if (nextSibling) {
+              weekStack.insertBefore(todayCard, nextSibling);
+            } else {
+              weekStack.appendChild(todayCard);
+            }
+          }
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
 
     // ===================================================
     // 11. DAILY ENGAGEMENT, MASCOT & NOTIFICATION ENGINES
