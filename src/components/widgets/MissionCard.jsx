@@ -10,21 +10,13 @@ export function MissionCard({ item, isCompleted, onToggle, isPriority = false })
   };
 
   return (
-    <motion.div
+    <div
       className={`protocol-card ${isPriority ? 'today' : ''} ${isCompleted ? 'completed' : ''}`}
       onClick={handleClick}
-      whileHover={{ scale: 1.01 }}
-      whileTap={{ scale: 0.98 }}
-      layout
-      transition={{ duration: 0.2 }}
     >
-      <motion.div 
-        className="btn-card-checkbox"
-        animate={isCompleted ? { scale: [1, 1.25, 1.06] } : { scale: 1 }}
-        transition={{ duration: 0.25 }}
-      >
+      <div className="btn-card-checkbox">
         {isCompleted && <Check size={18} strokeWidth={3} />}
-      </motion.div>
+      </div>
 
       <div className="routine-details">
         <div className="routine-meta-row">
@@ -38,6 +30,6 @@ export function MissionCard({ item, isCompleted, onToggle, isPriority = false })
         <div className="routine-name">{item.title}</div>
         <div className="routine-hint">{item.hint}</div>
       </div>
-    </motion.div>
+    </div>
   );
 }

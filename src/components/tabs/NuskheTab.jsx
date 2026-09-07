@@ -8,22 +8,17 @@ export function NuskheTab() {
 
   const subTabs = [
     { id: 'desi', label: '🌿 Ghar Ke Nuskhe' },
-    { id: 'guide', label: '💡 Secret Guide' },
+    { id: 'guide', label: '💡 Hair Training' },
     { id: 'timeline', label: '🚀 12 Months Map' },
     { id: 'barber', label: '🛡️ Barber Permit' },
     { id: 'rules', label: '⚖️ Do vs Don\'t' }
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -10 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 10 }}
-      transition={{ duration: 0.25 }}
-    >
+    <div className="tab-view-container">
       <div className="section-header-bar">
         <h2>🌿 Ghar Ke Nuskhe & Hair Guide</h2>
-        <span className="header-action-badge">100% Zero-Cost</span>
+        <span className="header-action-badge">100% Free Kitchen Care</span>
       </div>
 
       <div className="edu-shelf">
@@ -42,97 +37,87 @@ export function NuskheTab() {
           ))}
         </div>
 
-        <AnimatePresence mode="wait">
+        <div className="edu-content-area">
           {activeSubTab === 'desi' && (
-            <motion.div 
-              key="desi"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
+            <div>
               {GHAR_KE_NUSKHE.map((item) => (
-                <div key={item.id} className="faq-item">
-                  <div className="faq-q">{item.icon} {item.title} • {item.cost}</div>
-                  <div className="faq-a">
-                    <strong>Kaise Banayein:</strong> {item.kaiseBanaye}<br />
-                    <strong>Kaise Lagayein:</strong> {item.kaiseLagaye}<br />
-                    <strong>Kyun:</strong> {item.kyun}
+                <div key={item.id} className="nuskha-card">
+                  <div className="nuskha-header">
+                    <span className="nuskha-icon">{item.icon}</span>
+                    <div className="nuskha-titles">
+                      <div className="nuskha-name">{item.title}</div>
+                      <span className="nuskha-cost-chip">{item.cost}</span>
+                    </div>
+                  </div>
+
+                  <div className="nuskha-steps-box">
+                    <div className="nuskha-step-row">
+                      <span className="step-label">🥣 Kaise Banayein:</span>
+                      <span className="step-text">{item.kaiseBanaye}</span>
+                    </div>
+                    <div className="nuskha-step-row">
+                      <span className="step-label">💆‍♂️ Kaise Lagayein:</span>
+                      <span className="step-text">{item.kaiseLagaye}</span>
+                    </div>
+                    <div className="nuskha-step-row">
+                      <span className="step-label">✨ Kyun Lagayein:</span>
+                      <span className="step-text">{item.kyun}</span>
+                    </div>
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           )}
 
           {activeSubTab === 'guide' && (
-            <motion.div 
-              key="guide"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
+            <div>
               {FORWARD_HAIR_GUIDE.map((item, idx) => (
-                <div key={idx} className="faq-item">
-                  <div className="faq-q">🎯 {item.step}</div>
-                  <div className="faq-a">{item.detail}</div>
+                <div key={idx} className="nuskha-card">
+                  <div className="nuskha-name">🎯 {item.step}</div>
+                  <div className="nuskha-desc" style={{ marginTop: '8px' }}>{item.detail}</div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           )}
 
           {activeSubTab === 'timeline' && (
-            <motion.div 
-              key="timeline"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
+            <div>
               {TIMELINE_12_MONTHS.map((item, idx) => (
-                <div key={idx} className="faq-item">
-                  <div className="faq-q">📅 {item.month} ({item.length}) • {item.status}</div>
-                  <div className="faq-a">{item.desc}</div>
+                <div key={idx} className="nuskha-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                    <span style={{ fontWeight: 800, fontSize: '0.92rem', color: 'var(--text-white)' }}>📅 {item.month}</span>
+                    <span className="nuskha-cost-chip">{item.length}</span>
+                  </div>
+                  <div style={{ fontWeight: 700, fontSize: '0.8rem', color: 'var(--gold)', marginBottom: '4px' }}>Stage: {item.status}</div>
+                  <div className="nuskha-desc">{item.desc}</div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           )}
 
           {activeSubTab === 'barber' && (
-            <motion.div 
-              key="barber"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
+            <div>
               {BARBER_SCRIPT.map((item, idx) => (
-                <div key={idx} className="faq-item">
-                  <div className="faq-q">🗣️ {item.speaker} Kehta Hai:</div>
-                  <div className="faq-a">"{item.text}"</div>
+                <div key={idx} className={`dialogue-bubble ${item.speaker === 'You' ? 'user' : 'barber'}`}>
+                  <div className="dialogue-speaker">🗣️ {item.speaker}:</div>
+                  <div className="dialogue-text">"{item.text}"</div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           )}
 
           {activeSubTab === 'rules' && (
-            <motion.div 
-              key="rules"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
+            <div>
               {GOLDEN_RULES.map((item, idx) => (
-                <div key={idx} className="faq-item">
-                  <div className="faq-q">⚖️ {item.rule}</div>
-                  <div className="faq-a">{item.desc}</div>
+                <div key={idx} className="nuskha-card">
+                  <div className="nuskha-name">{item.rule}</div>
+                  <div className="nuskha-desc" style={{ marginTop: '6px' }}>{item.desc}</div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           )}
-        </AnimatePresence>
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

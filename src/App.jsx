@@ -18,7 +18,7 @@ export function App() {
   const handleToggleNotifs = () => {
     if ('Notification' in window) {
       if (Notification.permission === 'granted') {
-        alert("Daily Reminders already active hain! Subah 9:30 AM & Shaam 8:00 PM.");
+        alert("Daily Reminders active hain! Subah 9:30 AM & Shaam 8:00 PM.");
       } else if (Notification.permission !== 'denied') {
         Notification.requestPermission().then((perm) => {
           if (perm === 'granted') {
@@ -27,7 +27,7 @@ export function App() {
           }
         });
       } else {
-        alert("Browser notifications blocked hain. Settings me jaakar allow karein.");
+        alert("Browser settings mein notifications blocked hain.");
       }
     } else {
       alert("Aapka device notifications support nahi karta.");
@@ -42,8 +42,8 @@ export function App() {
         onToggleNotifs={handleToggleNotifs} 
       />
 
-      <main style={{ minHeight: '70vh' }}>
-        <AnimatePresence mode="wait">
+      <main className="tab-content-viewport">
+        <AnimatePresence>
           {activeTab === 'today' && <TodayTab key="today" storage={storage} />}
           {activeTab === 'week' && <WeekTab key="week" storage={storage} />}
           {activeTab === 'remedies' && <NuskheTab key="remedies" />}

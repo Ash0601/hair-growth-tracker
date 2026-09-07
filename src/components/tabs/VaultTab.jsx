@@ -49,12 +49,7 @@ export function VaultTab({ storage }) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -10 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 10 }}
-      transition={{ duration: 0.25 }}
-    >
+    <div className="tab-view-container">
       <input 
         type="file" 
         ref={fileInputRef} 
@@ -71,10 +66,10 @@ export function VaultTab({ storage }) {
       <div className="polaroid-grid">
         <div className="polaroid-slot" onClick={() => triggerUpload('start')}>
           {startPhoto ? (
-            <img src={startPhoto} alt="Day 1 Baseline" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }} />
+            <img src={startPhoto} alt="Day 1 Baseline" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
           ) : (
             <>
-              <span style={{ fontSize: '1.8rem' }}>🪒</span>
+              <span style={{ fontSize: '2rem' }}>🪒</span>
               <span className="slot-tag">Day 1 Baseline</span>
             </>
           )}
@@ -82,27 +77,25 @@ export function VaultTab({ storage }) {
 
         <div className="polaroid-slot" onClick={() => triggerUpload('curr')}>
           {currPhoto ? (
-            <img src={currPhoto} alt="Current Month" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }} />
+            <img src={currPhoto} alt="Current Month" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
           ) : (
             <>
-              <span style={{ fontSize: '1.8rem' }}>📷</span>
+              <span style={{ fontSize: '2rem' }}>📷</span>
               <span className="slot-tag">Current Month</span>
             </>
           )}
         </div>
       </div>
 
-      <motion.button 
+      <button 
         className="btn-snap-photo"
         onClick={() => triggerUpload('curr')}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.96 }}
       >
-        <Camera size={16} />
-        <span>Snap / Upload This Month\'s Photo</span>
-      </motion.button>
+        <Camera size={18} />
+        <span>Snap / Upload This Month's Photo</span>
+      </button>
 
-      <div className="section-header-bar" style={{ marginTop: '22px' }}>
+      <div className="section-header-bar" style={{ marginTop: '24px' }}>
         <h2>⚙️ App Settings & Actions</h2>
       </div>
 
@@ -122,6 +115,6 @@ export function VaultTab({ storage }) {
           <span>Export PDF</span>
         </button>
       </div>
-    </motion.div>
+    </div>
   );
 }

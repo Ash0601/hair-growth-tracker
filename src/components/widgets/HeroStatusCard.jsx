@@ -6,30 +6,21 @@ export function HeroStatusCard({ streak, completedCount, onTalkMascot, speechTex
   const progressPct = Math.round((completedCount / 7) * 100);
 
   return (
-    <motion.div 
-      className="hero-card"
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-    >
+    <div className="hero-card">
       <div className="hero-pills-row">
-        <motion.div 
-          className="status-pill pill-streak"
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <motion.span animate={{ rotate: [0, -10, 10, 0] }} transition={{ repeat: Infinity, duration: 2.5 }}>
-            🔥
-          </motion.span>
+        <div className="status-pill pill-streak">
+          <span className="flame-icon">🔥</span>
           <span>{streak} Day Streak</span>
-        </motion.div>
+        </div>
 
         <div className="status-pill pill-shield">
-          <span>🛡️</span> Shield Ready
+          <span>🛡️</span>
+          <span>Shield Ready</span>
         </div>
 
         <div className="status-pill pill-level">
-          Level 1 • Sprout 🌱
+          <span>🌱</span>
+          <span>Level 1 • Sprout</span>
         </div>
       </div>
 
@@ -37,32 +28,28 @@ export function HeroStatusCard({ streak, completedCount, onTalkMascot, speechTex
         <motion.div 
           className="hero-badge-icon"
           onClick={() => { soundEngine.pop(); onTalkMascot(); }}
-          title="Tap to talk to coach!"
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.9 }}
+          title="Tap coach for tip!"
+          whileTap={{ scale: 0.92 }}
         >
           🌱
         </motion.div>
 
         <div className="hero-copy">
           <div className="hero-headline">Short Cut → Curtain Flow 👑</div>
-          <motion.div 
+          <div 
             className="mascot-bubble"
             onClick={() => { soundEngine.pop(); onTalkMascot(); }}
-            title="Tap to hear hair tips!"
-            whileTap={{ scale: 0.97 }}
+            title="Tap to hear tips!"
           >
             "{speechText || 'Oye champion! Aaj ka mission check kiya kya? 🦁'}"
-          </motion.div>
+          </div>
         </div>
       </div>
 
       <div className="progress-track-wrap">
-        <motion.div 
+        <div 
           className="progress-track-fill"
-          initial={{ width: 0 }}
-          animate={{ width: `${progressPct}%` }}
-          transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
+          style={{ width: `${progressPct}%` }}
         />
       </div>
 
@@ -70,6 +57,6 @@ export function HeroStatusCard({ streak, completedCount, onTalkMascot, speechTex
         <span>Hafte Ka Score</span>
         <span className="xp-text">{completedCount} / 7 Tasks Done ({progressPct}%) 🚀</span>
       </div>
-    </motion.div>
+    </div>
   );
 }
