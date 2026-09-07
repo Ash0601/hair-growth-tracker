@@ -1,11 +1,14 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { soundEngine } from '../../hooks/useHaptics';
+import { Haptics } from '../../hooks/useHaptics';
 import { Check } from 'lucide-react';
 
 export function MissionCard({ item, isCompleted, onToggle, isPriority = false }) {
   const handleClick = () => {
-    soundEngine.pop();
+    if (!isCompleted) {
+      Haptics.success(); // Satisfying double-thump vibration + chord
+    } else {
+      Haptics.tick();
+    }
     onToggle(item.id);
   };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { soundEngine } from '../../hooks/useHaptics';
+import { Haptics } from '../../hooks/useHaptics';
 import confetti from 'canvas-confetti';
 
 export function WaterTracker({ cups, onToggleCup }) {
@@ -11,24 +11,19 @@ export function WaterTracker({ cups, onToggleCup }) {
     const isAdding = !cups.includes(idx);
     if (isAdding) {
       if (filledCount === 7) {
-        soundEngine.celebrate();
+        Haptics.celebrate(); // celebratory vibration + fanfare
         confetti({ particleCount: 60, spread: 70, origin: { y: 0.7 } });
       } else {
-        soundEngine.droplet(filledCount + 1);
+        Haptics.droplet(filledCount + 1); // musical ascending pitch + haptic pulse
       }
     } else {
-      soundEngine.tick();
+      Haptics.tick();
     }
     onToggleCup(idx);
   };
 
   return (
-    <motion.div 
-      className="water-box"
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.1 }}
-    >
+    <div className="water-box">
       <div className="water-head">
         <div className="water-title">
           <span className="water-head-icon">💧</span>
@@ -49,10 +44,7 @@ export function WaterTracker({ cups, onToggleCup }) {
               type="button"
               className={`cup-chip ${isFilled ? 'filled' : ''}`}
               onClick={() => handleCupClick(idx)}
-              whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.88 }}
-              animate={isFilled ? { scale: [1, 1.2, 1.04], y: -2 } : { scale: 1, y: 0 }}
-              transition={{ duration: 0.25 }}
               title={`Glass ${idx + 1}`}
             >
               💧
@@ -64,6 +56,6 @@ export function WaterTracker({ cups, onToggleCup }) {
       <div className="water-caption">
         Tap each glass to hydrate hair roots & flush DHT! 🌊
       </div>
-    </motion.div>
+    </div>
   );
 }

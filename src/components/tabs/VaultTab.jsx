@@ -1,28 +1,30 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { soundEngine } from '../../hooks/useHaptics';
+import { Haptics } from '../../hooks/useHaptics';
 import { Volume2, VolumeX, RotateCcw, FileText, Camera } from 'lucide-react';
 
 export function VaultTab({ storage }) {
-  const [soundOn, setSoundOn] = useState(() => soundEngine.isSoundOn());
+  const [soundOn, setSoundOn] = useState(() => Haptics.isSoundOn());
   const [startPhoto, setStartPhoto] = useState(() => localStorage.getItem('hair_photo_start') || '');
   const [currPhoto, setCurrPhoto] = useState(() => localStorage.getItem('hair_photo_curr') || '');
   const fileInputRef = useRef(null);
   const activeSlotRef = useRef('curr');
 
   const handleToggleSound = () => {
-    const next = soundEngine.toggleSound();
+    const next = Haptics.toggleSound();
     setSoundOn(next);
   };
 
   const handleReset = () => {
+    Haptics.warning(); // Alert vibration
     if (window.confirm("Bhai, kya sachme is hafte ka routine reset karna chahte ho?")) {
-      soundEngine.tick();
+      Haptics.tick();
       storage.resetWeek();
     }
   };
 
   const triggerUpload = (slot) => {
+    Haptics.tick();
     activeSlotRef.current = slot;
     if (fileInputRef.current) fileInputRef.current.click();
   };
@@ -35,7 +37,7 @@ export function VaultTab({ storage }) {
     reader.onload = (event) => {
       const dataUrl = event.target?.result;
       if (typeof dataUrl === 'string') {
-        soundEngine.celebrate();
+        Haptics.shutter(); // Camera shutter dual-pulse vibration + click
         if (activeSlotRef.current === 'start') {
           setStartPhoto(dataUrl);
           localStorage.setItem('hair_photo_start', dataUrl);
@@ -87,13 +89,14 @@ export function VaultTab({ storage }) {
         </div>
       </div>
 
-      <button 
+      <motion.button 
         className="btn-snap-photo"
         onClick={() => triggerUpload('curr')}
+        whileTap={{ scale: 0.96 }}
       >
         <Camera size={18} />
         <span>Snap / Upload This Month's Photo</span>
-      </button>
+      </motion.button>
 
       <div className="section-header-bar" style={{ marginTop: '24px' }}>
         <h2>⚙️ App Settings & Actions</h2>

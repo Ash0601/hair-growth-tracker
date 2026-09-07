@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { soundEngine } from '../hooks/useHaptics';
+import { Haptics } from '../hooks/useHaptics';
 import { Home, Calendar, Sparkles, Camera } from 'lucide-react';
 
 export function FloatingBottomNav({ activeTab, onSelectTab }) {
@@ -23,18 +23,14 @@ export function FloatingBottomNav({ activeTab, onSelectTab }) {
             type="button"
             className={`nav-item ${isActive ? 'active' : ''}`}
             onClick={() => {
-              soundEngine.tick();
+              Haptics.tick(); // Physical vibration + crown tick click
               onSelectTab(tab.id);
             }}
             whileTap={{ scale: 0.9 }}
           >
-            <motion.div 
-              className="nav-icon"
-              animate={isActive ? { scale: 1.15, y: -2 } : { scale: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            >
+            <div className="nav-icon">
               <Icon size={20} />
-            </motion.div>
+            </div>
             <span className="nav-label">{tab.label}</span>
 
             {isActive && (
