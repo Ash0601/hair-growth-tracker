@@ -1440,6 +1440,381 @@
       border: 1px solid #cbd5e1;
     }
 
+  
+    /* ===================================================
+       DAILY ENGAGEMENT, MASCOT SPEECH & DOPAMINE REWARDS
+       =================================================== */
+    /* Mascot Speech Bubble */
+    .hero-copy {
+      position: relative;
+    }
+
+    .mascot-bubble {
+      background: var(--inner-panel-bg);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-md);
+      padding: 7px 11px;
+      font-size: 0.76rem;
+      color: var(--text-primary);
+      line-height: 1.35;
+      margin-top: 4px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .mascot-bubble:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .mascot-bouncing {
+      animation: mascot-bounce 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes mascot-bounce {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.3) rotate(8deg); }
+      75% { transform: scale(0.9) rotate(-6deg); }
+      100% { transform: scale(1) rotate(0); }
+    }
+
+    /* Streak Danger Alert Banner */
+    .streak-danger-banner {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(245, 158, 11, 0.1) 100%);
+      border: 1.5px solid rgba(239, 68, 68, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      animation: flame-pulse 2.2s infinite ease-in-out;
+      box-shadow: 0 4px 16px rgba(239, 68, 68, 0.15);
+    }
+
+    @keyframes flame-pulse {
+      0%, 100% {
+        border-color: rgba(239, 68, 68, 0.4);
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.15);
+      }
+      50% {
+        border-color: rgba(239, 68, 68, 0.85);
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.35);
+      }
+    }
+
+    .danger-flame-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      animation: flame-flicker 1.4s infinite alternate;
+    }
+
+    @keyframes flame-flicker {
+      0% { transform: scale(1) rotate(-3deg); }
+      100% { transform: scale(1.15) rotate(4deg); }
+    }
+
+    .danger-copy {
+      flex-grow: 1;
+    }
+
+    .danger-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #f87171;
+      margin-bottom: 2px;
+    }
+
+    .danger-desc {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      line-height: 1.25;
+    }
+
+    .btn-danger-action {
+      background: #ef4444;
+      border: none;
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      cursor: pointer;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+    }
+
+    /* Daily Scratch Card (Dopamine Variable Reward) */
+    .fortune-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 14px;
+      margin-bottom: 16px;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fortune-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .fortune-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .fortune-gift-icon {
+      font-size: 1.35rem;
+    }
+
+    .fortune-head {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+
+    .fortune-subhead {
+      font-size: 0.68rem;
+      color: var(--text-secondary);
+    }
+
+    .fortune-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      padding: 3px 8px;
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+
+    .scratch-surface {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scratch-cover {
+      width: 100%;
+      min-height: 80px;
+      background: linear-gradient(135deg, #b8860b 0%, #d4af37 45%, #996515 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.25);
+      transition: transform 0.15s ease, opacity 0.3s ease;
+      color: #090a0f;
+      text-align: center;
+    }
+
+    .scratch-cover:active {
+      transform: scale(0.98);
+    }
+
+    .scratch-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .scratch-glimmer {
+      font-size: 1.1rem;
+      animation: spin-glimmer 2s infinite linear;
+    }
+
+    @keyframes spin-glimmer {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.25) rotate(180deg); }
+      100% { transform: scale(1) rotate(360deg); }
+    }
+
+    .scratch-revealed {
+      width: 100%;
+      background: var(--inner-panel-bg);
+      border: 1.5px dashed var(--gold-border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      text-align: left;
+      animation: reveal-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes reveal-pop {
+      0% { transform: scale(0.92); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .fortune-tip-text {
+      font-size: 0.82rem;
+      color: var(--text-primary);
+      line-height: 1.45;
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+
+    .fortune-unlocked-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Floating PWA Install Banner */
+    .pwa-install-banner {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 24px);
+      max-width: 440px;
+      background: rgba(18, 20, 29, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      z-index: 99999;
+      animation: slide-up-pwa 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slide-up-pwa {
+      0% { transform: translate(-50%, 100%); opacity: 0; }
+      100% { transform: translate(-50%, 0); opacity: 1; }
+    }
+
+    .pwa-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pwa-icon {
+      font-size: 1.5rem;
+    }
+
+    .pwa-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .pwa-sub {
+      font-size: 0.66rem;
+      color: #94a3b8;
+    }
+
+    .pwa-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-pwa-install {
+      background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
+      border: none;
+      color: #090a0f;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-pwa-dismiss {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+
+    /* Light Theme Adjustments for Engagement Components */
+    [data-theme="light"] .mascot-bubble {
+      background: #faf7f0;
+      border-color: rgba(184, 134, 11, 0.25);
+      color: #1e293b;
+    }
+
+    [data-theme="light"] .streak-danger-banner {
+      background: linear-gradient(135deg, #fff5f5 0%, #fffbeb 100%);
+      border-color: rgba(239, 68, 68, 0.35);
+    }
+
+    [data-theme="light"] .danger-title {
+      color: #dc2626;
+    }
+
+    [data-theme="light"] .fortune-box {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="light"] .scratch-revealed {
+      background: #faf7f0;
+      border-color: rgba(184, 134, 11, 0.3);
+    }
+
+    [data-theme="light"] .pwa-install-banner {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(184, 134, 11, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    [data-theme="light"] .pwa-title {
+      color: #0f172a;
+    }
+
+    [data-theme="light"] .pwa-sub {
+      color: #475569;
+    }
+
+    [data-theme="light"] .btn-pwa-dismiss {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: rgba(0, 0, 0, 0.1);
+      color: #64748b;
+    }
+
   </style>
 </head>
 <body>
@@ -1460,6 +1835,9 @@
       </div>
 
       <div class="header-actions">
+        <button class="btn-icon-sq" id="btn-notif-toggle" onclick="toggleNotifications()" title="Daily Reminders (Subah 9:30 AM & Shaam 8:00 PM)">
+          <span id="notif-icon">🔔</span>
+        </button>
         <button class="btn-icon-sq" id="btn-theme-toggle" onclick="toggleTheme(event)" title="Switch Light / Dark Mode">
           <span id="theme-icon">☀️</span>
         </button>
@@ -1490,10 +1868,12 @@
       </div>
 
       <div class="hero-main-row">
-        <div class="hero-badge-icon" id="mascot-avatar">🌱</div>
+        <div class="hero-badge-icon" id="mascot-avatar" onclick="talkMascot()" title="Tap to talk to coach!" style="cursor: pointer;">🌱</div>
         <div class="hero-copy">
           <div class="hero-headline">Short Cut → Curtain Flow 👑</div>
-          <div class="hero-subtext">Upar ke baal mat kato! Roz 4 min massage & 8 glass paani.</div>
+          <div class="mascot-bubble" id="mascot-speech-bubble" onclick="talkMascot()" title="Tap to hear hair tips!">
+            "Oye champion! Aaj ka mission check kiya kya? 🦁"
+          </div>
         </div>
       </div>
 
@@ -1503,6 +1883,43 @@
       <div class="progress-label-row">
         <span>Hafte Ka Score</span>
         <span id="xp-text" class="xp-text">0 / 7 Tasks Done 🚀</span>
+      </div>
+    </div>
+
+    <!-- STREAK DANGER ALERT BANNER (Active in evening if today's task is pending) -->
+    <div class="streak-danger-banner" id="streak-danger-banner" style="display: none;" onclick="focusTodayTask()">
+      <div class="danger-flame-icon">🔥</div>
+      <div class="danger-copy">
+        <div class="danger-title">Streak Danger Alert! ⚠️</div>
+        <div class="danger-desc">Aaj ka mission bacha hai. Sone se pehle complete karke apni streak bachao!</div>
+      </div>
+      <button class="btn-danger-action">Save Streak →</button>
+    </div>
+
+    <!-- DAILY SCRATCH CARD (DOPAMINE / VARIABLE REWARD) -->
+    <div class="fortune-box" id="fortune-box">
+      <div class="fortune-top-row">
+        <div class="fortune-meta">
+          <span class="fortune-gift-icon">🎁</span>
+          <div>
+            <div class="fortune-head">Aaj Ka Desi Hair Secret</div>
+            <div class="fortune-subhead">Roz subah 1 naya nuskha unlock hota hai</div>
+          </div>
+        </div>
+        <span class="fortune-badge" id="fortune-status-badge">Tap to Scratch ✨</span>
+      </div>
+
+      <div class="scratch-surface" id="scratch-surface" onclick="revealFortune()">
+        <div class="scratch-cover" id="scratch-cover">
+          <span class="scratch-glimmer">✨</span>
+          <span class="scratch-label">🎁 Tap Karke Aaj Ka Secret Scratch Karo!</span>
+          <span class="scratch-glimmer">✨</span>
+        </div>
+
+        <div class="scratch-revealed" id="scratch-revealed" style="display: none;">
+          <div class="fortune-tip-text" id="fortune-tip-text"></div>
+          <div class="fortune-unlocked-tag">✓ Aaj Ka Secret Unlocked! Kal naya tip aayega.</div>
+        </div>
       </div>
     </div>
 
@@ -1896,6 +2313,21 @@
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- FLOATING PWA INSTALL BANNER -->
+    <div class="pwa-install-banner" id="pwa-install-banner" style="display: none;">
+      <div class="pwa-content">
+        <div class="pwa-icon">🦁</div>
+        <div class="pwa-text">
+          <div class="pwa-title">Hair Flow App Phone Par Lagao!</div>
+          <div class="pwa-sub">WhatsApp ke bagal mein rakho taaki roz yaad rahe</div>
+        </div>
+      </div>
+      <div class="pwa-actions">
+        <button class="btn-pwa-install" id="btn-pwa-install" onclick="installPWA()">📲 Add to Screen</button>
+        <button class="btn-pwa-dismiss" onclick="dismissPWA()">✕</button>
       </div>
     </div>
 
@@ -2534,6 +2966,8 @@
         avatar.innerText = '🌱';
         badge.innerText = 'Level 1 • Sprout 🌱';
       }
+      if (typeof updateMascotSpeech === 'function') updateMascotSpeech();
+      if (typeof checkStreakDanger === 'function') checkStreakDanger();
     }
 
     function toggleCard(d) {
@@ -2653,6 +3087,284 @@
           if (secLeft > 0) {
             secLeft--;
             updateTimer();
+
+    // ===================================================
+    // 11. DAILY ENGAGEMENT, MASCOT & NOTIFICATION ENGINES
+    // ===================================================
+
+    // A. SERVICE WORKER & PWA INSTALL ENGINE
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const dismissed = localStorage.getItem('hair_pwa_dismissed');
+      if (!dismissed) {
+        document.getElementById('pwa-install-banner').style.display = 'flex';
+      }
+    });
+
+    function installPWA() {
+      Haptics.celebrate();
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          deferredPrompt = null;
+          document.getElementById('pwa-install-banner').style.display = 'none';
+        });
+      } else {
+        // iOS or fallback instructions
+        alert("📲 Phone Par Install Karne Ke Liye:\n\n1. Safari / Chrome mein Share button (⬆️) dabayein.\n2. 'Add to Home Screen' select karein!\n\nApp WhatsApp ke bagal mein install ho jayega!");
+      }
+    }
+
+    function dismissPWA() {
+      Haptics.tick();
+      document.getElementById('pwa-install-banner').style.display = 'none';
+      localStorage.setItem('hair_pwa_dismissed', 'true');
+    }
+
+    // B. NATIVE WEB NOTIFICATIONS API ENGINE
+    const NOTIF_KEY = 'hair_notifs_enabled';
+
+    function updateNotifBtnUI() {
+      const btn = document.getElementById('btn-notif-toggle');
+      const icon = document.getElementById('notif-icon');
+      const isGranted = (Notification && Notification.permission === 'granted');
+      if (isGranted) {
+        if (icon) icon.innerText = '🔔';
+        if (btn) btn.style.borderColor = 'var(--gold)';
+      } else {
+        if (icon) icon.innerText = '🔕';
+        if (btn) btn.style.borderColor = '';
+      }
+    }
+
+    async function toggleNotifications() {
+      if (!('Notification' in window)) {
+        alert('Aapka browser notifications support nahi karta. Chrome ya Safari par try karein!');
+        return;
+      }
+
+      if (Notification.permission === 'granted') {
+        Haptics.tick();
+        alert('🔔 Daily Reminders Active Hain!\n\n• Subah 9:30 AM: Aaj Ka Mission Alert\n• Shaam 8:00 PM: Streak Danger Alert\n\nAapko roz phone par notification aayega!');
+        return;
+      }
+
+      const perm = await Notification.requestPermission();
+      if (perm === 'granted') {
+        Haptics.celebrate();
+        launchConfetti();
+        localStorage.setItem(NOTIF_KEY, 'true');
+        updateNotifBtnUI();
+        try {
+          new Notification('🦁 Hair Flow Coach Active!', {
+            body: 'Oye champion! Notifications ON ho gaye. Subah 9:30 AM aur shaam 8:00 PM par hair care aur streak ka alert aayega!',
+            icon: '/icon-192.png'
+          });
+        } catch (e) {}
+      } else {
+        alert('Notification permission allow nahi hui. Settings mein allow karein taaki streak miss na ho!');
+      }
+    }
+
+    function checkDailyNotificationPing() {
+      if (!('Notification' in window) || Notification.permission !== 'granted') return;
+      const now = new Date();
+      const hour = now.getHours();
+      const dateKey = now.toISOString().slice(0, 10);
+      const lastPing = localStorage.getItem('hair_last_notif_ping');
+
+      if (lastPing !== dateKey) {
+        if (hour >= 9 && hour <= 12) {
+          try {
+            new Notification('🌅 Hair Flow: Aaj Ka Mission', {
+              body: 'Good morning! Aaj ka hair routine check karo aur 8 glass paani target start karo!',
+              icon: '/icon-192.png'
+            });
+            localStorage.setItem('hair_last_notif_ping', dateKey);
+          } catch (e) {}
+        }
+      }
+    }
+
+    // C. THE SPEAKING MASCOT (DYNAMIC TIME & TASK AWARE DIALOGUE)
+    const mascotLines = [
+      "Bhai nahane ke baad rough towel se baal ragadna band kar de, cotton t-shirt use kar! 👕",
+      "Kadhi patte ka tel hafte mein 2 baar lagao, safed baal aur jhadna turant rukta hai! 🍃",
+      "Dono haathon ke nakhun 5 min ragado (Balayam) — hair roots mein blood rush hoga! 💅",
+      "Barber ke paas jao toh seedha bolo: 'Bhaiya upar ki length ko touch mat karna!' 🛡️",
+      "Paani kam peeyoge toh baal sukhe jhadu jaise lagenge, 8 glass poore karo! 💧",
+      "Methi dana paste dandruff ko jad se khatam karta hai, hafte mein 1 baar zaroor lagao! 🌾",
+      "Month 4 sabse awkward hota hai, uss time haar mat maanna, caps use karo! 🦁"
+    ];
+    let mascotLineIdx = 0;
+
+    function updateMascotSpeech() {
+      const bubble = document.getElementById('mascot-speech-bubble');
+      if (!bubble) return;
+      const hour = new Date().getHours();
+      const savedCards = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
+      const isDone = !!savedCards[currentDay];
+
+      if (isDone) {
+        bubble.innerText = '"Shabash mere sher! Aaj ka mission complete hai! Aise hi flow banega 👑"';
+      } else if (hour >= 18) {
+        bubble.innerText = '"⚠️ Oye Ashish! Shaam ho gayi, aaj ka mission pending hai, streak bachao! 🔥"';
+      } else if (hour < 12) {
+        bubble.innerText = '"Good morning champion! Aaj ka mission check kiya kya? 🌅"';
+      } else {
+        bubble.innerText = '"Paani peena mat bhoolna mere sher, dehydration se baal weak hote hain! 💧"';
+      }
+    }
+
+    function talkMascot() {
+      Haptics.tick();
+      const avatar = document.getElementById('mascot-avatar');
+      const bubble = document.getElementById('mascot-speech-bubble');
+      if (avatar) {
+        avatar.classList.remove('mascot-bouncing');
+        void avatar.offsetWidth;
+        avatar.classList.add('mascot-bouncing');
+      }
+      if (bubble) {
+        mascotLineIdx = (mascotLineIdx + 1) % mascotLines.length;
+        bubble.innerText = `"${mascotLines[mascotLineIdx]}"`;
+      }
+    }
+
+    // D. STREAK LOSS-AVERSION WARNING ENGINE
+    function checkStreakDanger() {
+      const banner = document.getElementById('streak-danger-banner');
+      if (!banner) return;
+      const hour = new Date().getHours();
+      const savedCards = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
+      const isDone = !!savedCards[currentDay];
+
+      // After 6 PM (18:00) if today's card is not done -> DANGER MODE!
+      if (hour >= 18 && !isDone) {
+        banner.style.display = 'flex';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    function focusTodayTask() {
+      Haptics.tick();
+      const slot = document.getElementById('today-focus-slot');
+      if (slot) {
+        slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // E. DAILY DESI SCRATCH CARD (DOPAMINE / VARIABLE REWARD)
+    const DAILY_FORTUNES = [
+      "🧅 Pyaz ke ras mein 1 chamach shahad milane se scalp dry nahi hoti aur smell 80% kam aati hai!",
+      "🍚 Fermented chawal ke paani mein 3 boond nimbu nichod lo, baalon mein parlour jaisi glass shine aati hai!",
+      "💅 Balayam karte waqt dono angoothe (thumbs) mat ragadna, sirf 8 ungliyan ragado — direct hair roots activate hongi!",
+      "💧 Nahane ke baad aakhri 1 mug peene wale RO water ka daalne se 90% hard water calcium chalk wash-off hota hai!",
+      "👕 Purani washed cotton t-shirt normal rough towel se 5x kam friction deti hai — zero broken hairs!",
+      "🍃 Roz subah 5 taaze kadhi patte chabane se baalon ko andar se Beta-Carotene aur natural melanin milta hai!",
+      "😴 Raat ko 10 PM se 2 AM ke beech hair follicle cells poore shareer mein sabse tezi se divide karte hain — time par so jao!",
+      "💆‍♂️ Scalp massage karte waqt nakhun nahi, ungliyon ke soft pads use karo taaki roots par micro-tears na aayein!",
+      "🌰 Bhuna chana aur thoda sa gudh shaam ko khane se body mein Iron (Ferritin) badhta hai jo baalon tak oxygen le jata hai!",
+      "☀️ Subah ki 15 minute ki dhoop se Vitamin D3 banta hai jo dormant (soye hue) hair roots ko anagen phase mein lata hai!",
+      "🛡️ Barber ke paas jao toh seedha bolo: 'Bhaiya upar ki length ko touch mat karna, sirf gardan se clean kar do'!",
+      "🚿 Garam paani se baal kabhi mat dhona! Lukewarm paani se shampoo karo aur aakhri rinse thande paani se taaki cuticle lock ho!",
+      "🌾 Methi dana paste lagane ke baad baalon ko polythene ya shower cap se cover kar lo taaki paste sookh kar chipke nahi!",
+      "🦁 Curtain Flow bante waqt Month 4 sabse awkward hota hai — uss time haar mat maanna, caps use karo, cut mat karwana!"
+    ];
+
+    const FORTUNE_DATE_KEY = 'hair_fortune_date_v1';
+    const FORTUNE_INDEX_KEY = 'hair_fortune_idx_v1';
+
+    function getTodayDateStr() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function initDailyFortune() {
+      const today = getTodayDateStr();
+      const savedDate = localStorage.getItem(FORTUNE_DATE_KEY);
+      const cover = document.getElementById('scratch-cover');
+      const revealed = document.getElementById('scratch-revealed');
+      const tipText = document.getElementById('fortune-tip-text');
+      const badge = document.getElementById('fortune-status-badge');
+
+      if (savedDate === today) {
+        // Already unlocked today
+        const idx = parseInt(localStorage.getItem(FORTUNE_INDEX_KEY) || '0');
+        if (tipText) tipText.innerText = `"${DAILY_FORTUNES[idx % DAILY_FORTUNES.length]}"`;
+        if (cover) cover.style.display = 'none';
+        if (revealed) revealed.style.display = 'block';
+        if (badge) {
+          badge.innerText = 'Unlocked ✓';
+          badge.style.background = 'rgba(16, 185, 129, 0.12)';
+          badge.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+          badge.style.color = '#10b981';
+        }
+      } else {
+        // Unclaimed state
+        if (cover) cover.style.display = 'flex';
+        if (revealed) revealed.style.display = 'none';
+        if (badge) {
+          badge.innerText = 'Tap to Scratch ✨';
+          badge.style.background = '';
+          badge.style.borderColor = '';
+          badge.style.color = '';
+        }
+      }
+    }
+
+    function revealFortune() {
+      const today = getTodayDateStr();
+      const savedDate = localStorage.getItem(FORTUNE_DATE_KEY);
+      if (savedDate === today) return; // Already revealed
+
+      Haptics.celebrate();
+      launchConfetti();
+
+      // Pick daily rotation index based on day of year
+      const now = new Date();
+      const startOfYear = new Date(now.getFullYear(), 0, 0);
+      const diff = now - startOfYear;
+      const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const idx = dayOfYear % DAILY_FORTUNES.length;
+
+      localStorage.setItem(FORTUNE_DATE_KEY, today);
+      localStorage.setItem(FORTUNE_INDEX_KEY, idx.toString());
+
+      const cover = document.getElementById('scratch-cover');
+      const revealed = document.getElementById('scratch-revealed');
+      const tipText = document.getElementById('fortune-tip-text');
+      const badge = document.getElementById('fortune-status-badge');
+
+      if (tipText) tipText.innerText = `"${DAILY_FORTUNES[idx]}"`;
+      if (cover) {
+        cover.style.opacity = '0';
+        setTimeout(() => {
+          cover.style.display = 'none';
+          if (revealed) revealed.style.display = 'block';
+        }, 200);
+      }
+      if (badge) {
+        badge.innerText = 'Unlocked ✓';
+        badge.style.background = 'rgba(16, 185, 129, 0.12)';
+        badge.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+        badge.style.color = '#10b981';
+      }
+    }
+
+    updateNotifBtnUI();
+    checkDailyNotificationPing();
+    updateMascotSpeech();
+    checkStreakDanger();
+    initDailyFortune();
             // Tactile Scalp Zone Reminder at each minute mark (3:00, 2:00, 1:00)
             if (secLeft === 180 || secLeft === 120 || secLeft === 60) {
               Haptics.zoneShift();
@@ -2679,6 +3391,284 @@
       arcadeMsg.innerText = 'Ungliyon se circular massage do taaki roots tak blood pahuche! 💆‍♂️';
       stopSpaSound();
       updateTimer();
+
+    // ===================================================
+    // 11. DAILY ENGAGEMENT, MASCOT & NOTIFICATION ENGINES
+    // ===================================================
+
+    // A. SERVICE WORKER & PWA INSTALL ENGINE
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const dismissed = localStorage.getItem('hair_pwa_dismissed');
+      if (!dismissed) {
+        document.getElementById('pwa-install-banner').style.display = 'flex';
+      }
+    });
+
+    function installPWA() {
+      Haptics.celebrate();
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          deferredPrompt = null;
+          document.getElementById('pwa-install-banner').style.display = 'none';
+        });
+      } else {
+        // iOS or fallback instructions
+        alert("📲 Phone Par Install Karne Ke Liye:\n\n1. Safari / Chrome mein Share button (⬆️) dabayein.\n2. 'Add to Home Screen' select karein!\n\nApp WhatsApp ke bagal mein install ho jayega!");
+      }
+    }
+
+    function dismissPWA() {
+      Haptics.tick();
+      document.getElementById('pwa-install-banner').style.display = 'none';
+      localStorage.setItem('hair_pwa_dismissed', 'true');
+    }
+
+    // B. NATIVE WEB NOTIFICATIONS API ENGINE
+    const NOTIF_KEY = 'hair_notifs_enabled';
+
+    function updateNotifBtnUI() {
+      const btn = document.getElementById('btn-notif-toggle');
+      const icon = document.getElementById('notif-icon');
+      const isGranted = (Notification && Notification.permission === 'granted');
+      if (isGranted) {
+        if (icon) icon.innerText = '🔔';
+        if (btn) btn.style.borderColor = 'var(--gold)';
+      } else {
+        if (icon) icon.innerText = '🔕';
+        if (btn) btn.style.borderColor = '';
+      }
+    }
+
+    async function toggleNotifications() {
+      if (!('Notification' in window)) {
+        alert('Aapka browser notifications support nahi karta. Chrome ya Safari par try karein!');
+        return;
+      }
+
+      if (Notification.permission === 'granted') {
+        Haptics.tick();
+        alert('🔔 Daily Reminders Active Hain!\n\n• Subah 9:30 AM: Aaj Ka Mission Alert\n• Shaam 8:00 PM: Streak Danger Alert\n\nAapko roz phone par notification aayega!');
+        return;
+      }
+
+      const perm = await Notification.requestPermission();
+      if (perm === 'granted') {
+        Haptics.celebrate();
+        launchConfetti();
+        localStorage.setItem(NOTIF_KEY, 'true');
+        updateNotifBtnUI();
+        try {
+          new Notification('🦁 Hair Flow Coach Active!', {
+            body: 'Oye champion! Notifications ON ho gaye. Subah 9:30 AM aur shaam 8:00 PM par hair care aur streak ka alert aayega!',
+            icon: '/icon-192.png'
+          });
+        } catch (e) {}
+      } else {
+        alert('Notification permission allow nahi hui. Settings mein allow karein taaki streak miss na ho!');
+      }
+    }
+
+    function checkDailyNotificationPing() {
+      if (!('Notification' in window) || Notification.permission !== 'granted') return;
+      const now = new Date();
+      const hour = now.getHours();
+      const dateKey = now.toISOString().slice(0, 10);
+      const lastPing = localStorage.getItem('hair_last_notif_ping');
+
+      if (lastPing !== dateKey) {
+        if (hour >= 9 && hour <= 12) {
+          try {
+            new Notification('🌅 Hair Flow: Aaj Ka Mission', {
+              body: 'Good morning! Aaj ka hair routine check karo aur 8 glass paani target start karo!',
+              icon: '/icon-192.png'
+            });
+            localStorage.setItem('hair_last_notif_ping', dateKey);
+          } catch (e) {}
+        }
+      }
+    }
+
+    // C. THE SPEAKING MASCOT (DYNAMIC TIME & TASK AWARE DIALOGUE)
+    const mascotLines = [
+      "Bhai nahane ke baad rough towel se baal ragadna band kar de, cotton t-shirt use kar! 👕",
+      "Kadhi patte ka tel hafte mein 2 baar lagao, safed baal aur jhadna turant rukta hai! 🍃",
+      "Dono haathon ke nakhun 5 min ragado (Balayam) — hair roots mein blood rush hoga! 💅",
+      "Barber ke paas jao toh seedha bolo: 'Bhaiya upar ki length ko touch mat karna!' 🛡️",
+      "Paani kam peeyoge toh baal sukhe jhadu jaise lagenge, 8 glass poore karo! 💧",
+      "Methi dana paste dandruff ko jad se khatam karta hai, hafte mein 1 baar zaroor lagao! 🌾",
+      "Month 4 sabse awkward hota hai, uss time haar mat maanna, caps use karo! 🦁"
+    ];
+    let mascotLineIdx = 0;
+
+    function updateMascotSpeech() {
+      const bubble = document.getElementById('mascot-speech-bubble');
+      if (!bubble) return;
+      const hour = new Date().getHours();
+      const savedCards = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
+      const isDone = !!savedCards[currentDay];
+
+      if (isDone) {
+        bubble.innerText = '"Shabash mere sher! Aaj ka mission complete hai! Aise hi flow banega 👑"';
+      } else if (hour >= 18) {
+        bubble.innerText = '"⚠️ Oye Ashish! Shaam ho gayi, aaj ka mission pending hai, streak bachao! 🔥"';
+      } else if (hour < 12) {
+        bubble.innerText = '"Good morning champion! Aaj ka mission check kiya kya? 🌅"';
+      } else {
+        bubble.innerText = '"Paani peena mat bhoolna mere sher, dehydration se baal weak hote hain! 💧"';
+      }
+    }
+
+    function talkMascot() {
+      Haptics.tick();
+      const avatar = document.getElementById('mascot-avatar');
+      const bubble = document.getElementById('mascot-speech-bubble');
+      if (avatar) {
+        avatar.classList.remove('mascot-bouncing');
+        void avatar.offsetWidth;
+        avatar.classList.add('mascot-bouncing');
+      }
+      if (bubble) {
+        mascotLineIdx = (mascotLineIdx + 1) % mascotLines.length;
+        bubble.innerText = `"${mascotLines[mascotLineIdx]}"`;
+      }
+    }
+
+    // D. STREAK LOSS-AVERSION WARNING ENGINE
+    function checkStreakDanger() {
+      const banner = document.getElementById('streak-danger-banner');
+      if (!banner) return;
+      const hour = new Date().getHours();
+      const savedCards = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
+      const isDone = !!savedCards[currentDay];
+
+      // After 6 PM (18:00) if today's card is not done -> DANGER MODE!
+      if (hour >= 18 && !isDone) {
+        banner.style.display = 'flex';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    function focusTodayTask() {
+      Haptics.tick();
+      const slot = document.getElementById('today-focus-slot');
+      if (slot) {
+        slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // E. DAILY DESI SCRATCH CARD (DOPAMINE / VARIABLE REWARD)
+    const DAILY_FORTUNES = [
+      "🧅 Pyaz ke ras mein 1 chamach shahad milane se scalp dry nahi hoti aur smell 80% kam aati hai!",
+      "🍚 Fermented chawal ke paani mein 3 boond nimbu nichod lo, baalon mein parlour jaisi glass shine aati hai!",
+      "💅 Balayam karte waqt dono angoothe (thumbs) mat ragadna, sirf 8 ungliyan ragado — direct hair roots activate hongi!",
+      "💧 Nahane ke baad aakhri 1 mug peene wale RO water ka daalne se 90% hard water calcium chalk wash-off hota hai!",
+      "👕 Purani washed cotton t-shirt normal rough towel se 5x kam friction deti hai — zero broken hairs!",
+      "🍃 Roz subah 5 taaze kadhi patte chabane se baalon ko andar se Beta-Carotene aur natural melanin milta hai!",
+      "😴 Raat ko 10 PM se 2 AM ke beech hair follicle cells poore shareer mein sabse tezi se divide karte hain — time par so jao!",
+      "💆‍♂️ Scalp massage karte waqt nakhun nahi, ungliyon ke soft pads use karo taaki roots par micro-tears na aayein!",
+      "🌰 Bhuna chana aur thoda sa gudh shaam ko khane se body mein Iron (Ferritin) badhta hai jo baalon tak oxygen le jata hai!",
+      "☀️ Subah ki 15 minute ki dhoop se Vitamin D3 banta hai jo dormant (soye hue) hair roots ko anagen phase mein lata hai!",
+      "🛡️ Barber ke paas jao toh seedha bolo: 'Bhaiya upar ki length ko touch mat karna, sirf gardan se clean kar do'!",
+      "🚿 Garam paani se baal kabhi mat dhona! Lukewarm paani se shampoo karo aur aakhri rinse thande paani se taaki cuticle lock ho!",
+      "🌾 Methi dana paste lagane ke baad baalon ko polythene ya shower cap se cover kar lo taaki paste sookh kar chipke nahi!",
+      "🦁 Curtain Flow bante waqt Month 4 sabse awkward hota hai — uss time haar mat maanna, caps use karo, cut mat karwana!"
+    ];
+
+    const FORTUNE_DATE_KEY = 'hair_fortune_date_v1';
+    const FORTUNE_INDEX_KEY = 'hair_fortune_idx_v1';
+
+    function getTodayDateStr() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function initDailyFortune() {
+      const today = getTodayDateStr();
+      const savedDate = localStorage.getItem(FORTUNE_DATE_KEY);
+      const cover = document.getElementById('scratch-cover');
+      const revealed = document.getElementById('scratch-revealed');
+      const tipText = document.getElementById('fortune-tip-text');
+      const badge = document.getElementById('fortune-status-badge');
+
+      if (savedDate === today) {
+        // Already unlocked today
+        const idx = parseInt(localStorage.getItem(FORTUNE_INDEX_KEY) || '0');
+        if (tipText) tipText.innerText = `"${DAILY_FORTUNES[idx % DAILY_FORTUNES.length]}"`;
+        if (cover) cover.style.display = 'none';
+        if (revealed) revealed.style.display = 'block';
+        if (badge) {
+          badge.innerText = 'Unlocked ✓';
+          badge.style.background = 'rgba(16, 185, 129, 0.12)';
+          badge.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+          badge.style.color = '#10b981';
+        }
+      } else {
+        // Unclaimed state
+        if (cover) cover.style.display = 'flex';
+        if (revealed) revealed.style.display = 'none';
+        if (badge) {
+          badge.innerText = 'Tap to Scratch ✨';
+          badge.style.background = '';
+          badge.style.borderColor = '';
+          badge.style.color = '';
+        }
+      }
+    }
+
+    function revealFortune() {
+      const today = getTodayDateStr();
+      const savedDate = localStorage.getItem(FORTUNE_DATE_KEY);
+      if (savedDate === today) return; // Already revealed
+
+      Haptics.celebrate();
+      launchConfetti();
+
+      // Pick daily rotation index based on day of year
+      const now = new Date();
+      const startOfYear = new Date(now.getFullYear(), 0, 0);
+      const diff = now - startOfYear;
+      const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const idx = dayOfYear % DAILY_FORTUNES.length;
+
+      localStorage.setItem(FORTUNE_DATE_KEY, today);
+      localStorage.setItem(FORTUNE_INDEX_KEY, idx.toString());
+
+      const cover = document.getElementById('scratch-cover');
+      const revealed = document.getElementById('scratch-revealed');
+      const tipText = document.getElementById('fortune-tip-text');
+      const badge = document.getElementById('fortune-status-badge');
+
+      if (tipText) tipText.innerText = `"${DAILY_FORTUNES[idx]}"`;
+      if (cover) {
+        cover.style.opacity = '0';
+        setTimeout(() => {
+          cover.style.display = 'none';
+          if (revealed) revealed.style.display = 'block';
+        }, 200);
+      }
+      if (badge) {
+        badge.innerText = 'Unlocked ✓';
+        badge.style.background = 'rgba(16, 185, 129, 0.12)';
+        badge.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+        badge.style.color = '#10b981';
+      }
+    }
+
+    updateNotifBtnUI();
+    checkDailyNotificationPing();
+    updateMascotSpeech();
+    checkStreakDanger();
+    initDailyFortune();
     }
 
     // 9. TABS SWITCHER
@@ -2750,6 +3740,284 @@
     renderCups();
     renderProtein();
     updateTimer();
+
+    // ===================================================
+    // 11. DAILY ENGAGEMENT, MASCOT & NOTIFICATION ENGINES
+    // ===================================================
+
+    // A. SERVICE WORKER & PWA INSTALL ENGINE
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+
+    let deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      const dismissed = localStorage.getItem('hair_pwa_dismissed');
+      if (!dismissed) {
+        document.getElementById('pwa-install-banner').style.display = 'flex';
+      }
+    });
+
+    function installPWA() {
+      Haptics.celebrate();
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(() => {
+          deferredPrompt = null;
+          document.getElementById('pwa-install-banner').style.display = 'none';
+        });
+      } else {
+        // iOS or fallback instructions
+        alert("📲 Phone Par Install Karne Ke Liye:\n\n1. Safari / Chrome mein Share button (⬆️) dabayein.\n2. 'Add to Home Screen' select karein!\n\nApp WhatsApp ke bagal mein install ho jayega!");
+      }
+    }
+
+    function dismissPWA() {
+      Haptics.tick();
+      document.getElementById('pwa-install-banner').style.display = 'none';
+      localStorage.setItem('hair_pwa_dismissed', 'true');
+    }
+
+    // B. NATIVE WEB NOTIFICATIONS API ENGINE
+    const NOTIF_KEY = 'hair_notifs_enabled';
+
+    function updateNotifBtnUI() {
+      const btn = document.getElementById('btn-notif-toggle');
+      const icon = document.getElementById('notif-icon');
+      const isGranted = (Notification && Notification.permission === 'granted');
+      if (isGranted) {
+        if (icon) icon.innerText = '🔔';
+        if (btn) btn.style.borderColor = 'var(--gold)';
+      } else {
+        if (icon) icon.innerText = '🔕';
+        if (btn) btn.style.borderColor = '';
+      }
+    }
+
+    async function toggleNotifications() {
+      if (!('Notification' in window)) {
+        alert('Aapka browser notifications support nahi karta. Chrome ya Safari par try karein!');
+        return;
+      }
+
+      if (Notification.permission === 'granted') {
+        Haptics.tick();
+        alert('🔔 Daily Reminders Active Hain!\n\n• Subah 9:30 AM: Aaj Ka Mission Alert\n• Shaam 8:00 PM: Streak Danger Alert\n\nAapko roz phone par notification aayega!');
+        return;
+      }
+
+      const perm = await Notification.requestPermission();
+      if (perm === 'granted') {
+        Haptics.celebrate();
+        launchConfetti();
+        localStorage.setItem(NOTIF_KEY, 'true');
+        updateNotifBtnUI();
+        try {
+          new Notification('🦁 Hair Flow Coach Active!', {
+            body: 'Oye champion! Notifications ON ho gaye. Subah 9:30 AM aur shaam 8:00 PM par hair care aur streak ka alert aayega!',
+            icon: '/icon-192.png'
+          });
+        } catch (e) {}
+      } else {
+        alert('Notification permission allow nahi hui. Settings mein allow karein taaki streak miss na ho!');
+      }
+    }
+
+    function checkDailyNotificationPing() {
+      if (!('Notification' in window) || Notification.permission !== 'granted') return;
+      const now = new Date();
+      const hour = now.getHours();
+      const dateKey = now.toISOString().slice(0, 10);
+      const lastPing = localStorage.getItem('hair_last_notif_ping');
+
+      if (lastPing !== dateKey) {
+        if (hour >= 9 && hour <= 12) {
+          try {
+            new Notification('🌅 Hair Flow: Aaj Ka Mission', {
+              body: 'Good morning! Aaj ka hair routine check karo aur 8 glass paani target start karo!',
+              icon: '/icon-192.png'
+            });
+            localStorage.setItem('hair_last_notif_ping', dateKey);
+          } catch (e) {}
+        }
+      }
+    }
+
+    // C. THE SPEAKING MASCOT (DYNAMIC TIME & TASK AWARE DIALOGUE)
+    const mascotLines = [
+      "Bhai nahane ke baad rough towel se baal ragadna band kar de, cotton t-shirt use kar! 👕",
+      "Kadhi patte ka tel hafte mein 2 baar lagao, safed baal aur jhadna turant rukta hai! 🍃",
+      "Dono haathon ke nakhun 5 min ragado (Balayam) — hair roots mein blood rush hoga! 💅",
+      "Barber ke paas jao toh seedha bolo: 'Bhaiya upar ki length ko touch mat karna!' 🛡️",
+      "Paani kam peeyoge toh baal sukhe jhadu jaise lagenge, 8 glass poore karo! 💧",
+      "Methi dana paste dandruff ko jad se khatam karta hai, hafte mein 1 baar zaroor lagao! 🌾",
+      "Month 4 sabse awkward hota hai, uss time haar mat maanna, caps use karo! 🦁"
+    ];
+    let mascotLineIdx = 0;
+
+    function updateMascotSpeech() {
+      const bubble = document.getElementById('mascot-speech-bubble');
+      if (!bubble) return;
+      const hour = new Date().getHours();
+      const savedCards = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
+      const isDone = !!savedCards[currentDay];
+
+      if (isDone) {
+        bubble.innerText = '"Shabash mere sher! Aaj ka mission complete hai! Aise hi flow banega 👑"';
+      } else if (hour >= 18) {
+        bubble.innerText = '"⚠️ Oye Ashish! Shaam ho gayi, aaj ka mission pending hai, streak bachao! 🔥"';
+      } else if (hour < 12) {
+        bubble.innerText = '"Good morning champion! Aaj ka mission check kiya kya? 🌅"';
+      } else {
+        bubble.innerText = '"Paani peena mat bhoolna mere sher, dehydration se baal weak hote hain! 💧"';
+      }
+    }
+
+    function talkMascot() {
+      Haptics.tick();
+      const avatar = document.getElementById('mascot-avatar');
+      const bubble = document.getElementById('mascot-speech-bubble');
+      if (avatar) {
+        avatar.classList.remove('mascot-bouncing');
+        void avatar.offsetWidth;
+        avatar.classList.add('mascot-bouncing');
+      }
+      if (bubble) {
+        mascotLineIdx = (mascotLineIdx + 1) % mascotLines.length;
+        bubble.innerText = `"${mascotLines[mascotLineIdx]}"`;
+      }
+    }
+
+    // D. STREAK LOSS-AVERSION WARNING ENGINE
+    function checkStreakDanger() {
+      const banner = document.getElementById('streak-danger-banner');
+      if (!banner) return;
+      const hour = new Date().getHours();
+      const savedCards = JSON.parse(localStorage.getItem(CARDS_KEY) || '{}');
+      const isDone = !!savedCards[currentDay];
+
+      // After 6 PM (18:00) if today's card is not done -> DANGER MODE!
+      if (hour >= 18 && !isDone) {
+        banner.style.display = 'flex';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    function focusTodayTask() {
+      Haptics.tick();
+      const slot = document.getElementById('today-focus-slot');
+      if (slot) {
+        slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // E. DAILY DESI SCRATCH CARD (DOPAMINE / VARIABLE REWARD)
+    const DAILY_FORTUNES = [
+      "🧅 Pyaz ke ras mein 1 chamach shahad milane se scalp dry nahi hoti aur smell 80% kam aati hai!",
+      "🍚 Fermented chawal ke paani mein 3 boond nimbu nichod lo, baalon mein parlour jaisi glass shine aati hai!",
+      "💅 Balayam karte waqt dono angoothe (thumbs) mat ragadna, sirf 8 ungliyan ragado — direct hair roots activate hongi!",
+      "💧 Nahane ke baad aakhri 1 mug peene wale RO water ka daalne se 90% hard water calcium chalk wash-off hota hai!",
+      "👕 Purani washed cotton t-shirt normal rough towel se 5x kam friction deti hai — zero broken hairs!",
+      "🍃 Roz subah 5 taaze kadhi patte chabane se baalon ko andar se Beta-Carotene aur natural melanin milta hai!",
+      "😴 Raat ko 10 PM se 2 AM ke beech hair follicle cells poore shareer mein sabse tezi se divide karte hain — time par so jao!",
+      "💆‍♂️ Scalp massage karte waqt nakhun nahi, ungliyon ke soft pads use karo taaki roots par micro-tears na aayein!",
+      "🌰 Bhuna chana aur thoda sa gudh shaam ko khane se body mein Iron (Ferritin) badhta hai jo baalon tak oxygen le jata hai!",
+      "☀️ Subah ki 15 minute ki dhoop se Vitamin D3 banta hai jo dormant (soye hue) hair roots ko anagen phase mein lata hai!",
+      "🛡️ Barber ke paas jao toh seedha bolo: 'Bhaiya upar ki length ko touch mat karna, sirf gardan se clean kar do'!",
+      "🚿 Garam paani se baal kabhi mat dhona! Lukewarm paani se shampoo karo aur aakhri rinse thande paani se taaki cuticle lock ho!",
+      "🌾 Methi dana paste lagane ke baad baalon ko polythene ya shower cap se cover kar lo taaki paste sookh kar chipke nahi!",
+      "🦁 Curtain Flow bante waqt Month 4 sabse awkward hota hai — uss time haar mat maanna, caps use karo, cut mat karwana!"
+    ];
+
+    const FORTUNE_DATE_KEY = 'hair_fortune_date_v1';
+    const FORTUNE_INDEX_KEY = 'hair_fortune_idx_v1';
+
+    function getTodayDateStr() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function initDailyFortune() {
+      const today = getTodayDateStr();
+      const savedDate = localStorage.getItem(FORTUNE_DATE_KEY);
+      const cover = document.getElementById('scratch-cover');
+      const revealed = document.getElementById('scratch-revealed');
+      const tipText = document.getElementById('fortune-tip-text');
+      const badge = document.getElementById('fortune-status-badge');
+
+      if (savedDate === today) {
+        // Already unlocked today
+        const idx = parseInt(localStorage.getItem(FORTUNE_INDEX_KEY) || '0');
+        if (tipText) tipText.innerText = `"${DAILY_FORTUNES[idx % DAILY_FORTUNES.length]}"`;
+        if (cover) cover.style.display = 'none';
+        if (revealed) revealed.style.display = 'block';
+        if (badge) {
+          badge.innerText = 'Unlocked ✓';
+          badge.style.background = 'rgba(16, 185, 129, 0.12)';
+          badge.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+          badge.style.color = '#10b981';
+        }
+      } else {
+        // Unclaimed state
+        if (cover) cover.style.display = 'flex';
+        if (revealed) revealed.style.display = 'none';
+        if (badge) {
+          badge.innerText = 'Tap to Scratch ✨';
+          badge.style.background = '';
+          badge.style.borderColor = '';
+          badge.style.color = '';
+        }
+      }
+    }
+
+    function revealFortune() {
+      const today = getTodayDateStr();
+      const savedDate = localStorage.getItem(FORTUNE_DATE_KEY);
+      if (savedDate === today) return; // Already revealed
+
+      Haptics.celebrate();
+      launchConfetti();
+
+      // Pick daily rotation index based on day of year
+      const now = new Date();
+      const startOfYear = new Date(now.getFullYear(), 0, 0);
+      const diff = now - startOfYear;
+      const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const idx = dayOfYear % DAILY_FORTUNES.length;
+
+      localStorage.setItem(FORTUNE_DATE_KEY, today);
+      localStorage.setItem(FORTUNE_INDEX_KEY, idx.toString());
+
+      const cover = document.getElementById('scratch-cover');
+      const revealed = document.getElementById('scratch-revealed');
+      const tipText = document.getElementById('fortune-tip-text');
+      const badge = document.getElementById('fortune-status-badge');
+
+      if (tipText) tipText.innerText = `"${DAILY_FORTUNES[idx]}"`;
+      if (cover) {
+        cover.style.opacity = '0';
+        setTimeout(() => {
+          cover.style.display = 'none';
+          if (revealed) revealed.style.display = 'block';
+        }, 200);
+      }
+      if (badge) {
+        badge.innerText = 'Unlocked ✓';
+        badge.style.background = 'rgba(16, 185, 129, 0.12)';
+        badge.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+        badge.style.color = '#10b981';
+      }
+    }
+
+    updateNotifBtnUI();
+    checkDailyNotificationPing();
+    updateMascotSpeech();
+    checkStreakDanger();
+    initDailyFortune();
   </script>
 </body>
 </html>
